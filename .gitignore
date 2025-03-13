@@ -1,0 +1,44 @@
+# Python
+*.pyc
+*.pyo
+__pycache__
+*.pyd
+*.db
+
+# Директории виртуальных окружений
+.env/
+.venv/
+venv/
+venv.bak/
+.env.bak/
+
+# Логи
+*.log
+
+# Миграции баз данных
+migrations/
+
+# Секреты и конфигурации
+*.env
+*.json
+
+# Конфигурации IDE
+.vscode/
+.idea/
+
+# Дистрибутивы
+*.egg
+*.egg-info
+dist/
+build/
+*.whl
+
+# Pytest
+.cache/
+nosetests.xml
+coverage.xml
+*.cover
+*.hypothesis/
+
+# FastAPI
+*.sqlite3
