@@ -5,7 +5,7 @@
 -- Dumped from database version 17.0
 -- Dumped by pg_dump version 17.2
 
--- Started on 2025-03-05 14:00:18
+-- Started on 2025-04-02 21:16:00
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -24,7 +24,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- TOC entry 217 (class 1259 OID 16641)
+-- TOC entry 217 (class 1259 OID 18846)
 -- Name: достижение; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -38,7 +38,7 @@ CREATE TABLE public."достижение" (
 ALTER TABLE public."достижение" OWNER TO postgres;
 
 --
--- TOC entry 218 (class 1259 OID 16646)
+-- TOC entry 218 (class 1259 OID 18851)
 -- Name: achievements_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -63,7 +63,7 @@ ALTER SEQUENCE public.achievements_id_seq OWNED BY public."достижение"
 
 
 --
--- TOC entry 219 (class 1259 OID 16647)
+-- TOC entry 219 (class 1259 OID 18852)
 -- Name: чат; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -75,7 +75,7 @@ CREATE TABLE public."чат" (
 ALTER TABLE public."чат" OWNER TO postgres;
 
 --
--- TOC entry 220 (class 1259 OID 16650)
+-- TOC entry 220 (class 1259 OID 18855)
 -- Name: chat_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -100,7 +100,7 @@ ALTER SEQUENCE public.chat_id_seq OWNED BY public."чат".id;
 
 
 --
--- TOC entry 221 (class 1259 OID 16651)
+-- TOC entry 221 (class 1259 OID 18856)
 -- Name: клиент; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -114,7 +114,7 @@ CREATE TABLE public."клиент" (
 ALTER TABLE public."клиент" OWNER TO postgres;
 
 --
--- TOC entry 222 (class 1259 OID 16654)
+-- TOC entry 222 (class 1259 OID 18859)
 -- Name: client_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -139,7 +139,7 @@ ALTER SEQUENCE public.client_id_seq OWNED BY public."клиент".id;
 
 
 --
--- TOC entry 223 (class 1259 OID 16655)
+-- TOC entry 223 (class 1259 OID 18860)
 -- Name: клиент_и_подписка; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -157,7 +157,7 @@ CREATE TABLE public."клиент_и_подписка" (
 ALTER TABLE public."клиент_и_подписка" OWNER TO postgres;
 
 --
--- TOC entry 224 (class 1259 OID 16658)
+-- TOC entry 224 (class 1259 OID 18863)
 -- Name: client_subscription_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -182,7 +182,7 @@ ALTER SEQUENCE public.client_subscription_id_seq OWNED BY public."клиент_�
 
 
 --
--- TOC entry 225 (class 1259 OID 16659)
+-- TOC entry 225 (class 1259 OID 18864)
 -- Name: тренер; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -195,7 +195,7 @@ CREATE TABLE public."тренер" (
 ALTER TABLE public."тренер" OWNER TO postgres;
 
 --
--- TOC entry 226 (class 1259 OID 16662)
+-- TOC entry 226 (class 1259 OID 18867)
 -- Name: coach_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -220,7 +220,7 @@ ALTER SEQUENCE public.coach_id_seq OWNED BY public."тренер".id;
 
 
 --
--- TOC entry 227 (class 1259 OID 16663)
+-- TOC entry 227 (class 1259 OID 18868)
 -- Name: специальность_тренера; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -233,7 +233,7 @@ CREATE TABLE public."специальность_тренера" (
 ALTER TABLE public."специальность_тренера" OWNER TO postgres;
 
 --
--- TOC entry 228 (class 1259 OID 16666)
+-- TOC entry 228 (class 1259 OID 18871)
 -- Name: coach_speciality_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -258,7 +258,7 @@ ALTER SEQUENCE public.coach_speciality_id_seq OWNED BY public."специаль�
 
 
 --
--- TOC entry 229 (class 1259 OID 16667)
+-- TOC entry 229 (class 1259 OID 18872)
 -- Name: дневник; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -274,7 +274,7 @@ CREATE TABLE public."дневник" (
 ALTER TABLE public."дневник" OWNER TO postgres;
 
 --
--- TOC entry 230 (class 1259 OID 16672)
+-- TOC entry 230 (class 1259 OID 18877)
 -- Name: diary_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -299,7 +299,7 @@ ALTER SEQUENCE public.diary_id_seq OWNED BY public."дневник".id;
 
 
 --
--- TOC entry 231 (class 1259 OID 16673)
+-- TOC entry 231 (class 1259 OID 18878)
 -- Name: снаряжение; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -312,7 +312,7 @@ CREATE TABLE public."снаряжение" (
 ALTER TABLE public."снаряжение" OWNER TO postgres;
 
 --
--- TOC entry 232 (class 1259 OID 16676)
+-- TOC entry 232 (class 1259 OID 18881)
 -- Name: equipment_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -337,7 +337,7 @@ ALTER SEQUENCE public.equipment_id_seq OWNED BY public."снаряжение".id
 
 
 --
--- TOC entry 233 (class 1259 OID 16677)
+-- TOC entry 233 (class 1259 OID 18882)
 -- Name: упражнение_и_мыщца; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -352,7 +352,7 @@ CREATE TABLE public."упражнение_и_мыщца" (
 ALTER TABLE public."упражнение_и_мыщца" OWNER TO postgres;
 
 --
--- TOC entry 234 (class 1259 OID 16680)
+-- TOC entry 234 (class 1259 OID 18885)
 -- Name: exercise_and_muscle_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -377,7 +377,7 @@ ALTER SEQUENCE public.exercise_and_muscle_id_seq OWNED BY public."упражне
 
 
 --
--- TOC entry 235 (class 1259 OID 16681)
+-- TOC entry 235 (class 1259 OID 18886)
 -- Name: сложность_упражнения; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -390,7 +390,7 @@ CREATE TABLE public."сложность_упражнения" (
 ALTER TABLE public."сложность_упражнения" OWNER TO postgres;
 
 --
--- TOC entry 236 (class 1259 OID 16684)
+-- TOC entry 236 (class 1259 OID 18889)
 -- Name: exercise_difficulty_2_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -415,7 +415,7 @@ ALTER SEQUENCE public.exercise_difficulty_2_id_seq OWNED BY public."сложно
 
 
 --
--- TOC entry 237 (class 1259 OID 16685)
+-- TOC entry 237 (class 1259 OID 18890)
 -- Name: упражнение; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -431,7 +431,7 @@ CREATE TABLE public."упражнение" (
 ALTER TABLE public."упражнение" OWNER TO postgres;
 
 --
--- TOC entry 238 (class 1259 OID 16690)
+-- TOC entry 238 (class 1259 OID 18895)
 -- Name: exercise_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -456,7 +456,7 @@ ALTER SEQUENCE public.exercise_id_seq OWNED BY public."упражнение".id;
 
 
 --
--- TOC entry 239 (class 1259 OID 16691)
+-- TOC entry 239 (class 1259 OID 18896)
 -- Name: этап_упражнения; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -469,7 +469,7 @@ CREATE TABLE public."этап_упражнения" (
 ALTER TABLE public."этап_упражнения" OWNER TO postgres;
 
 --
--- TOC entry 240 (class 1259 OID 16694)
+-- TOC entry 240 (class 1259 OID 18899)
 -- Name: exercise_stage_2_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -494,7 +494,7 @@ ALTER SEQUENCE public.exercise_stage_2_id_seq OWNED BY public."этап_упра
 
 
 --
--- TOC entry 241 (class 1259 OID 16695)
+-- TOC entry 241 (class 1259 OID 18900)
 -- Name: тип_упражнения; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -507,7 +507,7 @@ CREATE TABLE public."тип_упражнения" (
 ALTER TABLE public."тип_упражнения" OWNER TO postgres;
 
 --
--- TOC entry 242 (class 1259 OID 16698)
+-- TOC entry 242 (class 1259 OID 18903)
 -- Name: exercise_type_2_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -532,7 +532,7 @@ ALTER SEQUENCE public.exercise_type_2_id_seq OWNED BY public."тип_упраж�
 
 
 --
--- TOC entry 243 (class 1259 OID 16699)
+-- TOC entry 243 (class 1259 OID 18904)
 -- Name: чувство; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -545,7 +545,7 @@ CREATE TABLE public."чувство" (
 ALTER TABLE public."чувство" OWNER TO postgres;
 
 --
--- TOC entry 244 (class 1259 OID 16702)
+-- TOC entry 244 (class 1259 OID 18907)
 -- Name: feeling_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -570,7 +570,7 @@ ALTER SEQUENCE public.feeling_id_seq OWNED BY public."чувство".id;
 
 
 --
--- TOC entry 245 (class 1259 OID 16703)
+-- TOC entry 245 (class 1259 OID 18908)
 -- Name: файл; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -583,7 +583,7 @@ CREATE TABLE public."файл" (
 ALTER TABLE public."файл" OWNER TO postgres;
 
 --
--- TOC entry 246 (class 1259 OID 16706)
+-- TOC entry 246 (class 1259 OID 18911)
 -- Name: file_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -608,7 +608,7 @@ ALTER SEQUENCE public.file_id_seq OWNED BY public."файл".id;
 
 
 --
--- TOC entry 247 (class 1259 OID 16707)
+-- TOC entry 247 (class 1259 OID 18912)
 -- Name: тип_файла; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -621,7 +621,7 @@ CREATE TABLE public."тип_файла" (
 ALTER TABLE public."тип_файла" OWNER TO postgres;
 
 --
--- TOC entry 248 (class 1259 OID 16710)
+-- TOC entry 248 (class 1259 OID 18915)
 -- Name: file_type_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -646,7 +646,7 @@ ALTER SEQUENCE public.file_type_id_seq OWNED BY public."тип_файла".id;
 
 
 --
--- TOC entry 249 (class 1259 OID 16711)
+-- TOC entry 249 (class 1259 OID 18916)
 -- Name: сообщение; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -660,7 +660,7 @@ CREATE TABLE public."сообщение" (
 ALTER TABLE public."сообщение" OWNER TO postgres;
 
 --
--- TOC entry 250 (class 1259 OID 16716)
+-- TOC entry 250 (class 1259 OID 18921)
 -- Name: message_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -685,7 +685,7 @@ ALTER SEQUENCE public.message_id_seq OWNED BY public."сообщение".id;
 
 
 --
--- TOC entry 251 (class 1259 OID 16717)
+-- TOC entry 251 (class 1259 OID 18922)
 -- Name: мышца; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -698,7 +698,7 @@ CREATE TABLE public."мышца" (
 ALTER TABLE public."мышца" OWNER TO postgres;
 
 --
--- TOC entry 252 (class 1259 OID 16720)
+-- TOC entry 252 (class 1259 OID 18925)
 -- Name: muscle_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -723,7 +723,7 @@ ALTER SEQUENCE public.muscle_id_seq OWNED BY public."мышца".id;
 
 
 --
--- TOC entry 253 (class 1259 OID 16721)
+-- TOC entry 253 (class 1259 OID 18926)
 -- Name: приоритет_мышцы; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -736,7 +736,7 @@ CREATE TABLE public."приоритет_мышцы" (
 ALTER TABLE public."приоритет_мышцы" OWNER TO postgres;
 
 --
--- TOC entry 254 (class 1259 OID 16724)
+-- TOC entry 254 (class 1259 OID 18929)
 -- Name: muscle_priority_2_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -761,7 +761,7 @@ ALTER SEQUENCE public.muscle_priority_2_id_seq OWNED BY public."приорите
 
 
 --
--- TOC entry 255 (class 1259 OID 16725)
+-- TOC entry 255 (class 1259 OID 18930)
 -- Name: питание; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -778,7 +778,7 @@ CREATE TABLE public."питание" (
 ALTER TABLE public."питание" OWNER TO postgres;
 
 --
--- TOC entry 256 (class 1259 OID 16728)
+-- TOC entry 256 (class 1259 OID 18933)
 -- Name: nutrition_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -803,7 +803,7 @@ ALTER SEQUENCE public.nutrition_id_seq OWNED BY public."питание".id;
 
 
 --
--- TOC entry 257 (class 1259 OID 16729)
+-- TOC entry 257 (class 1259 OID 18934)
 -- Name: цель_тренировок; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -816,7 +816,7 @@ CREATE TABLE public."цель_тренировок" (
 ALTER TABLE public."цель_тренировок" OWNER TO postgres;
 
 --
--- TOC entry 258 (class 1259 OID 16732)
+-- TOC entry 258 (class 1259 OID 18937)
 -- Name: purpose_of_workouts_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -841,7 +841,7 @@ ALTER SEQUENCE public.purpose_of_workouts_id_seq OWNED BY public."цель_тр�
 
 
 --
--- TOC entry 259 (class 1259 OID 16733)
+-- TOC entry 259 (class 1259 OID 18938)
 -- Name: причина_чувства; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -854,7 +854,7 @@ CREATE TABLE public."причина_чувства" (
 ALTER TABLE public."причина_чувства" OWNER TO postgres;
 
 --
--- TOC entry 260 (class 1259 OID 16736)
+-- TOC entry 260 (class 1259 OID 18941)
 -- Name: reason_of_feeling_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -879,7 +879,7 @@ ALTER SEQUENCE public.reason_of_feeling_id_seq OWNED BY public."причина_�
 
 
 --
--- TOC entry 261 (class 1259 OID 16737)
+-- TOC entry 261 (class 1259 OID 18942)
 -- Name: шаги; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -895,7 +895,7 @@ CREATE TABLE public."шаги" (
 ALTER TABLE public."шаги" OWNER TO postgres;
 
 --
--- TOC entry 262 (class 1259 OID 16740)
+-- TOC entry 262 (class 1259 OID 18945)
 -- Name: steps_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -920,7 +920,7 @@ ALTER SEQUENCE public.steps_id_seq OWNED BY public."шаги".id;
 
 
 --
--- TOC entry 263 (class 1259 OID 16741)
+-- TOC entry 263 (class 1259 OID 18946)
 -- Name: подписка; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -935,7 +935,7 @@ CREATE TABLE public."подписка" (
 ALTER TABLE public."подписка" OWNER TO postgres;
 
 --
--- TOC entry 264 (class 1259 OID 16744)
+-- TOC entry 264 (class 1259 OID 18949)
 -- Name: subscription_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -960,7 +960,7 @@ ALTER SEQUENCE public.subscription_id_seq OWNED BY public."подписка".id;
 
 
 --
--- TOC entry 265 (class 1259 OID 16745)
+-- TOC entry 265 (class 1259 OID 18950)
 -- Name: статус_подписки; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -973,7 +973,7 @@ CREATE TABLE public."статус_подписки" (
 ALTER TABLE public."статус_подписки" OWNER TO postgres;
 
 --
--- TOC entry 266 (class 1259 OID 16748)
+-- TOC entry 266 (class 1259 OID 18953)
 -- Name: subscription_status_2_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -998,7 +998,7 @@ ALTER SEQUENCE public.subscription_status_2_id_seq OWNED BY public."статус
 
 
 --
--- TOC entry 267 (class 1259 OID 16749)
+-- TOC entry 267 (class 1259 OID 18954)
 -- Name: уровень_тренировки; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1011,7 +1011,7 @@ CREATE TABLE public."уровень_тренировки" (
 ALTER TABLE public."уровень_тренировки" OWNER TO postgres;
 
 --
--- TOC entry 268 (class 1259 OID 16752)
+-- TOC entry 268 (class 1259 OID 18957)
 -- Name: training_level_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1036,7 +1036,7 @@ ALTER SEQUENCE public.training_level_id_seq OWNED BY public."уровень_тр
 
 
 --
--- TOC entry 269 (class 1259 OID 16753)
+-- TOC entry 269 (class 1259 OID 18958)
 -- Name: пользователь; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1055,7 +1055,7 @@ CREATE TABLE public."пользователь" (
 ALTER TABLE public."пользователь" OWNER TO postgres;
 
 --
--- TOC entry 270 (class 1259 OID 16758)
+-- TOC entry 270 (class 1259 OID 18963)
 -- Name: user_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1080,7 +1080,7 @@ ALTER SEQUENCE public.user_id_seq OWNED BY public."пользователь".id;
 
 
 --
--- TOC entry 271 (class 1259 OID 16759)
+-- TOC entry 271 (class 1259 OID 18964)
 -- Name: вода; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1096,7 +1096,7 @@ CREATE TABLE public."вода" (
 ALTER TABLE public."вода" OWNER TO postgres;
 
 --
--- TOC entry 272 (class 1259 OID 16762)
+-- TOC entry 272 (class 1259 OID 18967)
 -- Name: water_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1121,7 +1121,7 @@ ALTER SEQUENCE public.water_id_seq OWNED BY public."вода".id;
 
 
 --
--- TOC entry 273 (class 1259 OID 16763)
+-- TOC entry 273 (class 1259 OID 18968)
 -- Name: вес; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1136,7 +1136,7 @@ CREATE TABLE public."вес" (
 ALTER TABLE public."вес" OWNER TO postgres;
 
 --
--- TOC entry 274 (class 1259 OID 16766)
+-- TOC entry 274 (class 1259 OID 18971)
 -- Name: weight_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1161,7 +1161,7 @@ ALTER SEQUENCE public.weight_id_seq OWNED BY public."вес".id;
 
 
 --
--- TOC entry 275 (class 1259 OID 16767)
+-- TOC entry 275 (class 1259 OID 18972)
 -- Name: тренировка_и_упражнение; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1181,7 +1181,7 @@ CREATE TABLE public."тренировка_и_упражнение" (
 ALTER TABLE public."тренировка_и_упражнение" OWNER TO postgres;
 
 --
--- TOC entry 276 (class 1259 OID 16770)
+-- TOC entry 276 (class 1259 OID 18975)
 -- Name: workout_and_exercise_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1206,7 +1206,7 @@ ALTER SEQUENCE public.workout_and_exercise_id_seq OWNED BY public."тренир�
 
 
 --
--- TOC entry 277 (class 1259 OID 16771)
+-- TOC entry 277 (class 1259 OID 18976)
 -- Name: тренировка; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1222,7 +1222,7 @@ CREATE TABLE public."тренировка" (
 ALTER TABLE public."тренировка" OWNER TO postgres;
 
 --
--- TOC entry 278 (class 1259 OID 16774)
+-- TOC entry 278 (class 1259 OID 18979)
 -- Name: workout_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1247,7 +1247,7 @@ ALTER SEQUENCE public.workout_id_seq OWNED BY public."тренировка".id;
 
 
 --
--- TOC entry 279 (class 1259 OID 16775)
+-- TOC entry 279 (class 1259 OID 18980)
 -- Name: план_тренировки; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1261,7 +1261,7 @@ CREATE TABLE public."план_тренировки" (
 ALTER TABLE public."план_тренировки" OWNER TO postgres;
 
 --
--- TOC entry 280 (class 1259 OID 16780)
+-- TOC entry 280 (class 1259 OID 18985)
 -- Name: workout_plan_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1286,7 +1286,7 @@ ALTER SEQUENCE public.workout_plan_id_seq OWNED BY public."план_тренир
 
 
 --
--- TOC entry 281 (class 1259 OID 16781)
+-- TOC entry 281 (class 1259 OID 18986)
 -- Name: тип_тренировки; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1299,7 +1299,7 @@ CREATE TABLE public."тип_тренировки" (
 ALTER TABLE public."тип_тренировки" OWNER TO postgres;
 
 --
--- TOC entry 282 (class 1259 OID 16784)
+-- TOC entry 282 (class 1259 OID 18989)
 -- Name: workout_type_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1324,7 +1324,7 @@ ALTER SEQUENCE public.workout_type_id_seq OWNED BY public."тип_трениро
 
 
 --
--- TOC entry 283 (class 1259 OID 16785)
+-- TOC entry 283 (class 1259 OID 18990)
 -- Name: дневник_и_причина_чувства; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1337,7 +1337,7 @@ CREATE TABLE public."дневник_и_причина_чувства" (
 ALTER TABLE public."дневник_и_причина_чувства" OWNER TO postgres;
 
 --
--- TOC entry 284 (class 1259 OID 16788)
+-- TOC entry 284 (class 1259 OID 18993)
 -- Name: дневник_и_чувство; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1350,7 +1350,7 @@ CREATE TABLE public."дневник_и_чувство" (
 ALTER TABLE public."дневник_и_чувство" OWNER TO postgres;
 
 --
--- TOC entry 285 (class 1259 OID 16791)
+-- TOC entry 285 (class 1259 OID 18996)
 -- Name: пол; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1363,7 +1363,7 @@ CREATE TABLE public."пол" (
 ALTER TABLE public."пол" OWNER TO postgres;
 
 --
--- TOC entry 286 (class 1259 OID 16794)
+-- TOC entry 286 (class 1259 OID 18999)
 -- Name: имя_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1388,7 +1388,7 @@ ALTER SEQUENCE public."имя_id_seq" OWNED BY public."пол".id;
 
 
 --
--- TOC entry 287 (class 1259 OID 16795)
+-- TOC entry 287 (class 1259 OID 19000)
 -- Name: клиент_и_тип_тренировки; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1401,7 +1401,7 @@ CREATE TABLE public."клиент_и_тип_тренировки" (
 ALTER TABLE public."клиент_и_тип_тренировки" OWNER TO postgres;
 
 --
--- TOC entry 288 (class 1259 OID 16798)
+-- TOC entry 288 (class 1259 OID 19003)
 -- Name: клиент_и_цель_тренировок; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1414,7 +1414,7 @@ CREATE TABLE public."клиент_и_цель_тренировок" (
 ALTER TABLE public."клиент_и_цель_тренировок" OWNER TO postgres;
 
 --
--- TOC entry 289 (class 1259 OID 16801)
+-- TOC entry 289 (class 1259 OID 19006)
 -- Name: отзыв; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1429,7 +1429,7 @@ CREATE TABLE public."отзыв" (
 ALTER TABLE public."отзыв" OWNER TO postgres;
 
 --
--- TOC entry 290 (class 1259 OID 16807)
+-- TOC entry 290 (class 1259 OID 19012)
 -- Name: план_тренировки_и_пользователь; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1442,7 +1442,7 @@ CREATE TABLE public."план_тренировки_и_пользователь" 
 ALTER TABLE public."план_тренировки_и_пользователь" OWNER TO postgres;
 
 --
--- TOC entry 291 (class 1259 OID 16810)
+-- TOC entry 291 (class 1259 OID 19015)
 -- Name: пользователь_и_достижение; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1455,7 +1455,7 @@ CREATE TABLE public."пользователь_и_достижение" (
 ALTER TABLE public."пользователь_и_достижение" OWNER TO postgres;
 
 --
--- TOC entry 292 (class 1259 OID 16813)
+-- TOC entry 292 (class 1259 OID 19018)
 -- Name: сообщение_и_файл; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1468,7 +1468,7 @@ CREATE TABLE public."сообщение_и_файл" (
 ALTER TABLE public."сообщение_и_файл" OWNER TO postgres;
 
 --
--- TOC entry 293 (class 1259 OID 16816)
+-- TOC entry 293 (class 1259 OID 19021)
 -- Name: тренер_и_клиент; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1481,7 +1481,7 @@ CREATE TABLE public."тренер_и_клиент" (
 ALTER TABLE public."тренер_и_клиент" OWNER TO postgres;
 
 --
--- TOC entry 294 (class 1259 OID 16819)
+-- TOC entry 294 (class 1259 OID 19024)
 -- Name: тренер_и_специальность; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1494,7 +1494,7 @@ CREATE TABLE public."тренер_и_специальность" (
 ALTER TABLE public."тренер_и_специальность" OWNER TO postgres;
 
 --
--- TOC entry 295 (class 1259 OID 16822)
+-- TOC entry 295 (class 1259 OID 19027)
 -- Name: тренировка_и_план_тренировки; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1507,7 +1507,7 @@ CREATE TABLE public."тренировка_и_план_тренировки" (
 ALTER TABLE public."тренировка_и_план_тренировки" OWNER TO postgres;
 
 --
--- TOC entry 296 (class 1259 OID 16825)
+-- TOC entry 296 (class 1259 OID 19030)
 -- Name: тренировка_и_пользователь; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1520,7 +1520,7 @@ CREATE TABLE public."тренировка_и_пользователь" (
 ALTER TABLE public."тренировка_и_пользователь" OWNER TO postgres;
 
 --
--- TOC entry 297 (class 1259 OID 16828)
+-- TOC entry 297 (class 1259 OID 19033)
 -- Name: упражнение_и_пользователь; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1533,7 +1533,7 @@ CREATE TABLE public."упражнение_и_пользователь" (
 ALTER TABLE public."упражнение_и_пользователь" OWNER TO postgres;
 
 --
--- TOC entry 298 (class 1259 OID 16831)
+-- TOC entry 298 (class 1259 OID 19036)
 -- Name: упражнение_и_снаряжение; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1546,7 +1546,7 @@ CREATE TABLE public."упражнение_и_снаряжение" (
 ALTER TABLE public."упражнение_и_снаряжение" OWNER TO postgres;
 
 --
--- TOC entry 299 (class 1259 OID 16834)
+-- TOC entry 299 (class 1259 OID 19039)
 -- Name: упражнение_и_файл; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1559,7 +1559,7 @@ CREATE TABLE public."упражнение_и_файл" (
 ALTER TABLE public."упражнение_и_файл" OWNER TO postgres;
 
 --
--- TOC entry 303 (class 1259 OID 17380)
+-- TOC entry 300 (class 1259 OID 19042)
 -- Name: уровень_подготовки; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1573,7 +1573,7 @@ CREATE TABLE public."уровень_подготовки" (
 ALTER TABLE public."уровень_подготовки" OWNER TO postgres;
 
 --
--- TOC entry 302 (class 1259 OID 17379)
+-- TOC entry 301 (class 1259 OID 19046)
 -- Name: уровень_подготовки_id_seq; Type: SEQUENCE; Schema: public; Owner: postgres
 --
 
@@ -1590,7 +1590,7 @@ ALTER SEQUENCE public."уровень_подготовки_id_seq" OWNER TO post
 
 --
 -- TOC entry 5497 (class 0 OID 0)
--- Dependencies: 302
+-- Dependencies: 301
 -- Name: уровень_подготовки_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: postgres
 --
 
@@ -1598,7 +1598,7 @@ ALTER SEQUENCE public."уровень_подготовки_id_seq" OWNED BY publ
 
 
 --
--- TOC entry 300 (class 1259 OID 16837)
+-- TOC entry 302 (class 1259 OID 19047)
 -- Name: файл_и_тип_файла; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1611,7 +1611,7 @@ CREATE TABLE public."файл_и_тип_файла" (
 ALTER TABLE public."файл_и_тип_файла" OWNER TO postgres;
 
 --
--- TOC entry 301 (class 1259 OID 16840)
+-- TOC entry 303 (class 1259 OID 19050)
 -- Name: чат_и_пользователь; Type: TABLE; Schema: public; Owner: postgres
 --
 
@@ -1624,7 +1624,7 @@ CREATE TABLE public."чат_и_пользователь" (
 ALTER TABLE public."чат_и_пользователь" OWNER TO postgres;
 
 --
--- TOC entry 4961 (class 2604 OID 16843)
+-- TOC entry 4961 (class 2604 OID 19053)
 -- Name: вес id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1632,7 +1632,7 @@ ALTER TABLE ONLY public."вес" ALTER COLUMN id SET DEFAULT nextval('public.wei
 
 
 --
--- TOC entry 4960 (class 2604 OID 16844)
+-- TOC entry 4960 (class 2604 OID 19054)
 -- Name: вода id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1640,7 +1640,7 @@ ALTER TABLE ONLY public."вода" ALTER COLUMN id SET DEFAULT nextval('public.w
 
 
 --
--- TOC entry 4939 (class 2604 OID 16845)
+-- TOC entry 4939 (class 2604 OID 19055)
 -- Name: дневник id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1648,7 +1648,7 @@ ALTER TABLE ONLY public."дневник" ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
--- TOC entry 4933 (class 2604 OID 16846)
+-- TOC entry 4933 (class 2604 OID 19056)
 -- Name: достижение id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1656,7 +1656,7 @@ ALTER TABLE ONLY public."достижение" ALTER COLUMN id SET DEFAULT nextv
 
 
 --
--- TOC entry 4935 (class 2604 OID 16847)
+-- TOC entry 4935 (class 2604 OID 19057)
 -- Name: клиент id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1664,7 +1664,7 @@ ALTER TABLE ONLY public."клиент" ALTER COLUMN id SET DEFAULT nextval('publ
 
 
 --
--- TOC entry 4936 (class 2604 OID 16848)
+-- TOC entry 4936 (class 2604 OID 19058)
 -- Name: клиент_и_подписка id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1672,7 +1672,7 @@ ALTER TABLE ONLY public."клиент_и_подписка" ALTER COLUMN id SET D
 
 
 --
--- TOC entry 4950 (class 2604 OID 16849)
+-- TOC entry 4950 (class 2604 OID 19059)
 -- Name: мышца id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1680,7 +1680,7 @@ ALTER TABLE ONLY public."мышца" ALTER COLUMN id SET DEFAULT nextval('public
 
 
 --
--- TOC entry 4952 (class 2604 OID 16850)
+-- TOC entry 4952 (class 2604 OID 19060)
 -- Name: питание id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1688,7 +1688,7 @@ ALTER TABLE ONLY public."питание" ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
--- TOC entry 4964 (class 2604 OID 16851)
+-- TOC entry 4964 (class 2604 OID 19061)
 -- Name: план_тренировки id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1696,7 +1696,7 @@ ALTER TABLE ONLY public."план_тренировки" ALTER COLUMN id SET DEFA
 
 
 --
--- TOC entry 4956 (class 2604 OID 16852)
+-- TOC entry 4956 (class 2604 OID 19062)
 -- Name: подписка id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1704,7 +1704,7 @@ ALTER TABLE ONLY public."подписка" ALTER COLUMN id SET DEFAULT nextval('
 
 
 --
--- TOC entry 4966 (class 2604 OID 16853)
+-- TOC entry 4966 (class 2604 OID 19063)
 -- Name: пол id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1712,7 +1712,7 @@ ALTER TABLE ONLY public."пол" ALTER COLUMN id SET DEFAULT nextval('public."и
 
 
 --
--- TOC entry 4959 (class 2604 OID 16854)
+-- TOC entry 4959 (class 2604 OID 19064)
 -- Name: пользователь id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1720,7 +1720,7 @@ ALTER TABLE ONLY public."пользователь" ALTER COLUMN id SET DEFAULT n
 
 
 --
--- TOC entry 4951 (class 2604 OID 16855)
+-- TOC entry 4951 (class 2604 OID 19065)
 -- Name: приоритет_мышцы id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1728,7 +1728,7 @@ ALTER TABLE ONLY public."приоритет_мышцы" ALTER COLUMN id SET DEFA
 
 
 --
--- TOC entry 4954 (class 2604 OID 16856)
+-- TOC entry 4954 (class 2604 OID 19066)
 -- Name: причина_чувства id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1736,7 +1736,7 @@ ALTER TABLE ONLY public."причина_чувства" ALTER COLUMN id SET DEFA
 
 
 --
--- TOC entry 4942 (class 2604 OID 16857)
+-- TOC entry 4942 (class 2604 OID 19067)
 -- Name: сложность_упражнения id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1744,7 +1744,7 @@ ALTER TABLE ONLY public."сложность_упражнения" ALTER COLUMN i
 
 
 --
--- TOC entry 4940 (class 2604 OID 16858)
+-- TOC entry 4940 (class 2604 OID 19068)
 -- Name: снаряжение id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1752,7 +1752,7 @@ ALTER TABLE ONLY public."снаряжение" ALTER COLUMN id SET DEFAULT nextv
 
 
 --
--- TOC entry 4949 (class 2604 OID 16859)
+-- TOC entry 4949 (class 2604 OID 19069)
 -- Name: сообщение id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1760,7 +1760,7 @@ ALTER TABLE ONLY public."сообщение" ALTER COLUMN id SET DEFAULT nextval
 
 
 --
--- TOC entry 4938 (class 2604 OID 16860)
+-- TOC entry 4938 (class 2604 OID 19070)
 -- Name: специальность_тренера id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1768,7 +1768,7 @@ ALTER TABLE ONLY public."специальность_тренера" ALTER COLUMN
 
 
 --
--- TOC entry 4957 (class 2604 OID 16861)
+-- TOC entry 4957 (class 2604 OID 19071)
 -- Name: статус_подписки id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1776,7 +1776,7 @@ ALTER TABLE ONLY public."статус_подписки" ALTER COLUMN id SET DEFA
 
 
 --
--- TOC entry 4965 (class 2604 OID 16862)
+-- TOC entry 4965 (class 2604 OID 19072)
 -- Name: тип_тренировки id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1784,7 +1784,7 @@ ALTER TABLE ONLY public."тип_тренировки" ALTER COLUMN id SET DEFAUL
 
 
 --
--- TOC entry 4945 (class 2604 OID 16863)
+-- TOC entry 4945 (class 2604 OID 19073)
 -- Name: тип_упражнения id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1792,7 +1792,7 @@ ALTER TABLE ONLY public."тип_упражнения" ALTER COLUMN id SET DEFAUL
 
 
 --
--- TOC entry 4948 (class 2604 OID 16864)
+-- TOC entry 4948 (class 2604 OID 19074)
 -- Name: тип_файла id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1800,7 +1800,7 @@ ALTER TABLE ONLY public."тип_файла" ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
--- TOC entry 4937 (class 2604 OID 16865)
+-- TOC entry 4937 (class 2604 OID 19075)
 -- Name: тренер id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1808,7 +1808,7 @@ ALTER TABLE ONLY public."тренер" ALTER COLUMN id SET DEFAULT nextval('publ
 
 
 --
--- TOC entry 4963 (class 2604 OID 16866)
+-- TOC entry 4963 (class 2604 OID 19076)
 -- Name: тренировка id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1816,7 +1816,7 @@ ALTER TABLE ONLY public."тренировка" ALTER COLUMN id SET DEFAULT nextv
 
 
 --
--- TOC entry 4962 (class 2604 OID 16867)
+-- TOC entry 4962 (class 2604 OID 19077)
 -- Name: тренировка_и_упражнение id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1824,7 +1824,7 @@ ALTER TABLE ONLY public."тренировка_и_упражнение" ALTER COL
 
 
 --
--- TOC entry 4943 (class 2604 OID 16868)
+-- TOC entry 4943 (class 2604 OID 19078)
 -- Name: упражнение id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1832,7 +1832,7 @@ ALTER TABLE ONLY public."упражнение" ALTER COLUMN id SET DEFAULT nextv
 
 
 --
--- TOC entry 4941 (class 2604 OID 16869)
+-- TOC entry 4941 (class 2604 OID 19079)
 -- Name: упражнение_и_мыщца id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1840,7 +1840,7 @@ ALTER TABLE ONLY public."упражнение_и_мыщца" ALTER COLUMN id SET
 
 
 --
--- TOC entry 4967 (class 2604 OID 17383)
+-- TOC entry 4967 (class 2604 OID 19080)
 -- Name: уровень_подготовки id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1848,7 +1848,7 @@ ALTER TABLE ONLY public."уровень_подготовки" ALTER COLUMN id SE
 
 
 --
--- TOC entry 4958 (class 2604 OID 16870)
+-- TOC entry 4958 (class 2604 OID 19081)
 -- Name: уровень_тренировки id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1856,7 +1856,7 @@ ALTER TABLE ONLY public."уровень_тренировки" ALTER COLUMN id SE
 
 
 --
--- TOC entry 4947 (class 2604 OID 16871)
+-- TOC entry 4947 (class 2604 OID 19082)
 -- Name: файл id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1864,7 +1864,7 @@ ALTER TABLE ONLY public."файл" ALTER COLUMN id SET DEFAULT nextval('public.f
 
 
 --
--- TOC entry 4953 (class 2604 OID 16872)
+-- TOC entry 4953 (class 2604 OID 19083)
 -- Name: цель_тренировок id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1872,7 +1872,7 @@ ALTER TABLE ONLY public."цель_тренировок" ALTER COLUMN id SET DEFA
 
 
 --
--- TOC entry 4934 (class 2604 OID 16873)
+-- TOC entry 4934 (class 2604 OID 19084)
 -- Name: чат id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1880,7 +1880,7 @@ ALTER TABLE ONLY public."чат" ALTER COLUMN id SET DEFAULT nextval('public.cha
 
 
 --
--- TOC entry 4946 (class 2604 OID 16874)
+-- TOC entry 4946 (class 2604 OID 19085)
 -- Name: чувство id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1888,7 +1888,7 @@ ALTER TABLE ONLY public."чувство" ALTER COLUMN id SET DEFAULT nextval('pu
 
 
 --
--- TOC entry 4955 (class 2604 OID 16875)
+-- TOC entry 4955 (class 2604 OID 19086)
 -- Name: шаги id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1896,7 +1896,7 @@ ALTER TABLE ONLY public."шаги" ALTER COLUMN id SET DEFAULT nextval('public.s
 
 
 --
--- TOC entry 4944 (class 2604 OID 16876)
+-- TOC entry 4944 (class 2604 OID 19087)
 -- Name: этап_упражнения id; Type: DEFAULT; Schema: public; Owner: postgres
 --
 
@@ -1904,7 +1904,7 @@ ALTER TABLE ONLY public."этап_упражнения" ALTER COLUMN id SET DEFA
 
 
 --
--- TOC entry 5427 (class 0 OID 16763)
+-- TOC entry 5427 (class 0 OID 18968)
 -- Dependencies: 273
 -- Data for Name: вес; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1924,7 +1924,7 @@ COPY public."вес" ("вес", id, "дата", "пользователь_id") F
 
 
 --
--- TOC entry 5425 (class 0 OID 16759)
+-- TOC entry 5425 (class 0 OID 18964)
 -- Dependencies: 271
 -- Data for Name: вода; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1938,13 +1938,13 @@ COPY public."вода" (id, "объем", "целевой_объем", "дата
 6	1000	1500	2023-01-06	6
 7	1100	1600	2023-01-07	7
 8	1200	1600	2023-01-08	8
-9	1300	1700	2023-01-09	9
 10	1400	1700	2023-01-10	10
+9	1300	1700	2023-01-09	1
 \.
 
 
 --
--- TOC entry 5383 (class 0 OID 16667)
+-- TOC entry 5383 (class 0 OID 18872)
 -- Dependencies: 229
 -- Data for Name: дневник; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1958,13 +1958,13 @@ COPY public."дневник" (id, "дата", "запись", "пользова�
 6	2023-02-06	Запись 6	6	6
 7	2023-02-07	Запись 7	7	7
 8	2023-02-08	Запись 8	8	8
-9	2023-02-09	Запись 9	9	9
 10	2023-02-10	Запись 10	10	10
+9	2023-02-09	Запись 9	1	9
 \.
 
 
 --
--- TOC entry 5437 (class 0 OID 16785)
+-- TOC entry 5437 (class 0 OID 18990)
 -- Dependencies: 283
 -- Data for Name: дневник_и_причина_чувства; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -1984,7 +1984,7 @@ COPY public."дневник_и_причина_чувства" ("дневник_i
 
 
 --
--- TOC entry 5438 (class 0 OID 16788)
+-- TOC entry 5438 (class 0 OID 18993)
 -- Dependencies: 284
 -- Data for Name: дневник_и_чувство; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2004,7 +2004,7 @@ COPY public."дневник_и_чувство" ("дневник_id", "чувст
 
 
 --
--- TOC entry 5371 (class 0 OID 16641)
+-- TOC entry 5371 (class 0 OID 18846)
 -- Dependencies: 217
 -- Data for Name: достижение; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2024,7 +2024,7 @@ COPY public."достижение" (id, "название", "описание") 
 
 
 --
--- TOC entry 5375 (class 0 OID 16651)
+-- TOC entry 5375 (class 0 OID 18856)
 -- Dependencies: 221
 -- Data for Name: клиент; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2044,7 +2044,7 @@ COPY public."клиент" (id, "уровень_подготовки_id", "по�
 
 
 --
--- TOC entry 5377 (class 0 OID 16655)
+-- TOC entry 5377 (class 0 OID 18860)
 -- Dependencies: 223
 -- Data for Name: клиент_и_подписка; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2064,7 +2064,7 @@ COPY public."клиент_и_подписка" ("клиент_id", id, "подп
 
 
 --
--- TOC entry 5441 (class 0 OID 16795)
+-- TOC entry 5441 (class 0 OID 19000)
 -- Dependencies: 287
 -- Data for Name: клиент_и_тип_тренировки; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2084,7 +2084,7 @@ COPY public."клиент_и_тип_тренировки" ("клиент_id", "�
 
 
 --
--- TOC entry 5442 (class 0 OID 16798)
+-- TOC entry 5442 (class 0 OID 19003)
 -- Dependencies: 288
 -- Data for Name: клиент_и_цель_тренировок; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2104,7 +2104,7 @@ COPY public."клиент_и_цель_тренировок" ("клиент_id", 
 
 
 --
--- TOC entry 5405 (class 0 OID 16717)
+-- TOC entry 5405 (class 0 OID 18922)
 -- Dependencies: 251
 -- Data for Name: мышца; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2124,7 +2124,7 @@ COPY public."мышца" (id, "название") FROM stdin;
 
 
 --
--- TOC entry 5443 (class 0 OID 16801)
+-- TOC entry 5443 (class 0 OID 19006)
 -- Dependencies: 289
 -- Data for Name: отзыв; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2144,7 +2144,7 @@ COPY public."отзыв" ("клиент_id", "тренер_id", "рейтинг"
 
 
 --
--- TOC entry 5409 (class 0 OID 16725)
+-- TOC entry 5409 (class 0 OID 18930)
 -- Dependencies: 255
 -- Data for Name: питание; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2164,7 +2164,7 @@ COPY public."питание" (id, "калории", "белки", "жиры", "�
 
 
 --
--- TOC entry 5433 (class 0 OID 16775)
+-- TOC entry 5433 (class 0 OID 18980)
 -- Dependencies: 279
 -- Data for Name: план_тренировки; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2184,7 +2184,7 @@ COPY public."план_тренировки" (id, "название", "описа
 
 
 --
--- TOC entry 5444 (class 0 OID 16807)
+-- TOC entry 5444 (class 0 OID 19012)
 -- Dependencies: 290
 -- Data for Name: план_тренировки_и_пользователь; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2200,11 +2200,12 @@ COPY public."план_тренировки_и_пользователь" ("пол
 8	8
 9	9
 10	10
+1	2
 \.
 
 
 --
--- TOC entry 5417 (class 0 OID 16741)
+-- TOC entry 5417 (class 0 OID 18946)
 -- Dependencies: 263
 -- Data for Name: подписка; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2224,7 +2225,7 @@ COPY public."подписка" (id, "название", "цена", "срок_д
 
 
 --
--- TOC entry 5439 (class 0 OID 16791)
+-- TOC entry 5439 (class 0 OID 18996)
 -- Dependencies: 285
 -- Data for Name: пол; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2236,7 +2237,7 @@ COPY public."пол" (id, "название") FROM stdin;
 
 
 --
--- TOC entry 5423 (class 0 OID 16753)
+-- TOC entry 5423 (class 0 OID 18958)
 -- Dependencies: 269
 -- Data for Name: пользователь; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2256,7 +2257,7 @@ COPY public."пользователь" (id, "дата_рождения", "хэш
 
 
 --
--- TOC entry 5445 (class 0 OID 16810)
+-- TOC entry 5445 (class 0 OID 19015)
 -- Dependencies: 291
 -- Data for Name: пользователь_и_достижение; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2276,7 +2277,7 @@ COPY public."пользователь_и_достижение" ("пользов�
 
 
 --
--- TOC entry 5407 (class 0 OID 16721)
+-- TOC entry 5407 (class 0 OID 18926)
 -- Dependencies: 253
 -- Data for Name: приоритет_мышцы; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2289,7 +2290,7 @@ COPY public."приоритет_мышцы" (id, "название") FROM stdin;
 
 
 --
--- TOC entry 5413 (class 0 OID 16733)
+-- TOC entry 5413 (class 0 OID 18938)
 -- Dependencies: 259
 -- Data for Name: причина_чувства; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2309,7 +2310,7 @@ COPY public."причина_чувства" (id, "название") FROM stdin;
 
 
 --
--- TOC entry 5389 (class 0 OID 16681)
+-- TOC entry 5389 (class 0 OID 18886)
 -- Dependencies: 235
 -- Data for Name: сложность_упражнения; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2322,7 +2323,7 @@ COPY public."сложность_упражнения" (id, "название") F
 
 
 --
--- TOC entry 5385 (class 0 OID 16673)
+-- TOC entry 5385 (class 0 OID 18878)
 -- Dependencies: 231
 -- Data for Name: снаряжение; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2342,7 +2343,7 @@ COPY public."снаряжение" (id, "название") FROM stdin;
 
 
 --
--- TOC entry 5403 (class 0 OID 16711)
+-- TOC entry 5403 (class 0 OID 18916)
 -- Dependencies: 249
 -- Data for Name: сообщение; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2362,7 +2363,7 @@ COPY public."сообщение" (id, "время_отправки", "текст
 
 
 --
--- TOC entry 5446 (class 0 OID 16813)
+-- TOC entry 5446 (class 0 OID 19018)
 -- Dependencies: 292
 -- Data for Name: сообщение_и_файл; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2382,7 +2383,7 @@ COPY public."сообщение_и_файл" ("сообщение_id", "файл
 
 
 --
--- TOC entry 5381 (class 0 OID 16663)
+-- TOC entry 5381 (class 0 OID 18868)
 -- Dependencies: 227
 -- Data for Name: специальность_тренера; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2402,7 +2403,7 @@ COPY public."специальность_тренера" (id, "название")
 
 
 --
--- TOC entry 5419 (class 0 OID 16745)
+-- TOC entry 5419 (class 0 OID 18950)
 -- Dependencies: 265
 -- Data for Name: статус_подписки; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2415,7 +2416,7 @@ COPY public."статус_подписки" (id, "название") FROM stdin;
 
 
 --
--- TOC entry 5435 (class 0 OID 16781)
+-- TOC entry 5435 (class 0 OID 18986)
 -- Dependencies: 281
 -- Data for Name: тип_тренировки; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2435,7 +2436,7 @@ COPY public."тип_тренировки" (id, "название") FROM stdin;
 
 
 --
--- TOC entry 5395 (class 0 OID 16695)
+-- TOC entry 5395 (class 0 OID 18900)
 -- Dependencies: 241
 -- Data for Name: тип_упражнения; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2448,7 +2449,7 @@ COPY public."тип_упражнения" (id, "название") FROM stdin;
 
 
 --
--- TOC entry 5401 (class 0 OID 16707)
+-- TOC entry 5401 (class 0 OID 18912)
 -- Dependencies: 247
 -- Data for Name: тип_файла; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2462,7 +2463,7 @@ COPY public."тип_файла" (id, "название") FROM stdin;
 
 
 --
--- TOC entry 5379 (class 0 OID 16659)
+-- TOC entry 5379 (class 0 OID 18864)
 -- Dependencies: 225
 -- Data for Name: тренер; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2482,27 +2483,31 @@ COPY public."тренер" (id, "пользователь_id") FROM stdin;
 
 
 --
--- TOC entry 5447 (class 0 OID 16816)
+-- TOC entry 5447 (class 0 OID 19021)
 -- Dependencies: 293
 -- Data for Name: тренер_и_клиент; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
 COPY public."тренер_и_клиент" ("тренер_id", "клиент_id") FROM stdin;
-1	1
-2	2
-3	3
-4	4
-5	5
-6	6
-7	7
-8	8
-9	9
-10	10
+1	2
+2	3
+3	4
+4	5
+5	6
+6	7
+7	8
+8	9
+9	10
+10	1
+1	3
+1	4
+8	1
+9	1
 \.
 
 
 --
--- TOC entry 5448 (class 0 OID 16819)
+-- TOC entry 5448 (class 0 OID 19024)
 -- Dependencies: 294
 -- Data for Name: тренер_и_специальность; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2522,7 +2527,7 @@ COPY public."тренер_и_специальность" ("тренер_id", "с
 
 
 --
--- TOC entry 5431 (class 0 OID 16771)
+-- TOC entry 5431 (class 0 OID 18976)
 -- Dependencies: 277
 -- Data for Name: тренировка; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2542,7 +2547,7 @@ COPY public."тренировка" (id, "название", "является_о
 
 
 --
--- TOC entry 5449 (class 0 OID 16822)
+-- TOC entry 5449 (class 0 OID 19027)
 -- Dependencies: 295
 -- Data for Name: тренировка_и_план_тренировки; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2558,11 +2563,12 @@ COPY public."тренировка_и_план_тренировки" ("трени
 8	8
 9	9
 10	10
+2	1
 \.
 
 
 --
--- TOC entry 5450 (class 0 OID 16825)
+-- TOC entry 5450 (class 0 OID 19030)
 -- Dependencies: 296
 -- Data for Name: тренировка_и_пользователь; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2578,11 +2584,12 @@ COPY public."тренировка_и_пользователь" ("пользов�
 8	8
 9	9
 10	10
+1	2
 \.
 
 
 --
--- TOC entry 5429 (class 0 OID 16767)
+-- TOC entry 5429 (class 0 OID 18972)
 -- Dependencies: 275
 -- Data for Name: тренировка_и_упражнение; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2602,7 +2609,7 @@ COPY public."тренировка_и_упражнение" (id, "трениро�
 
 
 --
--- TOC entry 5391 (class 0 OID 16685)
+-- TOC entry 5391 (class 0 OID 18890)
 -- Dependencies: 237
 -- Data for Name: упражнение; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2622,7 +2629,7 @@ COPY public."упражнение" (id, "название", "описание", 
 
 
 --
--- TOC entry 5387 (class 0 OID 16677)
+-- TOC entry 5387 (class 0 OID 18882)
 -- Dependencies: 233
 -- Data for Name: упражнение_и_мыщца; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2642,7 +2649,7 @@ COPY public."упражнение_и_мыщца" ("упражнение_id", "м
 
 
 --
--- TOC entry 5451 (class 0 OID 16828)
+-- TOC entry 5451 (class 0 OID 19033)
 -- Dependencies: 297
 -- Data for Name: упражнение_и_пользователь; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2658,11 +2665,12 @@ COPY public."упражнение_и_пользователь" ("упражне�
 8	8
 9	9
 10	10
+2	1
 \.
 
 
 --
--- TOC entry 5452 (class 0 OID 16831)
+-- TOC entry 5452 (class 0 OID 19036)
 -- Dependencies: 298
 -- Data for Name: упражнение_и_снаряжение; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2682,7 +2690,7 @@ COPY public."упражнение_и_снаряжение" ("упражнени�
 
 
 --
--- TOC entry 5453 (class 0 OID 16834)
+-- TOC entry 5453 (class 0 OID 19039)
 -- Dependencies: 299
 -- Data for Name: упражнение_и_файл; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2702,8 +2710,8 @@ COPY public."упражнение_и_файл" ("упражнение_id", "фа
 
 
 --
--- TOC entry 5457 (class 0 OID 17380)
--- Dependencies: 303
+-- TOC entry 5454 (class 0 OID 19042)
+-- Dependencies: 300
 -- Data for Name: уровень_подготовки; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2715,7 +2723,7 @@ COPY public."уровень_подготовки" (id, "название") FROM 
 
 
 --
--- TOC entry 5421 (class 0 OID 16749)
+-- TOC entry 5421 (class 0 OID 18954)
 -- Dependencies: 267
 -- Data for Name: уровень_тренировки; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2729,7 +2737,7 @@ COPY public."уровень_тренировки" (id, "название") FROM 
 
 
 --
--- TOC entry 5399 (class 0 OID 16703)
+-- TOC entry 5399 (class 0 OID 18908)
 -- Dependencies: 245
 -- Data for Name: файл; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2749,8 +2757,8 @@ COPY public."файл" (id, "имя_файла") FROM stdin;
 
 
 --
--- TOC entry 5454 (class 0 OID 16837)
--- Dependencies: 300
+-- TOC entry 5456 (class 0 OID 19047)
+-- Dependencies: 302
 -- Data for Name: файл_и_тип_файла; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2769,7 +2777,7 @@ COPY public."файл_и_тип_файла" ("файл_id", "тип_файла_i
 
 
 --
--- TOC entry 5411 (class 0 OID 16729)
+-- TOC entry 5411 (class 0 OID 18934)
 -- Dependencies: 257
 -- Data for Name: цель_тренировок; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2789,7 +2797,7 @@ COPY public."цель_тренировок" (id, "название") FROM stdin;
 
 
 --
--- TOC entry 5373 (class 0 OID 16647)
+-- TOC entry 5373 (class 0 OID 18852)
 -- Dependencies: 219
 -- Data for Name: чат; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2809,8 +2817,8 @@ COPY public."чат" (id) FROM stdin;
 
 
 --
--- TOC entry 5455 (class 0 OID 16840)
--- Dependencies: 301
+-- TOC entry 5457 (class 0 OID 19050)
+-- Dependencies: 303
 -- Data for Name: чат_и_пользователь; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
@@ -2829,7 +2837,7 @@ COPY public."чат_и_пользователь" ("пользователь_id",
 
 
 --
--- TOC entry 5397 (class 0 OID 16699)
+-- TOC entry 5397 (class 0 OID 18904)
 -- Dependencies: 243
 -- Data for Name: чувство; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2849,7 +2857,7 @@ COPY public."чувство" (id, "название") FROM stdin;
 
 
 --
--- TOC entry 5415 (class 0 OID 16737)
+-- TOC entry 5415 (class 0 OID 18942)
 -- Dependencies: 261
 -- Data for Name: шаги; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -2863,13 +2871,13 @@ COPY public."шаги" (id, "колво", "целевое_колво", "дата
 6	60	65	2023-05-06	6
 7	70	75	2023-05-07	7
 8	80	85	2023-05-08	8
-9	90	95	2023-05-09	9
 10	100	105	2023-05-10	10
+9	90	95	2023-05-09	1
 \.
 
 
 --
--- TOC entry 5393 (class 0 OID 16691)
+-- TOC entry 5393 (class 0 OID 18896)
 -- Dependencies: 239
 -- Data for Name: этап_упражнения; Type: TABLE DATA; Schema: public; Owner: postgres
 --
@@ -3189,7 +3197,7 @@ SELECT pg_catalog.setval('public."имя_id_seq"', 1, false);
 
 --
 -- TOC entry 5532 (class 0 OID 0)
--- Dependencies: 302
+-- Dependencies: 301
 -- Name: уровень_подготовки_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
@@ -3197,7 +3205,7 @@ SELECT pg_catalog.setval('public."уровень_подготовки_id_seq"', 
 
 
 --
--- TOC entry 5031 (class 2606 OID 16878)
+-- TOC entry 5031 (class 2606 OID 19089)
 -- Name: достижение achievements_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3206,7 +3214,7 @@ ALTER TABLE ONLY public."достижение"
 
 
 --
--- TOC entry 5165 (class 2606 OID 16880)
+-- TOC entry 5169 (class 2606 OID 19091)
 -- Name: чат_и_пользователь chat_id_user_id; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3215,7 +3223,7 @@ ALTER TABLE ONLY public."чат_и_пользователь"
 
 
 --
--- TOC entry 5033 (class 2606 OID 16882)
+-- TOC entry 5033 (class 2606 OID 19093)
 -- Name: чат chat_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3224,7 +3232,7 @@ ALTER TABLE ONLY public."чат"
 
 
 --
--- TOC entry 4969 (class 2606 OID 17300)
+-- TOC entry 4969 (class 2606 OID 19094)
 -- Name: клиент_и_подписка chk_client_and_subscription_date_range; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3233,7 +3241,7 @@ ALTER TABLE public."клиент_и_подписка"
 
 
 --
--- TOC entry 4970 (class 2606 OID 17339)
+-- TOC entry 4970 (class 2606 OID 19095)
 -- Name: клиент_и_подписка chk_client_and_subscription_ids; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3242,7 +3250,7 @@ ALTER TABLE public."клиент_и_подписка"
 
 
 --
--- TOC entry 4971 (class 2606 OID 17301)
+-- TOC entry 4971 (class 2606 OID 19096)
 -- Name: клиент_и_подписка chk_client_and_subscription_pause_date; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3251,7 +3259,7 @@ ALTER TABLE public."клиент_и_подписка"
 
 
 --
--- TOC entry 5013 (class 2606 OID 17340)
+-- TOC entry 5013 (class 2606 OID 19097)
 -- Name: клиент_и_тип_тренировки chk_client_and_workout_type_ids; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3260,7 +3268,7 @@ ALTER TABLE public."клиент_и_тип_тренировки"
 
 
 --
--- TOC entry 5012 (class 2606 OID 17338)
+-- TOC entry 5012 (class 2606 OID 19098)
 -- Name: дневник_и_чувство chk_diary_and_feeling_ids; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3269,7 +3277,7 @@ ALTER TABLE public."дневник_и_чувство"
 
 
 --
--- TOC entry 5011 (class 2606 OID 17337)
+-- TOC entry 5011 (class 2606 OID 19099)
 -- Name: дневник_и_причина_чувства chk_diary_and_feeling_reason_ids; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3278,7 +3286,7 @@ ALTER TABLE public."дневник_и_причина_чувства"
 
 
 --
--- TOC entry 4975 (class 2606 OID 17326)
+-- TOC entry 4975 (class 2606 OID 19100)
 -- Name: снаряжение chk_equipment_name; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3287,7 +3295,7 @@ ALTER TABLE public."снаряжение"
 
 
 --
--- TOC entry 4977 (class 2606 OID 17325)
+-- TOC entry 4977 (class 2606 OID 19101)
 -- Name: сложность_упражнения chk_exercise_difficult; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3296,7 +3304,7 @@ ALTER TABLE public."сложность_упражнения"
 
 
 --
--- TOC entry 4979 (class 2606 OID 17335)
+-- TOC entry 4979 (class 2606 OID 19102)
 -- Name: этап_упражнения chk_exercise_stage_name; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3305,7 +3313,7 @@ ALTER TABLE public."этап_упражнения"
 
 
 --
--- TOC entry 4980 (class 2606 OID 17330)
+-- TOC entry 4980 (class 2606 OID 19103)
 -- Name: тип_упражнения chk_exercise_type; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3314,7 +3322,7 @@ ALTER TABLE public."тип_упражнения"
 
 
 --
--- TOC entry 4981 (class 2606 OID 17334)
+-- TOC entry 4981 (class 2606 OID 19104)
 -- Name: чувство chk_feeling_name; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3323,7 +3331,7 @@ ALTER TABLE public."чувство"
 
 
 --
--- TOC entry 4991 (class 2606 OID 17324)
+-- TOC entry 4991 (class 2606 OID 19105)
 -- Name: причина_чувства chk_feeling_reason; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3332,7 +3340,7 @@ ALTER TABLE public."причина_чувства"
 
 
 --
--- TOC entry 4982 (class 2606 OID 17331)
+-- TOC entry 4982 (class 2606 OID 19106)
 -- Name: тип_файла chk_file_type; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3341,7 +3349,7 @@ ALTER TABLE public."тип_файла"
 
 
 --
--- TOC entry 5014 (class 2606 OID 17341)
+-- TOC entry 5014 (class 2606 OID 19107)
 -- Name: клиент_и_цель_тренировок chk_ids; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3350,7 +3358,7 @@ ALTER TABLE public."клиент_и_цель_тренировок"
 
 
 --
--- TOC entry 5017 (class 2606 OID 17342)
+-- TOC entry 5017 (class 2606 OID 19108)
 -- Name: план_тренировки_и_пользователь chk_ids; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3359,7 +3367,7 @@ ALTER TABLE public."план_тренировки_и_пользователь"
 
 
 --
--- TOC entry 5018 (class 2606 OID 17343)
+-- TOC entry 5018 (class 2606 OID 19109)
 -- Name: пользователь_и_достижение chk_ids; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3368,7 +3376,7 @@ ALTER TABLE public."пользователь_и_достижение"
 
 
 --
--- TOC entry 5019 (class 2606 OID 17344)
+-- TOC entry 5019 (class 2606 OID 19110)
 -- Name: сообщение_и_файл chk_ids; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3377,7 +3385,7 @@ ALTER TABLE public."сообщение_и_файл"
 
 
 --
--- TOC entry 5020 (class 2606 OID 17345)
+-- TOC entry 5020 (class 2606 OID 19111)
 -- Name: тренер_и_клиент chk_ids; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3386,7 +3394,7 @@ ALTER TABLE public."тренер_и_клиент"
 
 
 --
--- TOC entry 5021 (class 2606 OID 17346)
+-- TOC entry 5021 (class 2606 OID 19112)
 -- Name: тренер_и_специальность chk_ids; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3395,7 +3403,7 @@ ALTER TABLE public."тренер_и_специальность"
 
 
 --
--- TOC entry 5022 (class 2606 OID 17347)
+-- TOC entry 5022 (class 2606 OID 19113)
 -- Name: тренировка_и_план_тренировки chk_ids; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3404,7 +3412,7 @@ ALTER TABLE public."тренировка_и_план_тренировки"
 
 
 --
--- TOC entry 5023 (class 2606 OID 17348)
+-- TOC entry 5023 (class 2606 OID 19114)
 -- Name: тренировка_и_пользователь chk_ids; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3413,7 +3421,7 @@ ALTER TABLE public."тренировка_и_пользователь"
 
 
 --
--- TOC entry 5007 (class 2606 OID 17349)
+-- TOC entry 5007 (class 2606 OID 19115)
 -- Name: тренировка_и_упражнение chk_ids; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3422,7 +3430,7 @@ ALTER TABLE public."тренировка_и_упражнение"
 
 
 --
--- TOC entry 4976 (class 2606 OID 17351)
+-- TOC entry 4976 (class 2606 OID 19116)
 -- Name: упражнение_и_мыщца chk_ids; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3431,7 +3439,7 @@ ALTER TABLE public."упражнение_и_мыщца"
 
 
 --
--- TOC entry 5024 (class 2606 OID 17352)
+-- TOC entry 5024 (class 2606 OID 19117)
 -- Name: упражнение_и_пользователь chk_ids; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3440,7 +3448,7 @@ ALTER TABLE public."упражнение_и_пользователь"
 
 
 --
--- TOC entry 5025 (class 2606 OID 17353)
+-- TOC entry 5025 (class 2606 OID 19118)
 -- Name: упражнение_и_снаряжение chk_ids; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3449,7 +3457,7 @@ ALTER TABLE public."упражнение_и_снаряжение"
 
 
 --
--- TOC entry 5026 (class 2606 OID 17354)
+-- TOC entry 5026 (class 2606 OID 19119)
 -- Name: упражнение_и_файл chk_ids; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3458,7 +3466,7 @@ ALTER TABLE public."упражнение_и_файл"
 
 
 --
--- TOC entry 5027 (class 2606 OID 17355)
+-- TOC entry 5028 (class 2606 OID 19120)
 -- Name: файл_и_тип_файла chk_ids; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3467,7 +3475,7 @@ ALTER TABLE public."файл_и_тип_файла"
 
 
 --
--- TOC entry 5028 (class 2606 OID 17356)
+-- TOC entry 5029 (class 2606 OID 19121)
 -- Name: чат_и_пользователь chk_ids; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3476,7 +3484,7 @@ ALTER TABLE public."чат_и_пользователь"
 
 
 --
--- TOC entry 4992 (class 2606 OID 17358)
+-- TOC entry 4992 (class 2606 OID 19122)
 -- Name: шаги chk_ids; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3485,7 +3493,7 @@ ALTER TABLE public."шаги"
 
 
 --
--- TOC entry 5005 (class 2606 OID 17360)
+-- TOC entry 5005 (class 2606 OID 19123)
 -- Name: вес chk_ids; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3494,7 +3502,7 @@ ALTER TABLE public."вес"
 
 
 --
--- TOC entry 5003 (class 2606 OID 17362)
+-- TOC entry 5003 (class 2606 OID 19124)
 -- Name: вода chk_ids; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3503,7 +3511,7 @@ ALTER TABLE public."вода"
 
 
 --
--- TOC entry 4974 (class 2606 OID 17363)
+-- TOC entry 4974 (class 2606 OID 19125)
 -- Name: дневник chk_ids; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3512,7 +3520,7 @@ ALTER TABLE public."дневник"
 
 
 --
--- TOC entry 4968 (class 2606 OID 17364)
+-- TOC entry 4968 (class 2606 OID 19126)
 -- Name: клиент chk_ids; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3521,7 +3529,7 @@ ALTER TABLE public."клиент"
 
 
 --
--- TOC entry 5015 (class 2606 OID 17365)
+-- TOC entry 5015 (class 2606 OID 19127)
 -- Name: отзыв chk_ids; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3530,7 +3538,7 @@ ALTER TABLE public."отзыв"
 
 
 --
--- TOC entry 4985 (class 2606 OID 17366)
+-- TOC entry 4985 (class 2606 OID 19128)
 -- Name: питание chk_ids; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3539,7 +3547,7 @@ ALTER TABLE public."питание"
 
 
 --
--- TOC entry 4998 (class 2606 OID 17367)
+-- TOC entry 4998 (class 2606 OID 19129)
 -- Name: пользователь chk_ids; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3548,7 +3556,7 @@ ALTER TABLE public."пользователь"
 
 
 --
--- TOC entry 4972 (class 2606 OID 17368)
+-- TOC entry 4972 (class 2606 OID 19130)
 -- Name: тренер chk_ids; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3557,7 +3565,7 @@ ALTER TABLE public."тренер"
 
 
 --
--- TOC entry 5009 (class 2606 OID 17369)
+-- TOC entry 5009 (class 2606 OID 19131)
 -- Name: тренировка chk_ids; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3566,7 +3574,7 @@ ALTER TABLE public."тренировка"
 
 
 --
--- TOC entry 4978 (class 2606 OID 17370)
+-- TOC entry 4978 (class 2606 OID 19132)
 -- Name: упражнение chk_ids; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3575,7 +3583,7 @@ ALTER TABLE public."упражнение"
 
 
 --
--- TOC entry 5008 (class 2606 OID 17350)
+-- TOC entry 5008 (class 2606 OID 19133)
 -- Name: тренировка_и_упражнение chk_more_or_equal_one; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3584,7 +3592,7 @@ ALTER TABLE public."тренировка_и_упражнение"
 
 
 --
--- TOC entry 4993 (class 2606 OID 17357)
+-- TOC entry 4993 (class 2606 OID 19134)
 -- Name: шаги chk_more_or_equal_one; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3593,7 +3601,7 @@ ALTER TABLE public."шаги"
 
 
 --
--- TOC entry 4983 (class 2606 OID 17322)
+-- TOC entry 4983 (class 2606 OID 19135)
 -- Name: мышца chk_muscle_name; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3602,7 +3610,7 @@ ALTER TABLE public."мышца"
 
 
 --
--- TOC entry 4984 (class 2606 OID 17323)
+-- TOC entry 4984 (class 2606 OID 19136)
 -- Name: приоритет_мышцы chk_muscle_priority; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3611,7 +3619,7 @@ ALTER TABLE public."приоритет_мышцы"
 
 
 --
--- TOC entry 4986 (class 2606 OID 17302)
+-- TOC entry 4986 (class 2606 OID 19137)
 -- Name: питание chk_nutrition_calories; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3620,7 +3628,7 @@ ALTER TABLE public."питание"
 
 
 --
--- TOC entry 4987 (class 2606 OID 17305)
+-- TOC entry 4987 (class 2606 OID 19138)
 -- Name: питание chk_nutrition_carbohydrates; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3629,7 +3637,7 @@ ALTER TABLE public."питание"
 
 
 --
--- TOC entry 4988 (class 2606 OID 17304)
+-- TOC entry 4988 (class 2606 OID 19139)
 -- Name: питание chk_nutrition_fats; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3638,7 +3646,7 @@ ALTER TABLE public."питание"
 
 
 --
--- TOC entry 4989 (class 2606 OID 17303)
+-- TOC entry 4989 (class 2606 OID 19140)
 -- Name: питание chk_nutrition_proteins; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3647,7 +3655,7 @@ ALTER TABLE public."питание"
 
 
 --
--- TOC entry 4994 (class 2606 OID 17306)
+-- TOC entry 4994 (class 2606 OID 19141)
 -- Name: подписка chk_subscription_price; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3656,7 +3664,7 @@ ALTER TABLE public."подписка"
 
 
 --
--- TOC entry 4996 (class 2606 OID 17328)
+-- TOC entry 4996 (class 2606 OID 19142)
 -- Name: статус_подписки chk_subscription_status; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3665,7 +3673,7 @@ ALTER TABLE public."статус_подписки"
 
 
 --
--- TOC entry 4995 (class 2606 OID 17307)
+-- TOC entry 4995 (class 2606 OID 19143)
 -- Name: подписка chk_subscription_validity_period; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3674,7 +3682,7 @@ ALTER TABLE public."подписка"
 
 
 --
--- TOC entry 4999 (class 2606 OID 17315)
+-- TOC entry 4999 (class 2606 OID 19144)
 -- Name: пользователь chk_user_email; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3683,7 +3691,7 @@ ALTER TABLE public."пользователь"
 
 
 --
--- TOC entry 5000 (class 2606 OID 17319)
+-- TOC entry 5000 (class 2606 OID 19145)
 -- Name: пользователь chk_user_name; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3692,7 +3700,7 @@ ALTER TABLE public."пользователь"
 
 
 --
--- TOC entry 5001 (class 2606 OID 17321)
+-- TOC entry 5001 (class 2606 OID 19146)
 -- Name: пользователь chk_user_patronymic; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3701,7 +3709,7 @@ ALTER TABLE public."пользователь"
 
 
 --
--- TOC entry 5002 (class 2606 OID 17320)
+-- TOC entry 5002 (class 2606 OID 19147)
 -- Name: пользователь chk_user_surname; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3710,16 +3718,16 @@ ALTER TABLE public."пользователь"
 
 
 --
--- TOC entry 5004 (class 2606 OID 17361)
+-- TOC entry 5004 (class 2606 OID 19148)
 -- Name: вода chk_volume; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE public."вода"
-    ADD CONSTRAINT chk_volume CHECK (((("объем" >= 0) AND ("объем" <= 10000)) AND (("целевой_объем" >= 0) AND ("целевой_объем" <= 10000)))) NOT VALID;
+    ADD CONSTRAINT chk_volume CHECK ((("объем" >= 0) AND ("объем" <= 10000) AND (("целевой_объем" >= 0) AND ("целевой_объем" <= 10000)))) NOT VALID;
 
 
 --
--- TOC entry 5006 (class 2606 OID 17359)
+-- TOC entry 5006 (class 2606 OID 19149)
 -- Name: вес chk_weight; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3728,7 +3736,7 @@ ALTER TABLE public."вес"
 
 
 --
--- TOC entry 4997 (class 2606 OID 17332)
+-- TOC entry 4997 (class 2606 OID 19150)
 -- Name: уровень_тренировки chk_workout_level_name; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3737,7 +3745,7 @@ ALTER TABLE public."уровень_тренировки"
 
 
 --
--- TOC entry 4990 (class 2606 OID 17333)
+-- TOC entry 4990 (class 2606 OID 19151)
 -- Name: цель_тренировок chk_workout_target_name; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3746,7 +3754,7 @@ ALTER TABLE public."цель_тренировок"
 
 
 --
--- TOC entry 5010 (class 2606 OID 17329)
+-- TOC entry 5010 (class 2606 OID 19152)
 -- Name: тип_тренировки chk_workout_type_name; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3755,7 +3763,7 @@ ALTER TABLE public."тип_тренировки"
 
 
 --
--- TOC entry 5139 (class 2606 OID 16884)
+-- TOC entry 5139 (class 2606 OID 19154)
 -- Name: клиент_и_цель_тренировок client_id_purpose_of_workouts_id; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3764,7 +3772,7 @@ ALTER TABLE ONLY public."клиент_и_цель_тренировок"
 
 
 --
--- TOC entry 5137 (class 2606 OID 16886)
+-- TOC entry 5137 (class 2606 OID 19156)
 -- Name: клиент_и_тип_тренировки client_id_workout_type_id; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3773,7 +3781,7 @@ ALTER TABLE ONLY public."клиент_и_тип_тренировки"
 
 
 --
--- TOC entry 5035 (class 2606 OID 16888)
+-- TOC entry 5035 (class 2606 OID 19158)
 -- Name: клиент client_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3782,7 +3790,7 @@ ALTER TABLE ONLY public."клиент"
 
 
 --
--- TOC entry 5037 (class 2606 OID 16890)
+-- TOC entry 5037 (class 2606 OID 19160)
 -- Name: клиент_и_подписка client_subscription_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3791,7 +3799,7 @@ ALTER TABLE ONLY public."клиент_и_подписка"
 
 
 --
--- TOC entry 5149 (class 2606 OID 16892)
+-- TOC entry 5149 (class 2606 OID 19162)
 -- Name: тренер_и_клиент coach_id_client_id; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3800,7 +3808,7 @@ ALTER TABLE ONLY public."тренер_и_клиент"
 
 
 --
--- TOC entry 5151 (class 2606 OID 16894)
+-- TOC entry 5151 (class 2606 OID 19164)
 -- Name: тренер_и_специальность coach_id_speciality_id; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3809,7 +3817,7 @@ ALTER TABLE ONLY public."тренер_и_специальность"
 
 
 --
--- TOC entry 5039 (class 2606 OID 16896)
+-- TOC entry 5039 (class 2606 OID 19166)
 -- Name: тренер coach_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3818,7 +3826,7 @@ ALTER TABLE ONLY public."тренер"
 
 
 --
--- TOC entry 4973 (class 2606 OID 17327)
+-- TOC entry 4973 (class 2606 OID 19167)
 -- Name: специальность_тренера coach_speciality; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3827,7 +3835,7 @@ ALTER TABLE public."специальность_тренера"
 
 
 --
--- TOC entry 5043 (class 2606 OID 16898)
+-- TOC entry 5043 (class 2606 OID 19169)
 -- Name: специальность_тренера coach_speciality_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3836,7 +3844,7 @@ ALTER TABLE ONLY public."специальность_тренера"
 
 
 --
--- TOC entry 5041 (class 2606 OID 16900)
+-- TOC entry 5041 (class 2606 OID 19171)
 -- Name: тренер coach_user_id_uq; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3845,7 +3853,7 @@ ALTER TABLE ONLY public."тренер"
 
 
 --
--- TOC entry 5131 (class 2606 OID 16902)
+-- TOC entry 5131 (class 2606 OID 19173)
 -- Name: дневник_и_чувство diary_and_feeling_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3854,7 +3862,7 @@ ALTER TABLE ONLY public."дневник_и_чувство"
 
 
 --
--- TOC entry 5129 (class 2606 OID 16904)
+-- TOC entry 5129 (class 2606 OID 19175)
 -- Name: дневник_и_причина_чувства diary_and_reason_of_feeling_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3863,7 +3871,7 @@ ALTER TABLE ONLY public."дневник_и_причина_чувства"
 
 
 --
--- TOC entry 5047 (class 2606 OID 16906)
+-- TOC entry 5047 (class 2606 OID 19177)
 -- Name: дневник diary_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3872,7 +3880,7 @@ ALTER TABLE ONLY public."дневник"
 
 
 --
--- TOC entry 5049 (class 2606 OID 16908)
+-- TOC entry 5049 (class 2606 OID 19179)
 -- Name: снаряжение equipment_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3881,7 +3889,7 @@ ALTER TABLE ONLY public."снаряжение"
 
 
 --
--- TOC entry 5159 (class 2606 OID 16910)
+-- TOC entry 5159 (class 2606 OID 19181)
 -- Name: упражнение_и_снаряжение exercise_and_equipment_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3890,7 +3898,7 @@ ALTER TABLE ONLY public."упражнение_и_снаряжение"
 
 
 --
--- TOC entry 5161 (class 2606 OID 16912)
+-- TOC entry 5161 (class 2606 OID 19183)
 -- Name: упражнение_и_файл exercise_and_file_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3899,7 +3907,7 @@ ALTER TABLE ONLY public."упражнение_и_файл"
 
 
 --
--- TOC entry 5053 (class 2606 OID 16914)
+-- TOC entry 5053 (class 2606 OID 19185)
 -- Name: упражнение_и_мыщца exercise_and_muscle_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3908,7 +3916,7 @@ ALTER TABLE ONLY public."упражнение_и_мыщца"
 
 
 --
--- TOC entry 5055 (class 2606 OID 16916)
+-- TOC entry 5055 (class 2606 OID 19187)
 -- Name: сложность_упражнения exercise_difficulty_2_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3917,7 +3925,7 @@ ALTER TABLE ONLY public."сложность_упражнения"
 
 
 --
--- TOC entry 5157 (class 2606 OID 16918)
+-- TOC entry 5157 (class 2606 OID 19189)
 -- Name: упражнение_и_пользователь exercise_id_user_id; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3926,7 +3934,7 @@ ALTER TABLE ONLY public."упражнение_и_пользователь"
 
 
 --
--- TOC entry 5059 (class 2606 OID 16920)
+-- TOC entry 5059 (class 2606 OID 19191)
 -- Name: упражнение exercise_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3935,7 +3943,7 @@ ALTER TABLE ONLY public."упражнение"
 
 
 --
--- TOC entry 5061 (class 2606 OID 16922)
+-- TOC entry 5061 (class 2606 OID 19193)
 -- Name: этап_упражнения exercise_stage_2_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3944,7 +3952,7 @@ ALTER TABLE ONLY public."этап_упражнения"
 
 
 --
--- TOC entry 5065 (class 2606 OID 16924)
+-- TOC entry 5065 (class 2606 OID 19195)
 -- Name: тип_упражнения exercise_type_2_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3953,7 +3961,7 @@ ALTER TABLE ONLY public."тип_упражнения"
 
 
 --
--- TOC entry 5141 (class 2606 OID 16926)
+-- TOC entry 5141 (class 2606 OID 19197)
 -- Name: отзыв feedback_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3962,7 +3970,7 @@ ALTER TABLE ONLY public."отзыв"
 
 
 --
--- TOC entry 5069 (class 2606 OID 16928)
+-- TOC entry 5069 (class 2606 OID 19199)
 -- Name: чувство feeling_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3971,7 +3979,7 @@ ALTER TABLE ONLY public."чувство"
 
 
 --
--- TOC entry 5163 (class 2606 OID 16930)
+-- TOC entry 5167 (class 2606 OID 19201)
 -- Name: файл_и_тип_файла file_and_file_type_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3980,7 +3988,7 @@ ALTER TABLE ONLY public."файл_и_тип_файла"
 
 
 --
--- TOC entry 5073 (class 2606 OID 16932)
+-- TOC entry 5073 (class 2606 OID 19203)
 -- Name: файл file_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3989,7 +3997,7 @@ ALTER TABLE ONLY public."файл"
 
 
 --
--- TOC entry 5075 (class 2606 OID 16934)
+-- TOC entry 5075 (class 2606 OID 19205)
 -- Name: тип_файла file_type_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -3998,7 +4006,7 @@ ALTER TABLE ONLY public."тип_файла"
 
 
 --
--- TOC entry 5147 (class 2606 OID 16936)
+-- TOC entry 5147 (class 2606 OID 19207)
 -- Name: сообщение_и_файл message_and_file_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4007,7 +4015,7 @@ ALTER TABLE ONLY public."сообщение_и_файл"
 
 
 --
--- TOC entry 5079 (class 2606 OID 16938)
+-- TOC entry 5079 (class 2606 OID 19209)
 -- Name: сообщение message_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4016,7 +4024,7 @@ ALTER TABLE ONLY public."сообщение"
 
 
 --
--- TOC entry 5081 (class 2606 OID 16940)
+-- TOC entry 5081 (class 2606 OID 19211)
 -- Name: мышца muscle_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4025,7 +4033,7 @@ ALTER TABLE ONLY public."мышца"
 
 
 --
--- TOC entry 5085 (class 2606 OID 16942)
+-- TOC entry 5085 (class 2606 OID 19213)
 -- Name: приоритет_мышцы muscle_priority_2_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4034,7 +4042,7 @@ ALTER TABLE ONLY public."приоритет_мышцы"
 
 
 --
--- TOC entry 5089 (class 2606 OID 16944)
+-- TOC entry 5089 (class 2606 OID 19215)
 -- Name: питание nutrition_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4043,7 +4051,7 @@ ALTER TABLE ONLY public."питание"
 
 
 --
--- TOC entry 5091 (class 2606 OID 16946)
+-- TOC entry 5091 (class 2606 OID 19217)
 -- Name: цель_тренировок purpose_of_workouts_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4052,7 +4060,7 @@ ALTER TABLE ONLY public."цель_тренировок"
 
 
 --
--- TOC entry 5095 (class 2606 OID 16948)
+-- TOC entry 5095 (class 2606 OID 19219)
 -- Name: причина_чувства reason_of_feeling_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4061,7 +4069,7 @@ ALTER TABLE ONLY public."причина_чувства"
 
 
 --
--- TOC entry 5099 (class 2606 OID 16950)
+-- TOC entry 5099 (class 2606 OID 19221)
 -- Name: шаги steps_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4070,7 +4078,7 @@ ALTER TABLE ONLY public."шаги"
 
 
 --
--- TOC entry 5101 (class 2606 OID 16952)
+-- TOC entry 5101 (class 2606 OID 19223)
 -- Name: подписка subscription_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4079,7 +4087,7 @@ ALTER TABLE ONLY public."подписка"
 
 
 --
--- TOC entry 5105 (class 2606 OID 16954)
+-- TOC entry 5105 (class 2606 OID 19225)
 -- Name: статус_подписки subscription_status_2_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4088,7 +4096,7 @@ ALTER TABLE ONLY public."статус_подписки"
 
 
 --
--- TOC entry 5109 (class 2606 OID 16956)
+-- TOC entry 5109 (class 2606 OID 19227)
 -- Name: уровень_тренировки training_level_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4097,7 +4105,7 @@ ALTER TABLE ONLY public."уровень_тренировки"
 
 
 --
--- TOC entry 5045 (class 2606 OID 17281)
+-- TOC entry 5045 (class 2606 OID 19229)
 -- Name: специальность_тренера unique_coach_speciality_name; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4106,7 +4114,7 @@ ALTER TABLE ONLY public."специальность_тренера"
 
 
 --
--- TOC entry 5051 (class 2606 OID 17279)
+-- TOC entry 5051 (class 2606 OID 19231)
 -- Name: снаряжение unique_equipment_name; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4115,7 +4123,7 @@ ALTER TABLE ONLY public."снаряжение"
 
 
 --
--- TOC entry 5057 (class 2606 OID 17277)
+-- TOC entry 5057 (class 2606 OID 19233)
 -- Name: сложность_упражнения unique_exercise_difficulty_name; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4124,7 +4132,7 @@ ALTER TABLE ONLY public."сложность_упражнения"
 
 
 --
--- TOC entry 5063 (class 2606 OID 17295)
+-- TOC entry 5063 (class 2606 OID 19235)
 -- Name: этап_упражнения unique_exercise_stage_name; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4133,7 +4141,7 @@ ALTER TABLE ONLY public."этап_упражнения"
 
 
 --
--- TOC entry 5067 (class 2606 OID 17287)
+-- TOC entry 5067 (class 2606 OID 19237)
 -- Name: тип_упражнения unique_exercise_type_name; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4142,7 +4150,7 @@ ALTER TABLE ONLY public."тип_упражнения"
 
 
 --
--- TOC entry 5071 (class 2606 OID 17293)
+-- TOC entry 5071 (class 2606 OID 19239)
 -- Name: чувство unique_feeling_name; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4151,7 +4159,7 @@ ALTER TABLE ONLY public."чувство"
 
 
 --
--- TOC entry 5097 (class 2606 OID 17275)
+-- TOC entry 5097 (class 2606 OID 19241)
 -- Name: причина_чувства unique_feeling_reason_name; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4160,7 +4168,7 @@ ALTER TABLE ONLY public."причина_чувства"
 
 
 --
--- TOC entry 5077 (class 2606 OID 17289)
+-- TOC entry 5077 (class 2606 OID 19243)
 -- Name: тип_файла unique_file_type_name; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4169,7 +4177,7 @@ ALTER TABLE ONLY public."тип_файла"
 
 
 --
--- TOC entry 5083 (class 2606 OID 17273)
+-- TOC entry 5083 (class 2606 OID 19245)
 -- Name: мышца unique_muscle_name; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4178,7 +4186,7 @@ ALTER TABLE ONLY public."мышца"
 
 
 --
--- TOC entry 5087 (class 2606 OID 17271)
+-- TOC entry 5087 (class 2606 OID 19247)
 -- Name: приоритет_мышцы unique_muscle_priority_name; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4187,7 +4195,7 @@ ALTER TABLE ONLY public."приоритет_мышцы"
 
 
 --
--- TOC entry 5167 (class 2606 OID 17388)
+-- TOC entry 5163 (class 2606 OID 19249)
 -- Name: уровень_подготовки unique_name; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4196,7 +4204,7 @@ ALTER TABLE ONLY public."уровень_подготовки"
 
 
 --
--- TOC entry 5133 (class 2606 OID 17267)
+-- TOC entry 5133 (class 2606 OID 19251)
 -- Name: пол unique_sex_name; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4205,7 +4213,7 @@ ALTER TABLE ONLY public."пол"
 
 
 --
--- TOC entry 5103 (class 2606 OID 17265)
+-- TOC entry 5103 (class 2606 OID 19253)
 -- Name: подписка unique_subscription_name; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4214,7 +4222,7 @@ ALTER TABLE ONLY public."подписка"
 
 
 --
--- TOC entry 5107 (class 2606 OID 17283)
+-- TOC entry 5107 (class 2606 OID 19255)
 -- Name: статус_подписки unique_subscription_status_name; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4223,7 +4231,7 @@ ALTER TABLE ONLY public."статус_подписки"
 
 
 --
--- TOC entry 5111 (class 2606 OID 17269)
+-- TOC entry 5111 (class 2606 OID 19257)
 -- Name: пользователь unique_user_mail; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4232,7 +4240,7 @@ ALTER TABLE ONLY public."пользователь"
 
 
 --
--- TOC entry 5125 (class 2606 OID 17285)
+-- TOC entry 5125 (class 2606 OID 19259)
 -- Name: тип_тренировки unique_workout_name; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4241,7 +4249,7 @@ ALTER TABLE ONLY public."тип_тренировки"
 
 
 --
--- TOC entry 5093 (class 2606 OID 17291)
+-- TOC entry 5093 (class 2606 OID 19261)
 -- Name: цель_тренировок unique_workout_target_name; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4250,7 +4258,7 @@ ALTER TABLE ONLY public."цель_тренировок"
 
 
 --
--- TOC entry 5145 (class 2606 OID 16958)
+-- TOC entry 5145 (class 2606 OID 19263)
 -- Name: пользователь_и_достижение user_and_achievment_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4259,7 +4267,7 @@ ALTER TABLE ONLY public."пользователь_и_достижение"
 
 
 --
--- TOC entry 5113 (class 2606 OID 16960)
+-- TOC entry 5113 (class 2606 OID 19265)
 -- Name: пользователь user_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4268,7 +4276,7 @@ ALTER TABLE ONLY public."пользователь"
 
 
 --
--- TOC entry 5115 (class 2606 OID 16962)
+-- TOC entry 5115 (class 2606 OID 19267)
 -- Name: вода water_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4277,7 +4285,7 @@ ALTER TABLE ONLY public."вода"
 
 
 --
--- TOC entry 5117 (class 2606 OID 16964)
+-- TOC entry 5117 (class 2606 OID 19269)
 -- Name: вес weight_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4286,7 +4294,7 @@ ALTER TABLE ONLY public."вес"
 
 
 --
--- TOC entry 5119 (class 2606 OID 16966)
+-- TOC entry 5119 (class 2606 OID 19271)
 -- Name: тренировка_и_упражнение workout_and_exercise_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4295,7 +4303,7 @@ ALTER TABLE ONLY public."тренировка_и_упражнение"
 
 
 --
--- TOC entry 5153 (class 2606 OID 16968)
+-- TOC entry 5153 (class 2606 OID 19273)
 -- Name: тренировка_и_план_тренировки workout_and_workout_plan_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4304,7 +4312,7 @@ ALTER TABLE ONLY public."тренировка_и_план_тренировки"
 
 
 --
--- TOC entry 5155 (class 2606 OID 16970)
+-- TOC entry 5155 (class 2606 OID 19275)
 -- Name: тренировка_и_пользователь workout_id_user_id; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4313,7 +4321,7 @@ ALTER TABLE ONLY public."тренировка_и_пользователь"
 
 
 --
--- TOC entry 5121 (class 2606 OID 16972)
+-- TOC entry 5121 (class 2606 OID 19277)
 -- Name: тренировка workout_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4322,7 +4330,7 @@ ALTER TABLE ONLY public."тренировка"
 
 
 --
--- TOC entry 5143 (class 2606 OID 16974)
+-- TOC entry 5143 (class 2606 OID 19279)
 -- Name: план_тренировки_и_пользователь workout_plan_id_user_id; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4331,7 +4339,7 @@ ALTER TABLE ONLY public."план_тренировки_и_пользовател
 
 
 --
--- TOC entry 5123 (class 2606 OID 16976)
+-- TOC entry 5123 (class 2606 OID 19281)
 -- Name: план_тренировки workout_plan_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4340,7 +4348,7 @@ ALTER TABLE ONLY public."план_тренировки"
 
 
 --
--- TOC entry 5127 (class 2606 OID 16978)
+-- TOC entry 5127 (class 2606 OID 19283)
 -- Name: тип_тренировки workout_type_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4349,7 +4357,7 @@ ALTER TABLE ONLY public."тип_тренировки"
 
 
 --
--- TOC entry 5135 (class 2606 OID 16980)
+-- TOC entry 5135 (class 2606 OID 19285)
 -- Name: пол имя_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4358,7 +4366,7 @@ ALTER TABLE ONLY public."пол"
 
 
 --
--- TOC entry 5169 (class 2606 OID 17386)
+-- TOC entry 5165 (class 2606 OID 19287)
 -- Name: уровень_подготовки уровень_подготовки_pkey; Type: CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4367,7 +4375,7 @@ ALTER TABLE ONLY public."уровень_подготовки"
 
 
 --
--- TOC entry 5224 (class 2606 OID 16981)
+-- TOC entry 5224 (class 2606 OID 19288)
 -- Name: чат_и_пользователь chat_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4376,7 +4384,7 @@ ALTER TABLE ONLY public."чат_и_пользователь"
 
 
 --
--- TOC entry 5191 (class 2606 OID 16986)
+-- TOC entry 5191 (class 2606 OID 19293)
 -- Name: тренировка chat_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4385,7 +4393,7 @@ ALTER TABLE ONLY public."тренировка"
 
 
 --
--- TOC entry 5172 (class 2606 OID 16991)
+-- TOC entry 5172 (class 2606 OID 19298)
 -- Name: клиент_и_подписка client_and_subscription_subscription_status_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4394,7 +4402,7 @@ ALTER TABLE ONLY public."клиент_и_подписка"
 
 
 --
--- TOC entry 5208 (class 2606 OID 16996)
+-- TOC entry 5208 (class 2606 OID 19303)
 -- Name: тренер_и_клиент client_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4403,7 +4411,7 @@ ALTER TABLE ONLY public."тренер_и_клиент"
 
 
 --
--- TOC entry 5198 (class 2606 OID 17001)
+-- TOC entry 5198 (class 2606 OID 19308)
 -- Name: клиент_и_цель_тренировок client_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4412,7 +4420,7 @@ ALTER TABLE ONLY public."клиент_и_цель_тренировок"
 
 
 --
--- TOC entry 5196 (class 2606 OID 17006)
+-- TOC entry 5196 (class 2606 OID 19313)
 -- Name: клиент_и_тип_тренировки client_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4421,7 +4429,7 @@ ALTER TABLE ONLY public."клиент_и_тип_тренировки"
 
 
 --
--- TOC entry 5173 (class 2606 OID 17011)
+-- TOC entry 5173 (class 2606 OID 19318)
 -- Name: клиент_и_подписка client_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4430,7 +4438,7 @@ ALTER TABLE ONLY public."клиент_и_подписка"
 
 
 --
--- TOC entry 5170 (class 2606 OID 17016)
+-- TOC entry 5170 (class 2606 OID 19323)
 -- Name: клиент client_user_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4439,7 +4447,7 @@ ALTER TABLE ONLY public."клиент"
 
 
 --
--- TOC entry 5209 (class 2606 OID 17021)
+-- TOC entry 5209 (class 2606 OID 19328)
 -- Name: тренер_и_клиент coach_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4448,7 +4456,7 @@ ALTER TABLE ONLY public."тренер_и_клиент"
 
 
 --
--- TOC entry 5210 (class 2606 OID 17026)
+-- TOC entry 5210 (class 2606 OID 19333)
 -- Name: тренер_и_специальность coach_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4457,7 +4465,7 @@ ALTER TABLE ONLY public."тренер_и_специальность"
 
 
 --
--- TOC entry 5211 (class 2606 OID 17031)
+-- TOC entry 5211 (class 2606 OID 19338)
 -- Name: тренер_и_специальность coach_speciality_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4466,7 +4474,7 @@ ALTER TABLE ONLY public."тренер_и_специальность"
 
 
 --
--- TOC entry 5175 (class 2606 OID 17036)
+-- TOC entry 5175 (class 2606 OID 19343)
 -- Name: тренер coach_user_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4475,7 +4483,7 @@ ALTER TABLE ONLY public."тренер"
 
 
 --
--- TOC entry 5194 (class 2606 OID 17041)
+-- TOC entry 5194 (class 2606 OID 19348)
 -- Name: дневник_и_чувство diary_and_feeling_diary_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4484,7 +4492,7 @@ ALTER TABLE ONLY public."дневник_и_чувство"
 
 
 --
--- TOC entry 5195 (class 2606 OID 17046)
+-- TOC entry 5195 (class 2606 OID 19353)
 -- Name: дневник_и_чувство diary_and_feeling_feeling_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4493,7 +4501,7 @@ ALTER TABLE ONLY public."дневник_и_чувство"
 
 
 --
--- TOC entry 5192 (class 2606 OID 17051)
+-- TOC entry 5192 (class 2606 OID 19358)
 -- Name: дневник_и_причина_чувства diary_and_reason_of_feeling_diary_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4502,7 +4510,7 @@ ALTER TABLE ONLY public."дневник_и_причина_чувства"
 
 
 --
--- TOC entry 5193 (class 2606 OID 17056)
+-- TOC entry 5193 (class 2606 OID 19363)
 -- Name: дневник_и_причина_чувства diary_and_reason_of_feeling_reason_of_feeling_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4511,7 +4519,7 @@ ALTER TABLE ONLY public."дневник_и_причина_чувства"
 
 
 --
--- TOC entry 5176 (class 2606 OID 17061)
+-- TOC entry 5176 (class 2606 OID 19368)
 -- Name: дневник diary_file_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4520,7 +4528,7 @@ ALTER TABLE ONLY public."дневник"
 
 
 --
--- TOC entry 5177 (class 2606 OID 17066)
+-- TOC entry 5177 (class 2606 OID 19373)
 -- Name: дневник diary_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4529,7 +4537,7 @@ ALTER TABLE ONLY public."дневник"
 
 
 --
--- TOC entry 5218 (class 2606 OID 17071)
+-- TOC entry 5218 (class 2606 OID 19378)
 -- Name: упражнение_и_снаряжение exercise_and_equipment_equipment_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4538,7 +4546,7 @@ ALTER TABLE ONLY public."упражнение_и_снаряжение"
 
 
 --
--- TOC entry 5220 (class 2606 OID 17076)
+-- TOC entry 5220 (class 2606 OID 19383)
 -- Name: упражнение_и_файл exercise_and_file_exercise_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4547,7 +4555,7 @@ ALTER TABLE ONLY public."упражнение_и_файл"
 
 
 --
--- TOC entry 5221 (class 2606 OID 17081)
+-- TOC entry 5221 (class 2606 OID 19388)
 -- Name: упражнение_и_файл exercise_and_file_file_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4556,7 +4564,7 @@ ALTER TABLE ONLY public."упражнение_и_файл"
 
 
 --
--- TOC entry 5178 (class 2606 OID 17086)
+-- TOC entry 5178 (class 2606 OID 19393)
 -- Name: упражнение_и_мыщца exercise_and_muscle_muscle_priority_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4565,7 +4573,7 @@ ALTER TABLE ONLY public."упражнение_и_мыщца"
 
 
 --
--- TOC entry 5181 (class 2606 OID 17091)
+-- TOC entry 5181 (class 2606 OID 19398)
 -- Name: упражнение exercise_exercise_difficulty_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4574,7 +4582,7 @@ ALTER TABLE ONLY public."упражнение"
 
 
 --
--- TOC entry 5182 (class 2606 OID 17096)
+-- TOC entry 5182 (class 2606 OID 19403)
 -- Name: упражнение exercise_exercise_type_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4583,7 +4591,7 @@ ALTER TABLE ONLY public."упражнение"
 
 
 --
--- TOC entry 5188 (class 2606 OID 17101)
+-- TOC entry 5188 (class 2606 OID 19408)
 -- Name: тренировка_и_упражнение exercise_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4592,7 +4600,7 @@ ALTER TABLE ONLY public."тренировка_и_упражнение"
 
 
 --
--- TOC entry 5216 (class 2606 OID 17106)
+-- TOC entry 5216 (class 2606 OID 19413)
 -- Name: упражнение_и_пользователь exercise_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4601,7 +4609,7 @@ ALTER TABLE ONLY public."упражнение_и_пользователь"
 
 
 --
--- TOC entry 5179 (class 2606 OID 17111)
+-- TOC entry 5179 (class 2606 OID 19418)
 -- Name: упражнение_и_мыщца exercise_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4610,7 +4618,7 @@ ALTER TABLE ONLY public."упражнение_и_мыщца"
 
 
 --
--- TOC entry 5219 (class 2606 OID 17116)
+-- TOC entry 5219 (class 2606 OID 19423)
 -- Name: упражнение_и_снаряжение exercise_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4619,7 +4627,7 @@ ALTER TABLE ONLY public."упражнение_и_снаряжение"
 
 
 --
--- TOC entry 5200 (class 2606 OID 17121)
+-- TOC entry 5200 (class 2606 OID 19428)
 -- Name: отзыв feedback_client_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4628,7 +4636,7 @@ ALTER TABLE ONLY public."отзыв"
 
 
 --
--- TOC entry 5201 (class 2606 OID 17126)
+-- TOC entry 5201 (class 2606 OID 19433)
 -- Name: отзыв feedback_coach_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4637,7 +4645,7 @@ ALTER TABLE ONLY public."отзыв"
 
 
 --
--- TOC entry 5222 (class 2606 OID 17131)
+-- TOC entry 5222 (class 2606 OID 19438)
 -- Name: файл_и_тип_файла file_and_file_type_file_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4646,7 +4654,7 @@ ALTER TABLE ONLY public."файл_и_тип_файла"
 
 
 --
--- TOC entry 5223 (class 2606 OID 17136)
+-- TOC entry 5223 (class 2606 OID 19443)
 -- Name: файл_и_тип_файла file_and_file_type_file_type_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4655,7 +4663,7 @@ ALTER TABLE ONLY public."файл_и_тип_файла"
 
 
 --
--- TOC entry 5206 (class 2606 OID 17141)
+-- TOC entry 5206 (class 2606 OID 19448)
 -- Name: сообщение_и_файл message_and_file_file_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4664,7 +4672,7 @@ ALTER TABLE ONLY public."сообщение_и_файл"
 
 
 --
--- TOC entry 5207 (class 2606 OID 17146)
+-- TOC entry 5207 (class 2606 OID 19453)
 -- Name: сообщение_и_файл message_and_file_message_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4673,7 +4681,7 @@ ALTER TABLE ONLY public."сообщение_и_файл"
 
 
 --
--- TOC entry 5180 (class 2606 OID 17151)
+-- TOC entry 5180 (class 2606 OID 19458)
 -- Name: упражнение_и_мыщца muscle_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4682,7 +4690,7 @@ ALTER TABLE ONLY public."упражнение_и_мыщца"
 
 
 --
--- TOC entry 5183 (class 2606 OID 17156)
+-- TOC entry 5183 (class 2606 OID 19463)
 -- Name: питание nutrition_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4691,7 +4699,7 @@ ALTER TABLE ONLY public."питание"
 
 
 --
--- TOC entry 5199 (class 2606 OID 17161)
+-- TOC entry 5199 (class 2606 OID 19468)
 -- Name: клиент_и_цель_тренировок purpose_of_workouts; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4700,7 +4708,7 @@ ALTER TABLE ONLY public."клиент_и_цель_тренировок"
 
 
 --
--- TOC entry 5184 (class 2606 OID 17166)
+-- TOC entry 5184 (class 2606 OID 19473)
 -- Name: шаги steps_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4709,7 +4717,7 @@ ALTER TABLE ONLY public."шаги"
 
 
 --
--- TOC entry 5174 (class 2606 OID 17171)
+-- TOC entry 5174 (class 2606 OID 19478)
 -- Name: клиент_и_подписка subscription_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4718,7 +4726,7 @@ ALTER TABLE ONLY public."клиент_и_подписка"
 
 
 --
--- TOC entry 5171 (class 2606 OID 17389)
+-- TOC entry 5171 (class 2606 OID 19483)
 -- Name: клиент training_level_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4727,7 +4735,7 @@ ALTER TABLE ONLY public."клиент"
 
 
 --
--- TOC entry 5204 (class 2606 OID 17181)
+-- TOC entry 5204 (class 2606 OID 19488)
 -- Name: пользователь_и_достижение user_and_achievement_achievement_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4736,7 +4744,7 @@ ALTER TABLE ONLY public."пользователь_и_достижение"
 
 
 --
--- TOC entry 5205 (class 2606 OID 17186)
+-- TOC entry 5205 (class 2606 OID 19493)
 -- Name: пользователь_и_достижение user_and_achievement_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4745,7 +4753,7 @@ ALTER TABLE ONLY public."пользователь_и_достижение"
 
 
 --
--- TOC entry 5225 (class 2606 OID 17191)
+-- TOC entry 5225 (class 2606 OID 19498)
 -- Name: чат_и_пользователь user_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4754,7 +4762,7 @@ ALTER TABLE ONLY public."чат_и_пользователь"
 
 
 --
--- TOC entry 5214 (class 2606 OID 17196)
+-- TOC entry 5214 (class 2606 OID 19503)
 -- Name: тренировка_и_пользователь user_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4763,7 +4771,7 @@ ALTER TABLE ONLY public."тренировка_и_пользователь"
 
 
 --
--- TOC entry 5202 (class 2606 OID 17201)
+-- TOC entry 5202 (class 2606 OID 19508)
 -- Name: план_тренировки_и_пользователь user_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4772,7 +4780,7 @@ ALTER TABLE ONLY public."план_тренировки_и_пользовател
 
 
 --
--- TOC entry 5217 (class 2606 OID 17206)
+-- TOC entry 5217 (class 2606 OID 19513)
 -- Name: упражнение_и_пользователь user_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4781,7 +4789,7 @@ ALTER TABLE ONLY public."упражнение_и_пользователь"
 
 
 --
--- TOC entry 5185 (class 2606 OID 17211)
+-- TOC entry 5185 (class 2606 OID 19518)
 -- Name: пользователь user_sex_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4790,7 +4798,7 @@ ALTER TABLE ONLY public."пользователь"
 
 
 --
--- TOC entry 5186 (class 2606 OID 17216)
+-- TOC entry 5186 (class 2606 OID 19523)
 -- Name: вода water_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4799,7 +4807,7 @@ ALTER TABLE ONLY public."вода"
 
 
 --
--- TOC entry 5187 (class 2606 OID 17221)
+-- TOC entry 5187 (class 2606 OID 19528)
 -- Name: вес weight_user_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4808,7 +4816,7 @@ ALTER TABLE ONLY public."вес"
 
 
 --
--- TOC entry 5189 (class 2606 OID 17226)
+-- TOC entry 5189 (class 2606 OID 19533)
 -- Name: тренировка_и_упражнение workout_and_exercise_exercise_stage_id_fkey; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4817,7 +4825,7 @@ ALTER TABLE ONLY public."тренировка_и_упражнение"
 
 
 --
--- TOC entry 5215 (class 2606 OID 17231)
+-- TOC entry 5215 (class 2606 OID 19538)
 -- Name: тренировка_и_пользователь workout_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4826,7 +4834,7 @@ ALTER TABLE ONLY public."тренировка_и_пользователь"
 
 
 --
--- TOC entry 5212 (class 2606 OID 17236)
+-- TOC entry 5212 (class 2606 OID 19543)
 -- Name: тренировка_и_план_тренировки workout_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4835,7 +4843,7 @@ ALTER TABLE ONLY public."тренировка_и_план_тренировки"
 
 
 --
--- TOC entry 5190 (class 2606 OID 17241)
+-- TOC entry 5190 (class 2606 OID 19548)
 -- Name: тренировка_и_упражнение workout_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4844,7 +4852,7 @@ ALTER TABLE ONLY public."тренировка_и_упражнение"
 
 
 --
--- TOC entry 5213 (class 2606 OID 17246)
+-- TOC entry 5213 (class 2606 OID 19553)
 -- Name: тренировка_и_план_тренировки workout_plan_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4853,7 +4861,7 @@ ALTER TABLE ONLY public."тренировка_и_план_тренировки"
 
 
 --
--- TOC entry 5203 (class 2606 OID 17251)
+-- TOC entry 5203 (class 2606 OID 19558)
 -- Name: план_тренировки_и_пользователь workout_plan_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4862,7 +4870,7 @@ ALTER TABLE ONLY public."план_тренировки_и_пользовател
 
 
 --
--- TOC entry 5197 (class 2606 OID 17256)
+-- TOC entry 5197 (class 2606 OID 19563)
 -- Name: клиент_и_тип_тренировки workout_type_id; Type: FK CONSTRAINT; Schema: public; Owner: postgres
 --
 
@@ -4870,7 +4878,7 @@ ALTER TABLE ONLY public."клиент_и_тип_тренировки"
     ADD CONSTRAINT workout_type_id FOREIGN KEY ("тип_тренировки_id") REFERENCES public."тип_тренировки"(id);
 
 
--- Completed on 2025-03-05 14:00:18
+-- Completed on 2025-04-02 21:16:00
 
 --
 -- PostgreSQL database dump complete
