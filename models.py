@@ -1,102 +1,26 @@
 from typing import Optional, List
-from datetime import date
+from datetime import date, datetime
 from sqlmodel import SQLModel, Field, Relationship
-
-# Base models (no dependencies)
-class User(SQLModel, table=True):
-    __tablename__ = 'пользователь'
-    
-    id: Optional[int] = Field(default=None, primary_key=True)
-    дата_рождения: date
-    имя: str
-    фамилия: str
-    отчество: str
-    
-    # client: Optional["Client"] = Relationship(back_populates="user")
-    # trainer: Optional["Trainer"] = Relationship(back_populates="user")
-    # training_plans: List["TrainingPlan"] = Relationship(back_populates="users", link_model=TrainingPlanUser)
-    # workouts: List["Workout"] = Relationship(back_populates="users", link_model=WorkoutUser)
-    diaries: List["Diary"] = Relationship(back_populates="user")
-
-# class TrainingGoal(SQLModel, table=True):
-#     __tablename__ = 'цель_тренировок'
-    
-#     id: Optional[int] = Field(default=None, primary_key=True)
-#     название: str
-
-# class PreparationLevel(SQLModel, table=True):
-#     __tablename__ = 'уровень_подготовки'
-    
-#     id: Optional[int] = Field(default=None, primary_key=True)
-#     название: str
-
-# class WorkoutType(SQLModel, table=True):
-#     __tablename__ = 'вид_тренировки'
-    
-#     id: Optional[int] = Field(default=None, primary_key=True)
-#     название: str
-
-# class ExerciseType(SQLModel, table=True):
-#     __tablename__ = 'тип_упражнения'
-    
-#     id: Optional[int] = Field(default=None, primary_key=True)
-#     название: str
-
-# class DifficultyLevel(SQLModel, table=True):
-#     __tablename__ = 'уровень_сложности'
-    
-#     id: Optional[int] = Field(default=None, primary_key=True)
-#     название: str
+from pydantic import field_validator, constr
 
 # Link models (association tables)
-# class TrainerClient(SQLModel, table=True):
-#     __tablename__ = 'тренер_и_клиент'
+class WorkoutUser(SQLModel, table=True):
+    __tablename__ = 'тренировка_и_пользователь'
     
-#     тренер_id: int = Field(foreign_key='тренер.id', primary_key=True)
-#     клиент_id: int = Field(foreign_key='клиент.id', primary_key=True)
+    тренировка_id: int = Field(foreign_key='тренировка.id', primary_key=True)
+    пользователь_id: int = Field(foreign_key='пользователь.id', primary_key=True)
 
-# class TrainerSpecialtyLink(SQLModel, table=True):
-#     __tablename__ = 'тренер_и_специальность'
+class TrainingPlanUser(SQLModel, table=True):
+    __tablename__ = 'план_тренировки_и_пользователь'
     
-#     тренер_id: int = Field(foreign_key='тренер.id', primary_key=True)
-#     специальность_id: int = Field(foreign_key='специальность_тренера.id', primary_key=True)
+    план_тренировки_id: int = Field(foreign_key='план_тренировки.id', primary_key=True)
+    пользователь_id: int = Field(foreign_key='пользователь.id', primary_key=True)
 
-# class TrainingPlanUser(SQLModel, table=True):
-#     __tablename__ = 'план_тренировок_и_пользователь'
+class ExerciseUser(SQLModel, table=True):
+    __tablename__ = 'упражнение_и_пользователь'
     
-#     план_тренировок_id: int = Field(foreign_key='план_тренировок.id', primary_key=True)
-#     пользователь_id: int = Field(foreign_key='пользователь.id', primary_key=True)
-
-# class WorkoutUser(SQLModel, table=True):
-#     __tablename__ = 'тренировка_и_пользователь'
-    
-#     тренировка_id: int = Field(foreign_key='тренировка.id', primary_key=True)
-#     пользователь_id: int = Field(foreign_key='пользователь.id', primary_key=True)
-
-# class WorkoutExercise(SQLModel, table=True):
-#     __tablename__ = 'тренировка_и_упражнение'
-    
-#     тренировка_id: int = Field(foreign_key='тренировка.id', primary_key=True)
-#     упражнение_id: int = Field(foreign_key='упражнение.id', primary_key=True)
-
-# class ExerciseUser(SQLModel, table=True):
-#     __tablename__ = 'упражнение_и_пользователь'
-    
-#     упражнение_id: int = Field(foreign_key='упражнение.id', primary_key=True)
-#     пользователь_id: int = Field(foreign_key='пользователь.id', primary_key=True)
-
-# class ExerciseMuscle(SQLModel, table=True):
-#     __tablename__ = 'упражнение_и_мышца'
-    
-#     упражнение_id: int = Field(foreign_key='упражнение.id', primary_key=True)
-#     мышца_id: int = Field(foreign_key='мышца.id', primary_key=True)
-#     важность: int
-
-# class ExerciseEquipment(SQLModel, table=True):
-#     __tablename__ = 'упражнение_и_снаряжение'
-    
-#     упражнение_id: int = Field(foreign_key='упражнение.id', primary_key=True)
-#     снаряжение_id: int = Field(foreign_key='снаряжение.id', primary_key=True)
+    упражнение_id: int = Field(foreign_key='упражнение.id', primary_key=True)
+    пользователь_id: int = Field(foreign_key='пользователь.id', primary_key=True)
 
 class DiaryFeeling(SQLModel, table=True):
     __tablename__ = 'дневник_и_чувство'
@@ -110,34 +34,220 @@ class DiaryFeelingReason(SQLModel, table=True):
     дневник_id: int = Field(foreign_key='дневник.id', primary_key=True)
     причина_чувства_id: int = Field(foreign_key='причина_чувства.id', primary_key=True)
 
-class FileType(SQLModel, table=True):
+class UserAchievement(SQLModel, table=True):
+    __tablename__ = 'пользователь_и_достижение'
+    
+    пользователь_id: int = Field(foreign_key='пользователь.id', primary_key=True)
+    достижение_id: int = Field(foreign_key='достижение.id', primary_key=True)
+
+class ClientTrainingGoal(SQLModel, table=True):
+    __tablename__ = 'клиент_и_цель_тренировок'
+    
+    клиент_id: int = Field(foreign_key='клиент.id', primary_key=True)
+    цель_тренировок_id: int = Field(foreign_key='цель_тренировок.id', primary_key=True)
+
+class TrainerClient(SQLModel, table=True):
+    __tablename__ = 'тренер_и_клиент'
+    
+    тренер_id: int = Field(foreign_key='тренер.id', primary_key=True)
+    клиент_id: int = Field(foreign_key='клиент.id', primary_key=True)
+
+class TrainerSpecialtyLink(SQLModel, table=True):
+    __tablename__ = 'тренер_и_специальность'
+    
+    тренер_id: int = Field(foreign_key='тренер.id', primary_key=True)
+    специальность_тренера_id: int = Field(foreign_key='специальность_тренера.id', primary_key=True)
+
+class WorkoutTrainingPlan(SQLModel, table=True):
+    __tablename__ = 'тренировка_и_план_тренировки'
+    
+    тренировка_id: int = Field(foreign_key='тренировка.id', primary_key=True)
+    план_тренировки_id: int = Field(foreign_key='план_тренировки.id', primary_key=True)
+
+class WorkoutExercise(SQLModel, table=True):
+    __tablename__ = 'тренировка_и_упражнение'
+    
+    id: Optional[int] = Field(default=None, primary_key=True)
+    тренировка_id: int = Field(foreign_key='тренировка.id')
+    упражнение_id: int = Field(foreign_key='упражнение.id')
+    номер_в_очереди: int = Field(ge=0)
+    колво_подходов: int = Field(ge=1)
+    колво_подходов_выполнено: int = Field(ge=1)
+    колво_повторений: int = Field(ge=1)
+    колво_повторений_выполнено: int = Field(ge=1)
+    этап_упражнения_id: int = Field(foreign_key='этап_упражнения.id')
+    
+    workout: "Workout" = Relationship(back_populates="workout_exercises")
+    exercise: "Exercise" = Relationship(back_populates="workout_exercises")
+    exercise_stage: "ExerciseStage" = Relationship(back_populates="workout_exercises")
+
+class ExerciseEquipment(SQLModel, table=True):
+    __tablename__ = 'упражнение_и_снаряжение'
+    
+    упражнение_id: int = Field(foreign_key='упражнение.id', primary_key=True)
+    снаряжение_id: int = Field(foreign_key='снаряжение.id', primary_key=True)
+
+class ExerciseFile(SQLModel, table=True):
+    __tablename__ = 'упражнение_и_файл'
+    
+    упражнение_id: int = Field(foreign_key='упражнение.id', primary_key=True)
+    файл_id: int = Field(foreign_key='файл.id', primary_key=True)
+
+class FileFileType(SQLModel, table=True):
     __tablename__ = 'файл_и_тип_файла'
     
     файл_id: int = Field(foreign_key='файл.id', primary_key=True)
     тип_файла_id: int = Field(foreign_key='тип_файла.id', primary_key=True)
 
-# Models with relationships
-# class Muscle(SQLModel, table=True):
-#     __tablename__ = 'мышца'
+class MessageFile(SQLModel, table=True):
+    __tablename__ = 'сообщение_и_файл'
     
-#     id: Optional[int] = Field(default=None, primary_key=True)
-#     название: str
-    
-#     exercises: List["Exercise"] = Relationship(back_populates="muscles", link_model=ExerciseMuscle)
+    сообщение_id: int = Field(foreign_key='сообщение.id', primary_key=True)
+    файл_id: int = Field(foreign_key='файл.id', primary_key=True)
 
-# class Equipment(SQLModel, table=True):
-#     __tablename__ = 'снаряжение'
+class Review(SQLModel, table=True):
+    __tablename__ = 'отзыв'
     
-#     id: Optional[int] = Field(default=None, primary_key=True)
-#     название: str
+    клиент_id: int = Field(foreign_key='клиент.id', primary_key=True)
+    тренер_id: int = Field(foreign_key='тренер.id', primary_key=True)
+    рейтинг: float = Field(ge=0.0, le=5.0)
+
+# Base models (no dependencies)
+class Gender(SQLModel, table=True):
+    __tablename__ = 'пол'
     
-#     exercises: List["Exercise"] = Relationship(back_populates="equipment", link_model=ExerciseEquipment)
+    id: Optional[int] = Field(default=None, primary_key=True)
+    название: str = Field(max_length=255, unique=True)
+    
+    users: List["User"] = Relationship(back_populates="gender")
+
+class User(SQLModel, table=True):
+    __tablename__ = 'пользователь'
+    
+    id: Optional[int] = Field(default=None, primary_key=True)
+    дата_рождения: Optional[date] = None
+    хэш_пароля: str = Field(max_length=255)
+    почта: str = Field(max_length=255, unique=True)
+    отчество: Optional[str] = Field(default=None, max_length=255)
+    фамилия: Optional[str] = Field(default=None, max_length=255)
+    имя: Optional[str] = Field(default=None, max_length=255)
+    пол_id: Optional[int] = Field(default=None, foreign_key='пол.id')
+    
+    @field_validator('почта')
+    @classmethod
+    def validate_email(cls, v):
+        import re
+        if not re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', v):
+            raise ValueError('Неверный формат email')
+        return v
+    
+    @field_validator('отчество', 'фамилия', 'имя')
+    @classmethod
+    def validate_name(cls, v):
+        if v is not None and not all(c.isalpha() for c in v):
+            raise ValueError('Должно содержать только русские буквы')
+        return v
+    
+    gender: Optional["Gender"] = Relationship(back_populates="users")
+    client: Optional["Client"] = Relationship(back_populates="user")
+    trainer: Optional["Trainer"] = Relationship(back_populates="user")
+    training_plans: List["TrainingPlan"] = Relationship(back_populates="users", link_model=TrainingPlanUser)
+    workouts: List["Workout"] = Relationship(back_populates="users", link_model=WorkoutUser)
+    diaries: List["Diary"] = Relationship(back_populates="user")
+    exercises: List["Exercise"] = Relationship(back_populates="users", link_model=ExerciseUser)
+    steps: List["Steps"] = Relationship(back_populates="user")
+    water: List["Water"] = Relationship(back_populates="user")
+    weight: List["Weight"] = Relationship(back_populates="user")
+    nutrition: List["Nutrition"] = Relationship(back_populates="user")
+    achievements: List["Achievement"] = Relationship(back_populates="users", link_model=UserAchievement)
+
+class PreparationLevel(SQLModel, table=True):
+    __tablename__ = 'уровень_подготовки'
+    
+    id: Optional[int] = Field(default=None, primary_key=True)
+    название: str = Field(max_length=255, unique=True)
+    
+    @field_validator('название')
+    @classmethod
+    def validate_name(cls, v):
+        if not all(c.isalpha() for c in v):
+            raise ValueError('Название должно содержать только русские буквы')
+        return v
+    
+    clients: List["Client"] = Relationship(back_populates="preparation_level")
+
+class TrainingGoal(SQLModel, table=True):
+    __tablename__ = 'цель_тренировок'
+    
+    id: Optional[int] = Field(default=None, primary_key=True)
+    название: str = Field(max_length=255, unique=True)
+    
+    @field_validator('название')
+    @classmethod
+    def validate_name(cls, v):
+        if not all(c.isalpha() or c.isspace() for c in v):
+            raise ValueError('Название должно содержать только русские буквы и пробелы')
+        return v
+    
+    clients: List["Client"] = Relationship(back_populates="training_goals", link_model=ClientTrainingGoal)
+
+class ExerciseType(SQLModel, table=True):
+    __tablename__ = 'тип_упражнения'
+    
+    id: Optional[int] = Field(default=None, primary_key=True)
+    название: str = Field(max_length=255, unique=True)
+    
+    @field_validator('название')
+    @classmethod
+    def validate_name(cls, v):
+        if not all(c.isalpha() or c.isspace() for c in v):
+            raise ValueError('Название должно содержать только русские буквы и пробелы')
+        return v
+    
+    exercises: List["Exercise"] = Relationship(back_populates="exercise_type")
+
+class ExerciseDifficulty(SQLModel, table=True):
+    __tablename__ = 'сложность_упражнения'
+    
+    id: Optional[int] = Field(default=None, primary_key=True)
+    название: str = Field(max_length=255, unique=True)
+    
+    @field_validator('название')
+    @classmethod
+    def validate_name(cls, v):
+        if not all(c.isalpha() or c.isspace() for c in v):
+            raise ValueError('Название должно содержать только русские буквы и пробелы')
+        return v
+    
+    exercises: List["Exercise"] = Relationship(back_populates="difficulty_level")
+
+class Equipment(SQLModel, table=True):
+    __tablename__ = 'снаряжение'
+    
+    id: Optional[int] = Field(default=None, primary_key=True)
+    название: str = Field(max_length=255, unique=True)
+    
+    @field_validator('название')
+    @classmethod
+    def validate_name(cls, v):
+        if not all(c.isalpha() or c.isspace() for c in v):
+            raise ValueError('Название должно содержать только русские буквы и пробелы')
+        return v
+    
+    exercises: List["Exercise"] = Relationship(back_populates="equipment", link_model=ExerciseEquipment)
 
 class Feeling(SQLModel, table=True):
     __tablename__ = 'чувство'
     
     id: Optional[int] = Field(default=None, primary_key=True)
-    название: str
+    название: str = Field(max_length=255, unique=True)
+    
+    @field_validator('название')
+    @classmethod
+    def validate_name(cls, v):
+        if not all(c.isalpha() or c.isspace() for c in v):
+            raise ValueError('Название должно содержать только русские буквы и пробелы')
+        return v
     
     diaries: List["Diary"] = Relationship(back_populates="feelings", link_model=DiaryFeeling)
 
@@ -145,131 +255,259 @@ class FeelingReason(SQLModel, table=True):
     __tablename__ = 'причина_чувства'
     
     id: Optional[int] = Field(default=None, primary_key=True)
-    название: str
+    название: str = Field(max_length=255, unique=True)
+    
+    @field_validator('название')
+    @classmethod
+    def validate_name(cls, v):
+        if not all(c.isalpha() or c.isspace() for c in v):
+            raise ValueError('Название должно содержать только русские буквы и пробелы')
+        return v
     
     diaries: List["Diary"] = Relationship(back_populates="feeling_reasons", link_model=DiaryFeelingReason)
 
-class FileTypeModel(SQLModel, table=True):
+class FileType(SQLModel, table=True):
     __tablename__ = 'тип_файла'
     
     id: Optional[int] = Field(default=None, primary_key=True)
-    название: str
+    название: str = Field(max_length=255, unique=True)
     
-    files: List["File"] = Relationship(back_populates="file_types", link_model=FileType)
+    @field_validator('название')
+    @classmethod
+    def validate_name(cls, v):
+        if not all(c.isalpha() or c.isspace() for c in v):
+            raise ValueError('Название должно содержать только русские буквы и пробелы')
+        return v
+    
+    files: List["File"] = Relationship(back_populates="file_types", link_model=FileFileType)
 
-# class Client(SQLModel, table=True):
-#     __tablename__ = 'клиент'
+class ExerciseStage(SQLModel, table=True):
+    __tablename__ = 'этап_упражнения'
     
-#     id: Optional[int] = Field(default=None, primary_key=True)
-#     пользователь_id: int = Field(foreign_key='пользователь.id')
-#     цель_тренировок_id: int = Field(foreign_key='цель_тренировок.id')
-#     уровень_подготовки_id: int = Field(foreign_key='уровень_подготовки.id')
+    id: Optional[int] = Field(default=None, primary_key=True)
+    название: str = Field(max_length=255, unique=True)
     
-#     user: "User" = Relationship(back_populates="client")
-#     training_goal: "TrainingGoal" = Relationship()
-#     preparation_level: "PreparationLevel" = Relationship()
-#     trainers: List["Trainer"] = Relationship(back_populates="clients", link_model=TrainerClient)
+    @field_validator('название')
+    @classmethod
+    def validate_name(cls, v):
+        if not all(c.isalpha() or c.isspace() for c in v):
+            raise ValueError('Название должно содержать только русские буквы и пробелы')
+        return v
+    
+    workout_exercises: List["WorkoutExercise"] = Relationship(back_populates="exercise_stage")
 
-# class Trainer(SQLModel, table=True):
-#     __tablename__ = 'тренер'
+class TrainingLevel(SQLModel, table=True):
+    __tablename__ = 'уровень_тренировки'
     
-#     id: Optional[int] = Field(default=None, primary_key=True)
-#     пользователь_id: int = Field(foreign_key='пользователь.id')
+    id: Optional[int] = Field(default=None, primary_key=True)
+    название: str = Field(max_length=255)
     
-#     user: "User" = Relationship(back_populates="trainer")
-#     specialties: List["TrainerSpecialty"] = Relationship(back_populates="trainers", link_model=TrainerSpecialtyLink)
-#     clients: List["Client"] = Relationship(back_populates="trainers", link_model=TrainerClient)
+    @field_validator('название')
+    @classmethod
+    def validate_name(cls, v):
+        if not all(c.isalpha() or c.isspace() for c in v):
+            raise ValueError('Название должно содержать только русские буквы и пробелы')
+        return v
 
-# class TrainerSpecialty(SQLModel, table=True):
-#     __tablename__ = 'специальность_тренера'
+class TrainerSpecialty(SQLModel, table=True):
+    __tablename__ = 'специальность_тренера'
     
-#     id: Optional[int] = Field(default=None, primary_key=True)
-#     название: str
+    id: Optional[int] = Field(default=None, primary_key=True)
+    название: str = Field(max_length=255, unique=True)
     
-#     trainers: List["Trainer"] = Relationship(back_populates="specialties", link_model=TrainerSpecialtyLink)
+    @field_validator('название')
+    @classmethod
+    def validate_name(cls, v):
+        if not all(c.isalpha() or c.isspace() for c in v):
+            raise ValueError('Название должно содержать только русские буквы и пробелы')
+        return v
+    
+    trainers: List["Trainer"] = Relationship(back_populates="specialties", link_model=TrainerSpecialtyLink)
 
-# class TrainingPlan(SQLModel, table=True):
-#     __tablename__ = 'план_тренировок'
+class Achievement(SQLModel, table=True):
+    __tablename__ = 'достижение'
     
-#     id: Optional[int] = Field(default=None, primary_key=True)
-#     название: str
-#     описание: str
+    id: Optional[int] = Field(default=None, primary_key=True)
+    название: str = Field(max_length=255)
+    описание: Optional[str] = None
     
-#     workouts: List["Workout"] = Relationship(back_populates="training_plan")
-#     users: List["User"] = Relationship(back_populates="training_plans", link_model=TrainingPlanUser)
+    users: List["User"] = Relationship(back_populates="achievements", link_model=UserAchievement)
 
-# class Workout(SQLModel, table=True):
-#     __tablename__ = 'тренировка'
+# Models with relationships
+class Client(SQLModel, table=True):
+    __tablename__ = 'клиент'
     
-#     id: Optional[int] = Field(default=None, primary_key=True)
-#     название: str
-#     формат_проведения: str
-#     время_начала: str
-#     вид_тренировки_id: int = Field(foreign_key='вид_тренировки.id')
-#     план_тренировок_id: int = Field(foreign_key='план_тренировок.id')
+    id: Optional[int] = Field(default=None, primary_key=True)
+    уровень_подготовки_id: Optional[int] = Field(default=None, foreign_key='уровень_подготовки.id')
+    пользователь_id: int = Field(foreign_key='пользователь.id')
     
-#     workout_type: "WorkoutType" = Relationship()
-#     training_plan: "TrainingPlan" = Relationship(back_populates="workouts")
-#     exercises: List["Exercise"] = Relationship(back_populates="workouts", link_model=WorkoutExercise)
-#     users: List["User"] = Relationship(back_populates="workouts", link_model=WorkoutUser)
+    user: "User" = Relationship(back_populates="client")
+    preparation_level: Optional["PreparationLevel"] = Relationship(back_populates="clients")
+    trainers: List["Trainer"] = Relationship(
+        back_populates="clients",
+        link_model=TrainerClient,
+        sa_relationship_kwargs={
+            "lazy": "select",
+            "viewonly": True
+        }
+    )
+    training_goals: List["TrainingGoal"] = Relationship(back_populates="clients", link_model=ClientTrainingGoal)
 
-# class Exercise(SQLModel, table=True):
-#     __tablename__ = 'упражнение'
-    
-#     id: Optional[int] = Field(default=None, primary_key=True)
-#     название: str
-#     тип_упражнения_id: int = Field(foreign_key='тип_упражнения.id')
-#     уровень_сложности_id: int = Field(foreign_key='уровень_сложности.id')
-#     описание: str
-    
-#     exercise_type: "ExerciseType" = Relationship()
-#     difficulty_level: "DifficultyLevel" = Relationship()
-#     workouts: List["Workout"] = Relationship(back_populates="exercises", link_model=WorkoutExercise)
-#     muscles: List["Muscle"] = Relationship(back_populates="exercises", link_model=ExerciseMuscle)
-#     equipment: List["Equipment"] = Relationship(back_populates="exercises", link_model=ExerciseEquipment)
-#     users: List["User"] = Relationship(back_populates="exercises", link_model=ExerciseUser)
+    class Config:
+        arbitrary_types_allowed = True
+        json_encoders = {
+            datetime: lambda v: v.isoformat(),
+            date: lambda v: v.isoformat()
+        }
 
-# class Steps(SQLModel, table=True):
-#     __tablename__ = 'шаги'
+class Trainer(SQLModel, table=True):
+    __tablename__ = 'тренер'
     
-#     id: Optional[int] = Field(default=None, primary_key=True)
-#     количество_шагов: int
-#     цель_шагов: int
-#     дата: date
-#     пользователь_id: int = Field(foreign_key='пользователь.id')
+    id: Optional[int] = Field(default=None, primary_key=True)
+    пользователь_id: int = Field(foreign_key='пользователь.id', unique=True)
     
-#     user: "User" = Relationship(back_populates="steps")
+    user: "User" = Relationship(back_populates="trainer")
+    specialties: List["TrainerSpecialty"] = Relationship(back_populates="trainers", link_model=TrainerSpecialtyLink)
+    clients: List["Client"] = Relationship(
+        back_populates="trainers",
+        link_model=TrainerClient,
+        sa_relationship_kwargs={
+            "lazy": "select",
+            "viewonly": True
+        }
+    )
 
-# class Water(SQLModel, table=True):
-#     __tablename__ = 'вода'
+    class Config:
+        arbitrary_types_allowed = True
+        json_encoders = {
+            datetime: lambda v: v.isoformat(),
+            date: lambda v: v.isoformat()
+        }
+
+class TrainingPlan(SQLModel, table=True):
+    __tablename__ = 'план_тренировки'
     
-#     id: Optional[int] = Field(default=None, primary_key=True)
-#     объем_выпитой_воды: int
-#     цель: int
-#     дата: date
-#     пользователь_id: int = Field(foreign_key='пользователь.id')
+    id: Optional[int] = Field(default=None, primary_key=True)
+    название: str = Field(max_length=255)
+    описание: Optional[str] = None
     
-#     user: "User" = Relationship(back_populates="water")
+    workouts: List["Workout"] = Relationship(back_populates="training_plan", link_model=WorkoutTrainingPlan)
+    users: List["User"] = Relationship(back_populates="training_plans", link_model=TrainingPlanUser)
+
+class Workout(SQLModel, table=True):
+    __tablename__ = 'тренировка'
+    
+    id: Optional[int] = Field(default=None, primary_key=True)
+    название: str = Field(max_length=255)
+    является_онлайн: Optional[bool] = None
+    время_начала: Optional[datetime] = None
+    
+    training_plan: Optional["TrainingPlan"] = Relationship(back_populates="workouts", link_model=WorkoutTrainingPlan)
+    workout_exercises: List["WorkoutExercise"] = Relationship(back_populates="workout")
+    users: List["User"] = Relationship(back_populates="workouts", link_model=WorkoutUser)
+    exercises: List["Exercise"] = Relationship(
+        back_populates="workouts",
+        link_model=WorkoutExercise,
+        sa_relationship_kwargs={"viewonly": True}
+    )
+
+class Exercise(SQLModel, table=True):
+    __tablename__ = 'упражнение'
+    
+    id: Optional[int] = Field(default=None, primary_key=True)
+    название: str = Field(max_length=255)
+    описание: Optional[str] = None
+    тип_упражнения_id: int = Field(foreign_key='тип_упражнения.id')
+    сложность_упражнения_id: int = Field(foreign_key='сложность_упражнения.id')
+    
+    exercise_type: "ExerciseType" = Relationship(back_populates="exercises")
+    difficulty_level: "ExerciseDifficulty" = Relationship(back_populates="exercises")
+    workout_exercises: List["WorkoutExercise"] = Relationship(back_populates="exercise")
+    equipment: List["Equipment"] = Relationship(back_populates="exercises", link_model=ExerciseEquipment)
+    users: List["User"] = Relationship(back_populates="exercises", link_model=ExerciseUser)
+    files: List["File"] = Relationship(back_populates="exercises", link_model=ExerciseFile)
+    workouts: List["Workout"] = Relationship(
+        back_populates="exercises",
+        link_model=WorkoutExercise,
+        sa_relationship_kwargs={"viewonly": True}
+    )
 
 class File(SQLModel, table=True):
     __tablename__ = 'файл'
     
     id: Optional[int] = Field(default=None, primary_key=True)
-    имя_файла: str
+    имя_файла: Optional[str] = Field(default=None, max_length=255)
     
     diaries: List["Diary"] = Relationship(back_populates="file")
-    file_types: List["FileTypeModel"] = Relationship(back_populates="files", link_model=FileType)
+    file_types: List["FileType"] = Relationship(back_populates="files", link_model=FileFileType)
+    exercises: List["Exercise"] = Relationship(back_populates="files", link_model=ExerciseFile)
+    messages: List["Message"] = Relationship(back_populates="files", link_model=MessageFile)
+
+class Message(SQLModel, table=True):
+    __tablename__ = 'сообщение'
+    
+    id: Optional[int] = Field(default=None, primary_key=True)
+    время_отправки: datetime
+    текст: str
+    
+    files: List["File"] = Relationship(back_populates="messages", link_model=MessageFile)
 
 class Diary(SQLModel, table=True):
     __tablename__ = 'дневник'
     
     id: Optional[int] = Field(default=None, primary_key=True)
-    пользователь_id: int = Field(foreign_key='пользователь.id')
     дата: date
     запись: str
+    пользователь_id: int = Field(foreign_key='пользователь.id')
     файл_id: Optional[int] = Field(default=None, foreign_key='файл.id')
     
     feelings: List["Feeling"] = Relationship(back_populates="diaries", link_model=DiaryFeeling)
     feeling_reasons: List["FeelingReason"] = Relationship(back_populates="diaries", link_model=DiaryFeelingReason)
     file: Optional["File"] = Relationship(back_populates="diaries")
     user: "User" = Relationship(back_populates="diaries")
+
+class Weight(SQLModel, table=True):
+    __tablename__ = 'вес'
+    
+    id: Optional[int] = Field(default=None, primary_key=True)
+    вес: int = Field(ge=0, le=300)
+    дата: date
+    пользователь_id: int = Field(foreign_key='пользователь.id')
+    
+    user: "User" = Relationship(back_populates="weight")
+
+class Water(SQLModel, table=True):
+    __tablename__ = 'вода'
+    
+    id: Optional[int] = Field(default=None, primary_key=True)
+    объем: int = Field(ge=0, le=10000)
+    целевой_объем: Optional[int] = Field(default=None, ge=0, le=10000)
+    дата: date
+    пользователь_id: int = Field(foreign_key='пользователь.id')
+    
+    user: "User" = Relationship(back_populates="water")
+
+class Steps(SQLModel, table=True):
+    __tablename__ = 'шаги'
+    
+    id: Optional[int] = Field(default=None, primary_key=True)
+    колво: int = Field(ge=0)
+    целевое_колво: Optional[int] = Field(default=None, ge=0)
+    дата: date
+    пользователь_id: int = Field(foreign_key='пользователь.id')
+    
+    user: "User" = Relationship(back_populates="steps")
+
+class Nutrition(SQLModel, table=True):
+    __tablename__ = 'питание'
+    
+    id: Optional[int] = Field(default=None, primary_key=True)
+    калории: int = Field(ge=0, le=15000)
+    белки: Optional[int] = Field(default=None, ge=0, le=2000)
+    жиры: Optional[int] = Field(default=None, ge=0, le=1000)
+    углеводы: Optional[int] = Field(default=None, ge=0, le=2000)
+    пользователь_id: int = Field(foreign_key='пользователь.id')
+    
+    user: "User" = Relationship(back_populates="nutrition")
+
+
