@@ -34,12 +34,6 @@ class DiaryFeelingReason(SQLModel, table=True):
     дневник_id: int = Field(foreign_key='дневник.id', primary_key=True)
     причина_чувства_id: int = Field(foreign_key='причина_чувства.id', primary_key=True)
 
-class UserAchievement(SQLModel, table=True):
-    __tablename__ = 'пользователь_и_достижение'
-    
-    пользователь_id: int = Field(foreign_key='пользователь.id', primary_key=True)
-    достижение_id: int = Field(foreign_key='достижение.id', primary_key=True)
-
 class ClientTrainingGoal(SQLModel, table=True):
     __tablename__ = 'клиент_и_цель_тренировок'
     
@@ -99,19 +93,6 @@ class FileFileType(SQLModel, table=True):
     файл_id: int = Field(foreign_key='файл.id', primary_key=True)
     тип_файла_id: int = Field(foreign_key='тип_файла.id', primary_key=True)
 
-class MessageFile(SQLModel, table=True):
-    __tablename__ = 'сообщение_и_файл'
-    
-    сообщение_id: int = Field(foreign_key='сообщение.id', primary_key=True)
-    файл_id: int = Field(foreign_key='файл.id', primary_key=True)
-
-class Review(SQLModel, table=True):
-    __tablename__ = 'отзыв'
-    
-    клиент_id: int = Field(foreign_key='клиент.id', primary_key=True)
-    тренер_id: int = Field(foreign_key='тренер.id', primary_key=True)
-    рейтинг: float = Field(ge=0.0, le=5.0)
-
 # Base models (no dependencies)
 class Gender(SQLModel, table=True):
     __tablename__ = 'пол'
@@ -157,9 +138,6 @@ class User(SQLModel, table=True):
     exercises: List["Exercise"] = Relationship(back_populates="users", link_model=ExerciseUser)
     steps: List["Steps"] = Relationship(back_populates="user")
     water: List["Water"] = Relationship(back_populates="user")
-    weight: List["Weight"] = Relationship(back_populates="user")
-    nutrition: List["Nutrition"] = Relationship(back_populates="user")
-    achievements: List["Achievement"] = Relationship(back_populates="users", link_model=UserAchievement)
 
 class PreparationLevel(SQLModel, table=True):
     __tablename__ = 'уровень_подготовки'
@@ -324,15 +302,6 @@ class TrainerSpecialty(SQLModel, table=True):
     
     trainers: List["Trainer"] = Relationship(back_populates="specialties", link_model=TrainerSpecialtyLink)
 
-class Achievement(SQLModel, table=True):
-    __tablename__ = 'достижение'
-    
-    id: Optional[int] = Field(default=None, primary_key=True)
-    название: str = Field(max_length=255)
-    описание: Optional[str] = None
-    
-    users: List["User"] = Relationship(back_populates="achievements", link_model=UserAchievement)
-
 # Models with relationships
 class Client(SQLModel, table=True):
     __tablename__ = 'клиент'
@@ -441,16 +410,6 @@ class File(SQLModel, table=True):
     diaries: List["Diary"] = Relationship(back_populates="file")
     file_types: List["FileType"] = Relationship(back_populates="files", link_model=FileFileType)
     exercises: List["Exercise"] = Relationship(back_populates="files", link_model=ExerciseFile)
-    messages: List["Message"] = Relationship(back_populates="files", link_model=MessageFile)
-
-class Message(SQLModel, table=True):
-    __tablename__ = 'сообщение'
-    
-    id: Optional[int] = Field(default=None, primary_key=True)
-    время_отправки: datetime
-    текст: str
-    
-    files: List["File"] = Relationship(back_populates="messages", link_model=MessageFile)
 
 class Diary(SQLModel, table=True):
     __tablename__ = 'дневник'
@@ -465,16 +424,6 @@ class Diary(SQLModel, table=True):
     feeling_reasons: List["FeelingReason"] = Relationship(back_populates="diaries", link_model=DiaryFeelingReason)
     file: Optional["File"] = Relationship(back_populates="diaries")
     user: "User" = Relationship(back_populates="diaries")
-
-class Weight(SQLModel, table=True):
-    __tablename__ = 'вес'
-    
-    id: Optional[int] = Field(default=None, primary_key=True)
-    вес: int = Field(ge=0, le=300)
-    дата: date
-    пользователь_id: int = Field(foreign_key='пользователь.id')
-    
-    user: "User" = Relationship(back_populates="weight")
 
 class Water(SQLModel, table=True):
     __tablename__ = 'вода'
@@ -497,17 +446,3 @@ class Steps(SQLModel, table=True):
     пользователь_id: int = Field(foreign_key='пользователь.id')
     
     user: "User" = Relationship(back_populates="steps")
-
-class Nutrition(SQLModel, table=True):
-    __tablename__ = 'питание'
-    
-    id: Optional[int] = Field(default=None, primary_key=True)
-    калории: int = Field(ge=0, le=15000)
-    белки: Optional[int] = Field(default=None, ge=0, le=2000)
-    жиры: Optional[int] = Field(default=None, ge=0, le=1000)
-    углеводы: Optional[int] = Field(default=None, ge=0, le=2000)
-    пользователь_id: int = Field(foreign_key='пользователь.id')
-    
-    user: "User" = Relationship(back_populates="nutrition")
-
-

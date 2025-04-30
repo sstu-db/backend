@@ -35,65 +35,126 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-@app.get("/tables", response_model=schemas.TablesResponse)
-def get_tables():
-    """
-    Возвращает список таблиц в базе данных.
-    """
+# ===== Users and Authentication =====
+# TODO: Add user authentication endpoints
+
+# ===== Clients CRUD =====
+@app.post("/clients", response_model=schemas.Client)
+def create_client(client: schemas.ClientCreate, db: Session = Depends(get_db)):
     try:
-        logger.info("Fetching list of tables")
-        tables = [table.__tablename__ for table in models.SQLModel.__subclasses__() if hasattr(table, '__tablename__')]
-        logger.info(f"Successfully retrieved {len(tables)} tables")
-        return {"data": tables}
+        logger.info(f"Starting client creation with data: {client.model_dump()}")
+        db_client = models.Client(**client.model_dump())
+        db.add(db_client)
+        db.commit()
+        db.refresh(db_client)
+        logger.info(f"Successfully created client with ID: {db_client.id}")
+        return db_client
     except Exception as e:
-        logger.error(f"Error fetching tables: {str(e)}")
+        logger.error(f"Error creating client: {str(e)}")
+        db.rollback()
         raise HTTPException(status_code=500, detail=str(e))
 
-@app.get("/tables/{table_name}", response_model=schemas.TableInfoResponse)
-def get_table_info(table_name: str):
-    """
-    Возвращает информацию о колонках указанной таблицы.
-    """
+@app.get("/clients/{client_id}", response_model=schemas.Client)
+def get_client(client_id: int, db: Session = Depends(get_db)):
+    logger.info(f"Fetching client with ID: {client_id}")
+    client = db.get(models.Client, client_id)
+    if not client:
+        logger.warning(f"Client not found with ID: {client_id}")
+        raise HTTPException(status_code=404, detail="Client not found")
+    logger.info(f"Successfully retrieved client with ID: {client_id}")
+    return client
+
+@app.put("/clients/{client_id}", response_model=schemas.Client)
+def update_client(client_id: int, client: schemas.ClientCreate, db: Session = Depends(get_db)):
+    logger.info(f"Starting client update for ID: {client_id} with data: {client.model_dump()}")
+    db_client = db.get(models.Client, client_id)
+    if not db_client:
+        logger.warning(f"Client not found with ID: {client_id}")
+        raise HTTPException(status_code=404, detail="Client not found")
+    
+    for key, value in client.model_dump().items():
+        setattr(db_client, key, value)
+    
+    db.add(db_client)
+    db.commit()
+    db.refresh(db_client)
+    logger.info(f"Successfully updated client with ID: {client_id}")
+    return db_client
+
+@app.delete("/clients/{client_id}", response_model=schemas.MessageResponse)
+def delete_client(client_id: int, db: Session = Depends(get_db)):
+    logger.info(f"Starting client deletion for ID: {client_id}")
+    db_client = db.get(models.Client, client_id)
+    if not db_client:
+        logger.warning(f"Client not found with ID: {client_id}")
+        raise HTTPException(status_code=404, detail="Client not found")
+    
+    db.delete(db_client)
+    db.commit()
+    logger.info(f"Successfully deleted client with ID: {client_id}")
+    return {"message": "Client deleted successfully"}
+
+# ===== Trainers CRUD =====
+@app.post("/trainers", response_model=schemas.Trainer)
+def create_trainer(trainer: schemas.TrainerCreate, db: Session = Depends(get_db)):
     try:
-        logger.info(f"Fetching info for table: {table_name}")
-        model = next((table for table in models.SQLModel.__subclasses__() 
-                     if hasattr(table, '__tablename__') and table.__tablename__ == table_name), None)
-        if not model:
-            logger.warning(f"Table not found: {table_name}")
-            raise HTTPException(status_code=404, detail="Table not found")
-            
-        columns_info = [
-            {"name": field_name, "type": str(field.type_)} 
-            for field_name, field in model.__fields__.items()
-        ]
-        logger.info(f"Successfully retrieved info for table {table_name} with {len(columns_info)} columns")
-        return {"table": table_name, "data": columns_info}
+        logger.info(f"Starting trainer creation with data: {trainer.model_dump()}")
+        db_trainer = models.Trainer(**trainer.model_dump())
+        db.add(db_trainer)
+        db.commit()
+        db.refresh(db_trainer)
+        logger.info(f"Successfully created trainer with ID: {db_trainer.id}")
+        return db_trainer
     except Exception as e:
-        logger.error(f"Error fetching table info for {table_name}: {str(e)}")
+        logger.error(f"Error creating trainer: {str(e)}")
+        db.rollback()
         raise HTTPException(status_code=500, detail=str(e))
 
-@app.post("/query", response_model=schemas.QueryResponse)
-def execute_query(query_request: schemas.QueryRequest):
-    """
-    Выполняет SQL-запрос, переданный в теле запроса.
-    """
-    query_str = query_request.query
-    try:
-        logger.info(f"Executing query: {query_str}")
-        with Session(engine) as session:
-            result = session.execute(text(query_str))
-            columns = result.keys() if result.returns_rows else []
-            rows = [dict(zip(columns, row)) for row in result.fetchall()] if result.returns_rows else []
-        logger.info(f"Query executed successfully, returned {len(rows)} rows")
-        return {"data": rows}
-    except Exception as e:
-        logger.error(f"Error executing query: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
+@app.get("/trainers/{trainer_id}", response_model=schemas.Trainer)
+def get_trainer(trainer_id: int, db: Session = Depends(get_db)):
+    logger.info(f"Fetching trainer with ID: {trainer_id}")
+    trainer = db.get(models.Trainer, trainer_id)
+    if not trainer:
+        logger.warning(f"Trainer not found with ID: {trainer_id}")
+        raise HTTPException(status_code=404, detail="Trainer not found")
+    logger.info(f"Successfully retrieved trainer with ID: {trainer_id}")
+    return trainer
 
+@app.put("/trainers/{trainer_id}", response_model=schemas.Trainer)
+def update_trainer(trainer_id: int, trainer: schemas.TrainerCreate, db: Session = Depends(get_db)):
+    logger.info(f"Starting trainer update for ID: {trainer_id} with data: {trainer.model_dump()}")
+    db_trainer = db.get(models.Trainer, trainer_id)
+    if not db_trainer:
+        logger.warning(f"Trainer not found with ID: {trainer_id}")
+        raise HTTPException(status_code=404, detail="Trainer not found")
+    
+    for key, value in trainer.model_dump().items():
+        setattr(db_trainer, key, value)
+    
+    db.add(db_trainer)
+    db.commit()
+    db.refresh(db_trainer)
+    logger.info(f"Successfully updated trainer with ID: {trainer_id}")
+    return db_trainer
+
+@app.delete("/trainers/{trainer_id}", response_model=schemas.MessageResponse)
+def delete_trainer(trainer_id: int, db: Session = Depends(get_db)):
+    logger.info(f"Starting trainer deletion for ID: {trainer_id}")
+    db_trainer = db.get(models.Trainer, trainer_id)
+    if not db_trainer:
+        logger.warning(f"Trainer not found with ID: {trainer_id}")
+        raise HTTPException(status_code=404, detail="Trainer not found")
+    
+    db.delete(db_trainer)
+    db.commit()
+    logger.info(f"Successfully deleted trainer with ID: {trainer_id}")
+    return {"message": "Trainer deleted successfully"}
+
+# ===== Trainer-Client Relationship CRUD =====
 @app.get("/clients/{client_id}/trainers", response_model=schemas.TrainersResponse)
 def get_client_trainers(client_id: int, db: Session = Depends(get_db)):
     """
-    Получить тренеров (дата рождения, имя, фамилия, отчество, специальности) клиента.
+    Получить тренеров (дата рождения, имя, фамилия, отчество) клиента.
     """
     try:
         logger.info(f"Fetching trainers for client ID: {client_id}")
@@ -127,6 +188,85 @@ def get_client_trainers(client_id: int, db: Session = Depends(get_db)):
         logger.error(f"Error fetching trainers for client {client_id}: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
+@app.post("/clients/{client_id}/trainers/{trainer_id}", response_model=schemas.MessageResponse)
+def add_trainer_to_client(client_id: int, trainer_id: int, db: Session = Depends(get_db)):
+    """
+    Добавить тренера к клиенту.
+    """
+    try:
+        logger.info(f"Adding trainer {trainer_id} to client {client_id}")
+        
+        # Проверяем существование клиента и тренера
+        client = db.get(models.Client, client_id)
+        if not client:
+            logger.warning(f"Client not found with ID: {client_id}")
+            raise HTTPException(status_code=404, detail="Client not found")
+            
+        trainer = db.get(models.Trainer, trainer_id)
+        if not trainer:
+            logger.warning(f"Trainer not found with ID: {trainer_id}")
+            raise HTTPException(status_code=404, detail="Trainer not found")
+            
+        # Проверяем, существует ли уже такая связь
+        existing_link = db.exec(
+            select(models.TrainerClient)
+            .where(models.TrainerClient.тренер_id == trainer_id)
+            .where(models.TrainerClient.клиент_id == client_id)
+        ).first()
+        
+        if existing_link:
+            logger.warning(f"Trainer {trainer_id} is already assigned to client {client_id}")
+            raise HTTPException(status_code=400, detail="This trainer is already assigned to this client")
+            
+        # Создаем новую связь
+        trainer_client = models.TrainerClient(
+            тренер_id=trainer_id,
+            клиент_id=client_id
+        )
+        
+        db.add(trainer_client)
+        db.commit()
+        
+        logger.info(f"Successfully added trainer {trainer_id} to client {client_id}")
+        return {"message": "Trainer added to client successfully"}
+    except HTTPException as he:
+        raise he
+    except Exception as e:
+        logger.error(f"Error adding trainer to client: {str(e)}")
+        db.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
+
+@app.delete("/clients/{client_id}/trainers/{trainer_id}", response_model=schemas.MessageResponse)
+def remove_trainer_from_client(client_id: int, trainer_id: int, db: Session = Depends(get_db)):
+    """
+    Удалить тренера у клиента.
+    """
+    try:
+        logger.info(f"Removing trainer {trainer_id} from client {client_id}")
+        
+        # Проверяем существование связи
+        trainer_client = db.exec(
+            select(models.TrainerClient)
+            .where(models.TrainerClient.тренер_id == trainer_id)
+            .where(models.TrainerClient.клиент_id == client_id)
+        ).first()
+        
+        if not trainer_client:
+            logger.warning(f"Trainer {trainer_id} is not assigned to client {client_id}")
+            raise HTTPException(status_code=404, detail="This trainer is not assigned to this client")
+            
+        db.delete(trainer_client)
+        db.commit()
+        
+        logger.info(f"Successfully removed trainer {trainer_id} from client {client_id}")
+        return {"message": "Trainer removed from client successfully"}
+    except HTTPException as he:
+        raise he
+    except Exception as e:
+        logger.error(f"Error removing trainer from client: {str(e)}")
+        db.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
+
 @app.get("/trainers/{trainer_id}/clients", response_model=schemas.ClientsResponse)
 def get_trainer_clients(trainer_id: int, db: Session = Depends(get_db)):
     """
@@ -155,228 +295,290 @@ def get_trainer_clients(trainer_id: int, db: Session = Depends(get_db)):
         logger.error(f"Error fetching clients for trainer {trainer_id}: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
-@app.get("/training-plans", response_model=schemas.TrainingPlansResponse)
-def get_training_plans(
-    client_id: Optional[int] = None,
-    trainer_id: Optional[int] = None,
-    db: Session = Depends(get_db)
-):
-    """
-    Получить план тренировок (название, описание, тренировки) клиента, либо тренера, либо по клиента и тренера.
-    """
+# ===== Training Plans CRUD =====
+@app.post("/training-plans", response_model=schemas.TrainingPlan)
+def create_training_plan(plan: schemas.TrainingPlanCreate, db: Session = Depends(get_db)):
     try:
-        statement = select(models.TrainingPlan)
-        
-        if client_id:
-            client = db.get(models.Client, client_id)
-            if not client:
-                raise HTTPException(status_code=404, detail="Client not found")
-            statement = statement.where(models.TrainingPlanUser.пользователь_id == client.пользователь_id)
-            
-        if trainer_id:
-            trainer = db.get(models.Trainer, trainer_id)
-            if not trainer:
-                raise HTTPException(status_code=404, detail="Trainer not found")
-            statement = statement.where(models.TrainingPlanUser.пользователь_id == trainer.пользователь_id)
-            
-        return {"data": db.exec(statement).all()}
+        logger.info(f"Starting training plan creation with data: {plan.model_dump()}")
+        db_plan = models.TrainingPlan(**plan.model_dump())
+        db.add(db_plan)
+        db.commit()
+        db.refresh(db_plan)
+        logger.info(f"Successfully created training plan with ID: {db_plan.id}")
+        return db_plan
     except Exception as e:
+        logger.error(f"Error creating training plan: {str(e)}")
+        db.rollback()
         raise HTTPException(status_code=500, detail=str(e))
 
-@app.get("/workouts", response_model=schemas.WorkoutsResponse)
-def get_workouts(
-    client_id: Optional[int] = None,
-    trainer_id: Optional[int] = None,
-    db: Session = Depends(get_db)
-):
-    """
-    Получить тренировки (название, формат проведения, время начала, вид тренировки, упражнения) клиента, либо тренера, либо по клиента и тренера.
-    """
+@app.get("/training-plans/{plan_id}", response_model=schemas.TrainingPlan)
+def get_training_plan(plan_id: int, db: Session = Depends(get_db)):
+    logger.info(f"Fetching training plan with ID: {plan_id}")
+    plan = db.get(models.TrainingPlan, plan_id)
+    if not plan:
+        logger.warning(f"Training plan not found with ID: {plan_id}")
+        raise HTTPException(status_code=404, detail="Training plan not found")
+    logger.info(f"Successfully retrieved training plan with ID: {plan_id}")
+    return plan
+
+@app.put("/training-plans/{plan_id}", response_model=schemas.TrainingPlan)
+def update_training_plan(plan_id: int, plan: schemas.TrainingPlanCreate, db: Session = Depends(get_db)):
+    logger.info(f"Starting training plan update for ID: {plan_id} with data: {plan.model_dump()}")
+    db_plan = db.get(models.TrainingPlan, plan_id)
+    if not db_plan:
+        logger.warning(f"Training plan not found with ID: {plan_id}")
+        raise HTTPException(status_code=404, detail="Training plan not found")
+    
+    for key, value in plan.model_dump().items():
+        setattr(db_plan, key, value)
+    
+    db.add(db_plan)
+    db.commit()
+    db.refresh(db_plan)
+    logger.info(f"Successfully updated training plan with ID: {plan_id}")
+    return db_plan
+
+@app.delete("/training-plans/{plan_id}", response_model=schemas.MessageResponse)
+def delete_training_plan(plan_id: int, db: Session = Depends(get_db)):
+    logger.info(f"Starting training plan deletion for ID: {plan_id}")
+    db_plan = db.get(models.TrainingPlan, plan_id)
+    if not db_plan:
+        logger.warning(f"Training plan not found with ID: {plan_id}")
+        raise HTTPException(status_code=404, detail="Training plan not found")
+    
+    db.delete(db_plan)
+    db.commit()
+    logger.info(f"Successfully deleted training plan with ID: {plan_id}")
+    return {"message": "Training plan deleted successfully"}
+
+# ===== Workouts CRUD =====
+@app.post("/workouts", response_model=schemas.Workout)
+def create_workout(workout: schemas.WorkoutCreate, db: Session = Depends(get_db)):
     try:
-        logger.info(f"Starting get_workouts request with client_id={client_id}, trainer_id={trainer_id}")
-        
-        # Base query with joins for exercises
-        statement = (
-            select(models.Workout)
-            .join(models.WorkoutExercise, models.Workout.id == models.WorkoutExercise.тренировка_id)
-            .join(models.Exercise, models.WorkoutExercise.упражнение_id == models.Exercise.id)
-        )
-        logger.debug("Initial statement with exercise joins created")
-        
-        if client_id:
-            logger.info(f"Fetching client with ID: {client_id}")
-            client = db.get(models.Client, client_id)
-            if not client:
-                logger.warning(f"Client not found with ID: {client_id}")
-                raise HTTPException(status_code=404, detail="Client not found")
-            logger.info(f"Found client with user_id: {client.пользователь_id}")
-            
-            statement = (
-                select(models.Workout)
-                .join(models.WorkoutUser, models.Workout.id == models.WorkoutUser.тренировка_id)
-                .join(models.WorkoutExercise, models.Workout.id == models.WorkoutExercise.тренировка_id)
-                .join(models.Exercise, models.WorkoutExercise.упражнение_id == models.Exercise.id)
-                .where(models.WorkoutUser.пользователь_id == client.пользователь_id)
-            )
-            logger.debug("Statement updated for client workouts with exercises")
-            
-        if trainer_id:
-            logger.info(f"Fetching trainer with ID: {trainer_id}")
-            trainer = db.get(models.Trainer, trainer_id)
-            if not trainer:
-                logger.warning(f"Trainer not found with ID: {trainer_id}")
-                raise HTTPException(status_code=404, detail="Trainer not found")
-            logger.info(f"Found trainer with user_id: {trainer.пользователь_id}")
-            
-            statement = (
-                select(models.Workout)
-                .join(models.WorkoutUser, models.Workout.id == models.WorkoutUser.тренировка_id)
-                .join(models.WorkoutExercise, models.Workout.id == models.WorkoutExercise.тренировка_id)
-                .join(models.Exercise, models.WorkoutExercise.упражнение_id == models.Exercise.id)
-                .where(models.WorkoutUser.пользователь_id == trainer.пользователь_id)
-            )
-            logger.debug("Statement updated for trainer workouts with exercises")
-            
-        logger.info("Executing final query")
-        workouts = db.exec(statement).all()
-        logger.info(f"Successfully retrieved {len(workouts)} workouts with their exercises")
-        
-        # Load exercises for each workout
-        for workout in workouts:
-            workout.exercises = db.exec(
-                select(models.Exercise)
-                .join(models.WorkoutExercise, models.Exercise.id == models.WorkoutExercise.упражнение_id)
-                .where(models.WorkoutExercise.тренировка_id == workout.id)
-            ).all()
-            logger.debug(f"Loaded {len(workout.exercises)} exercises for workout {workout.id}")
-        
-        return {"data": workouts}
-    except HTTPException as he:
-        logger.error(f"HTTP Exception in get_workouts: {str(he)}")
-        raise he
+        logger.info(f"Starting workout creation with data: {workout.model_dump()}")
+        db_workout = models.Workout(**workout.model_dump())
+        db.add(db_workout)
+        db.commit()
+        db.refresh(db_workout)
+        logger.info(f"Successfully created workout with ID: {db_workout.id}")
+        return db_workout
     except Exception as e:
-        logger.error(f"Unexpected error in get_workouts: {str(e)}", exc_info=True)
+        logger.error(f"Error creating workout: {str(e)}")
+        db.rollback()
         raise HTTPException(status_code=500, detail=str(e))
 
-@app.get("/exercises", response_model=schemas.ExercisesResponse)
-def get_exercises(
-    client_id: Optional[int] = None,
-    trainer_id: Optional[int] = None,
-    db: Session = Depends(get_db)
-):
-    """
-    Получить упражнения (название, тип, уровень сложности, описание, мышцы с указанием важности этой мышцы в упражнении, снаряжение) клиента, либо тренера, либо по клиента и тренера.
-    """
+@app.get("/workouts/{workout_id}", response_model=schemas.Workout)
+def get_workout(workout_id: int, db: Session = Depends(get_db)):
+    logger.info(f"Fetching workout with ID: {workout_id}")
+    workout = db.get(models.Workout, workout_id)
+    if not workout:
+        logger.warning(f"Workout not found with ID: {workout_id}")
+        raise HTTPException(status_code=404, detail="Workout not found")
+    logger.info(f"Successfully retrieved workout with ID: {workout_id}")
+    return workout
+
+@app.put("/workouts/{workout_id}", response_model=schemas.Workout)
+def update_workout(workout_id: int, workout: schemas.WorkoutCreate, db: Session = Depends(get_db)):
+    logger.info(f"Starting workout update for ID: {workout_id} with data: {workout.model_dump()}")
+    db_workout = db.get(models.Workout, workout_id)
+    if not db_workout:
+        logger.warning(f"Workout not found with ID: {workout_id}")
+        raise HTTPException(status_code=404, detail="Workout not found")
+    
+    for key, value in workout.model_dump().items():
+        setattr(db_workout, key, value)
+    
+    db.add(db_workout)
+    db.commit()
+    db.refresh(db_workout)
+    logger.info(f"Successfully updated workout with ID: {workout_id}")
+    return db_workout
+
+@app.delete("/workouts/{workout_id}", response_model=schemas.MessageResponse)
+def delete_workout(workout_id: int, db: Session = Depends(get_db)):
+    logger.info(f"Starting workout deletion for ID: {workout_id}")
+    db_workout = db.get(models.Workout, workout_id)
+    if not db_workout:
+        logger.warning(f"Workout not found with ID: {workout_id}")
+        raise HTTPException(status_code=404, detail="Workout not found")
+    
+    db.delete(db_workout)
+    db.commit()
+    logger.info(f"Successfully deleted workout with ID: {workout_id}")
+    return {"message": "Workout deleted successfully"}
+
+# ===== Exercises CRUD =====
+@app.post("/exercises", response_model=schemas.Exercise)
+def create_exercise(exercise: schemas.ExerciseCreate, db: Session = Depends(get_db)):
     try:
-        statement = select(models.Exercise)
-        
-        if client_id:
-            client = db.get(models.Client, client_id)
-            if not client:
-                raise HTTPException(status_code=404, detail="Client not found")
-            statement = (
-                select(models.Exercise)
-                .join(models.ExerciseUser, models.Exercise.id == models.ExerciseUser.упражнение_id)
-                .where(models.ExerciseUser.пользователь_id == client.пользователь_id)
-            )
-            
-        if trainer_id:
-            trainer = db.get(models.Trainer, trainer_id)
-            if not trainer:
-                raise HTTPException(status_code=404, detail="Trainer not found")
-            statement = (
-                select(models.Exercise)
-                .join(models.ExerciseUser, models.Exercise.id == models.ExerciseUser.упражнение_id)
-                .where(models.ExerciseUser.пользователь_id == trainer.пользователь_id)
-            )
-            
-        return {"data": db.exec(statement).all()}
+        logger.info(f"Starting exercise creation with data: {exercise.model_dump()}")
+        db_exercise = models.Exercise(**exercise.model_dump())
+        db.add(db_exercise)
+        db.commit()
+        db.refresh(db_exercise)
+        logger.info(f"Successfully created exercise with ID: {db_exercise.id}")
+        return db_exercise
     except Exception as e:
+        logger.error(f"Error creating exercise: {str(e)}")
+        db.rollback()
         raise HTTPException(status_code=500, detail=str(e))
 
-@app.get("/steps", response_model=schemas.StepsResponse)
-def get_steps(
-    user_id: int,
-    start_date: Optional[date] = None,
-    end_date: Optional[date] = None,
-    db: Session = Depends(get_db)
-):
-    """
-    Получить шаги (количество шагов, цель шагов, дата записи) по пользователю и диапазону дат.
-    """
+@app.get("/exercises/{exercise_id}", response_model=schemas.Exercise)
+def get_exercise(exercise_id: int, db: Session = Depends(get_db)):
+    logger.info(f"Fetching exercise with ID: {exercise_id}")
+    exercise = db.get(models.Exercise, exercise_id)
+    if not exercise:
+        logger.warning(f"Exercise not found with ID: {exercise_id}")
+        raise HTTPException(status_code=404, detail="Exercise not found")
+    logger.info(f"Successfully retrieved exercise with ID: {exercise_id}")
+    return exercise
+
+@app.put("/exercises/{exercise_id}", response_model=schemas.Exercise)
+def update_exercise(exercise_id: int, exercise: schemas.ExerciseCreate, db: Session = Depends(get_db)):
+    logger.info(f"Starting exercise update for ID: {exercise_id} with data: {exercise.model_dump()}")
+    db_exercise = db.get(models.Exercise, exercise_id)
+    if not db_exercise:
+        logger.warning(f"Exercise not found with ID: {exercise_id}")
+        raise HTTPException(status_code=404, detail="Exercise not found")
+    
+    for key, value in exercise.model_dump().items():
+        setattr(db_exercise, key, value)
+    
+    db.add(db_exercise)
+    db.commit()
+    db.refresh(db_exercise)
+    logger.info(f"Successfully updated exercise with ID: {exercise_id}")
+    return db_exercise
+
+@app.delete("/exercises/{exercise_id}", response_model=schemas.MessageResponse)
+def delete_exercise(exercise_id: int, db: Session = Depends(get_db)):
+    logger.info(f"Starting exercise deletion for ID: {exercise_id}")
+    db_exercise = db.get(models.Exercise, exercise_id)
+    if not db_exercise:
+        logger.warning(f"Exercise not found with ID: {exercise_id}")
+        raise HTTPException(status_code=404, detail="Exercise not found")
+    
+    db.delete(db_exercise)
+    db.commit()
+    logger.info(f"Successfully deleted exercise with ID: {exercise_id}")
+    return {"message": "Exercise deleted successfully"}
+
+# ===== Health Tracking CRUD =====
+@app.post("/steps", response_model=schemas.Steps)
+def create_steps(steps: schemas.StepsCreate, db: Session = Depends(get_db)):
     try:
-        statement = select(models.Steps).where(models.Steps.пользователь_id == user_id)
-        
-        if start_date:
-            statement = statement.where(models.Steps.дата >= start_date)
-            
-        if end_date:
-            statement = statement.where(models.Steps.дата <= end_date)
-            
-        return {"data": db.exec(statement).all()}
+        logger.info(f"Starting steps record creation with data: {steps.model_dump()}")
+        db_steps = models.Steps(**steps.model_dump())
+        db.add(db_steps)
+        db.commit()
+        db.refresh(db_steps)
+        logger.info(f"Successfully created steps record with ID: {db_steps.id}")
+        return db_steps
     except Exception as e:
+        logger.error(f"Error creating steps record: {str(e)}")
+        db.rollback()
         raise HTTPException(status_code=500, detail=str(e))
 
-@app.get("/water", response_model=schemas.WaterResponse)
-def get_water(
-    user_id: int,
-    start_date: Optional[date] = None,
-    end_date: Optional[date] = None,
-    db: Session = Depends(get_db)
-):
-    """
-    Получить потребление воды (объем выпитой воды, цель, дата) по пользователю и диапазону дат.
-    """
+@app.get("/steps/{steps_id}", response_model=schemas.Steps)
+def get_steps(steps_id: int, db: Session = Depends(get_db)):
+    logger.info(f"Fetching steps record with ID: {steps_id}")
+    steps = db.get(models.Steps, steps_id)
+    if not steps:
+        logger.warning(f"Steps record not found with ID: {steps_id}")
+        raise HTTPException(status_code=404, detail="Steps record not found")
+    logger.info(f"Successfully retrieved steps record with ID: {steps_id}")
+    return steps
+
+@app.put("/steps/{steps_id}", response_model=schemas.Steps)
+def update_steps(steps_id: int, steps: schemas.StepsCreate, db: Session = Depends(get_db)):
+    logger.info(f"Starting steps record update for ID: {steps_id} with data: {steps.model_dump()}")
+    db_steps = db.get(models.Steps, steps_id)
+    if not db_steps:
+        logger.warning(f"Steps record not found with ID: {steps_id}")
+        raise HTTPException(status_code=404, detail="Steps record not found")
+    
+    for key, value in steps.model_dump().items():
+        setattr(db_steps, key, value)
+    
+    db.add(db_steps)
+    db.commit()
+    db.refresh(db_steps)
+    logger.info(f"Successfully updated steps record with ID: {steps_id}")
+    return db_steps
+
+@app.delete("/steps/{steps_id}", response_model=schemas.MessageResponse)
+def delete_steps(steps_id: int, db: Session = Depends(get_db)):
+    logger.info(f"Starting steps record deletion for ID: {steps_id}")
+    db_steps = db.get(models.Steps, steps_id)
+    if not db_steps:
+        logger.warning(f"Steps record not found with ID: {steps_id}")
+        raise HTTPException(status_code=404, detail="Steps record not found")
+    
+    db.delete(db_steps)
+    db.commit()
+    logger.info(f"Successfully deleted steps record with ID: {steps_id}")
+    return {"message": "Steps record deleted successfully"}
+
+@app.post("/water", response_model=schemas.Water)
+def create_water(water: schemas.WaterCreate, db: Session = Depends(get_db)):
     try:
-        statement = select(models.Water).where(models.Water.пользователь_id == user_id)
-        
-        if start_date:
-            statement = statement.where(models.Water.дата >= start_date)
-            
-        if end_date:
-            statement = statement.where(models.Water.дата <= end_date)
-            
-        return {"data": db.exec(statement).all()}
+        logger.info(f"Starting water record creation with data: {water.model_dump()}")
+        db_water = models.Water(**water.model_dump())
+        db.add(db_water)
+        db.commit()
+        db.refresh(db_water)
+        logger.info(f"Successfully created water record with ID: {db_water.id}")
+        return db_water
     except Exception as e:
+        logger.error(f"Error creating water record: {str(e)}")
+        db.rollback()
         raise HTTPException(status_code=500, detail=str(e))
 
-@app.get("/diaries", response_model=schemas.DiariesResponse)
-def get_diaries(
-    user_id: int,
-    start_date: Optional[date] = None,
-    end_date: Optional[date] = None,
-    db: Session = Depends(get_db)
-):
-    """
-    Получить дневники состояния (дата записи, текстовая заметка, файл) по пользователю и диапазону дат.
-    """
-    try:
-        logger.info(f"Fetching diaries for user {user_id} from {start_date} to {end_date}")
-        statement = select(models.Diary).where(models.Diary.пользователь_id == user_id)
-        
-        if start_date:
-            statement = statement.where(models.Diary.дата >= start_date)
-            
-        if end_date:
-            statement = statement.where(models.Diary.дата <= end_date)
-            
-        diaries = db.exec(statement).all()
-        logger.info(f"Successfully retrieved {len(diaries)} diaries for user {user_id}")
-        return {"data": diaries}
-    except Exception as e:
-        logger.error(f"Error fetching diaries for user {user_id}: {str(e)}")
-        raise HTTPException(status_code=500, detail=str(e))
+@app.get("/water/{water_id}", response_model=schemas.Water)
+def get_water(water_id: int, db: Session = Depends(get_db)):
+    logger.info(f"Fetching water record with ID: {water_id}")
+    water = db.get(models.Water, water_id)
+    if not water:
+        logger.warning(f"Water record not found with ID: {water_id}")
+        raise HTTPException(status_code=404, detail="Water record not found")
+    logger.info(f"Successfully retrieved water record with ID: {water_id}")
+    return water
 
+@app.put("/water/{water_id}", response_model=schemas.Water)
+def update_water(water_id: int, water: schemas.WaterCreate, db: Session = Depends(get_db)):
+    logger.info(f"Starting water record update for ID: {water_id} with data: {water.model_dump()}")
+    db_water = db.get(models.Water, water_id)
+    if not db_water:
+        logger.warning(f"Water record not found with ID: {water_id}")
+        raise HTTPException(status_code=404, detail="Water record not found")
+    
+    for key, value in water.model_dump().items():
+        setattr(db_water, key, value)
+    
+    db.add(db_water)
+    db.commit()
+    db.refresh(db_water)
+    logger.info(f"Successfully updated water record with ID: {water_id}")
+    return db_water
+
+@app.delete("/water/{water_id}", response_model=schemas.MessageResponse)
+def delete_water(water_id: int, db: Session = Depends(get_db)):
+    logger.info(f"Starting water record deletion for ID: {water_id}")
+    db_water = db.get(models.Water, water_id)
+    if not db_water:
+        logger.warning(f"Water record not found with ID: {water_id}")
+        raise HTTPException(status_code=404, detail="Water record not found")
+    
+    db.delete(db_water)
+    db.commit()
+    logger.info(f"Successfully deleted water record with ID: {water_id}")
+    return {"message": "Water record deleted successfully"}
+
+# ===== Diaries CRUD =====
 @app.post("/diaries", response_model=schemas.Diary)
-def create_diary(
-    diary: schemas.DiaryCreate,
-    db: Session = Depends(get_db)
-):
-    """
-    Создать дневник.
-    """
+def create_diary(diary: schemas.DiaryCreate, db: Session = Depends(get_db)):
     try:
-        logger.info(f"Creating new diary for user {diary.пользователь_id}")
+        logger.info(f"Starting diary creation for user {diary.пользователь_id}")
         user = db.get(models.User, diary.пользователь_id)
         if not user:
             logger.warning(f"User not found with ID: {diary.пользователь_id}")
@@ -390,10 +592,12 @@ def create_diary(
         db.refresh(db_diary)
         
         if diary.feelings:
+            logger.info(f"Adding feelings to diary: {diary.feelings}")
             feelings = db.exec(select(models.Feeling).where(models.Feeling.id.in_(diary.feelings))).all()
             db_diary.feelings = feelings
             
         if diary.feeling_reasons:
+            logger.info(f"Adding feeling reasons to diary: {diary.feeling_reasons}")
             feeling_reasons = db.exec(select(models.FeelingReason).where(models.FeelingReason.id.in_(diary.feeling_reasons))).all()
             db_diary.feeling_reasons = feeling_reasons
             
@@ -409,17 +613,20 @@ def create_diary(
         db.rollback()
         raise HTTPException(status_code=500, detail=str(e))
 
+@app.get("/diaries/{diary_id}", response_model=schemas.Diary)
+def get_diary(diary_id: int, db: Session = Depends(get_db)):
+    logger.info(f"Fetching diary with ID: {diary_id}")
+    diary = db.get(models.Diary, diary_id)
+    if not diary:
+        logger.warning(f"Diary not found with ID: {diary_id}")
+        raise HTTPException(status_code=404, detail="Diary not found")
+    logger.info(f"Successfully retrieved diary with ID: {diary_id}")
+    return diary
+
 @app.put("/diaries/{diary_id}", response_model=schemas.Diary)
-def update_diary(
-    diary_id: int,
-    diary: schemas.DiaryCreate,
-    db: Session = Depends(get_db)
-):
-    """
-    Обновить дневник.
-    """
+def update_diary(diary_id: int, diary: schemas.DiaryCreate, db: Session = Depends(get_db)):
     try:
-        logger.info(f"Updating diary with ID: {diary_id}")
+        logger.info(f"Starting diary update for ID: {diary_id}")
         db_diary = db.get(models.Diary, diary_id)
         if not db_diary:
             logger.warning(f"Diary not found with ID: {diary_id}")
@@ -439,10 +646,12 @@ def update_diary(
         db.refresh(db_diary)
         
         if diary.feelings is not None:
+            logger.info(f"Updating feelings for diary: {diary.feelings}")
             feelings = db.exec(select(models.Feeling).where(models.Feeling.id.in_(diary.feelings))).all()
             db_diary.feelings = feelings
             
         if diary.feeling_reasons is not None:
+            logger.info(f"Updating feeling reasons for diary: {diary.feeling_reasons}")
             feeling_reasons = db.exec(select(models.FeelingReason).where(models.FeelingReason.id.in_(diary.feeling_reasons))).all()
             db_diary.feeling_reasons = feeling_reasons
         
@@ -461,11 +670,8 @@ def update_diary(
 
 @app.delete("/diaries/{diary_id}", response_model=schemas.MessageResponse)
 def delete_diary(diary_id: int, db: Session = Depends(get_db)):
-    """
-    Удалить дневник.
-    """
     try:
-        logger.info(f"Deleting diary with ID: {diary_id}")
+        logger.info(f"Starting diary deletion for ID: {diary_id}")
         db_diary = db.get(models.Diary, diary_id)
         if not db_diary:
             logger.warning(f"Diary not found with ID: {diary_id}")
@@ -481,16 +687,20 @@ def delete_diary(diary_id: int, db: Session = Depends(get_db)):
         db.rollback()
         raise HTTPException(status_code=500, detail=str(e))
 
+# ===== Feelings and Reasons CRUD =====
 @app.get("/feelings", response_model=List[schemas.Feeling])
 def get_feelings(db: Session = Depends(get_db)):
     """
     Получить список всех чувств.
     """
     try:
+        logger.info("Fetching all feelings")
         statement = select(models.Feeling)
         feelings = db.exec(statement).all()
+        logger.info(f"Successfully retrieved {len(feelings)} feelings")
         return feelings
     except Exception as e:
+        logger.error(f"Error fetching feelings: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.get("/feeling-reasons", response_model=List[schemas.FeelingReason])
@@ -499,8 +709,11 @@ def get_feeling_reasons(db: Session = Depends(get_db)):
     Получить список всех причин чувств.
     """
     try:
+        logger.info("Fetching all feeling reasons")
         statement = select(models.FeelingReason)
         feeling_reasons = db.exec(statement).all()
+        logger.info(f"Successfully retrieved {len(feeling_reasons)} feeling reasons")
         return feeling_reasons
     except Exception as e:
+        logger.error(f"Error fetching feeling reasons: {str(e)}")
         raise HTTPException(status_code=500, detail=str(e))
