@@ -532,17 +532,48 @@ def create_training_plan(
         raise HTTPException(status_code=500, detail=str(e))
 
 @app.delete("/training-plans/{plan_id}", response_model=schemas.MessageResponse)
-def delete_training_plan(plan_id: int, db: Session = Depends(get_db)):
-    logger.info(f"Starting training plan deletion for ID: {plan_id}")
-    db_plan = db.get(models.TrainingPlan, plan_id)
-    if not db_plan:
-        logger.warning(f"Training plan not found with ID: {plan_id}")
-        raise HTTPException(status_code=404, detail="Training plan not found")
-    
-    db.delete(db_plan)
-    db.commit()
-    logger.info(f"Successfully deleted training plan with ID: {plan_id}")
-    return {"message": "Training plan deleted successfully"}
+def delete_training_plan(
+    plan_id: int,
+    db: Session = Depends(get_db),
+    current_user: models.User = Depends(auth.get_current_active_user)
+):
+    try:
+        logger.info(f"Starting training plan deletion for ID: {plan_id}")
+        
+        # Получаем план тренировок
+        db_plan = db.get(models.TrainingPlan, plan_id)
+        if not db_plan:
+            logger.warning(f"Training plan not found with ID: {plan_id}")
+            raise HTTPException(status_code=404, detail="Training plan not found")
+        
+        # Проверяем, принадлежит ли план текущему пользователю
+        plan_user = db.exec(
+            select(models.TrainingPlanUser)
+            .where(models.TrainingPlanUser.план_тренировки_id == plan_id)
+            .where(models.TrainingPlanUser.пользователь_id == current_user.id)
+        ).first()
+        
+        if not plan_user:
+            raise HTTPException(status_code=403, detail="Not authorized to delete this training plan")
+        
+        # Удаляем связь с пользователем
+        db.delete(plan_user)
+        
+        # Очищаем связи с тренировками
+        db_plan.workouts = []
+        
+        # Удаляем сам план
+        db.delete(db_plan)
+        db.commit()
+        
+        logger.info(f"Successfully deleted training plan with ID: {plan_id}")
+        return {"message": "Training plan deleted successfully"}
+    except HTTPException as he:
+        raise he
+    except Exception as e:
+        logger.error(f"Error deleting training plan: {str(e)}")
+        db.rollback()
+        raise HTTPException(status_code=500, detail=str(e))
 
 # ===== Workouts CRUD =====
 @app.get("/my-workouts", response_model=List[schemas.Workout])
@@ -648,8 +679,18 @@ def delete_workout(
         if not workout_user:
             raise HTTPException(status_code=403, detail="Not authorized to delete this workout")
         
+        # Удаляем все связанные упражнения тренировки
+        workout_exercises = db.exec(
+            select(models.WorkoutExercise)
+            .where(models.WorkoutExercise.тренировка_id == workout_id)
+        ).all()
+        
+        for exercise in workout_exercises:
+            db.delete(exercise)
+        
         # Удаляем связь с пользователем
         db.delete(workout_user)
+        
         # Удаляем тренировку
         db.delete(db_workout)
         db.commit()
