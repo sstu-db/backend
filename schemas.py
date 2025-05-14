@@ -1,8 +1,43 @@
-from pydantic import BaseModel
-from typing import List, Optional
+from pydantic import BaseModel, EmailStr
+from typing import List, Optional, ForwardRef
 from datetime import date, datetime
 
-# Base schemas
+# ===== Forward References =====
+UserRef = ForwardRef('User')
+ClientRef = ForwardRef('Client')
+TrainerRef = ForwardRef('Trainer')
+
+# ===== Authentication Schemas =====
+class Token(BaseModel):
+    access_token: str
+    token_type: str
+
+class TokenData(BaseModel):
+    email: Optional[str] = None
+
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str
+
+# ===== Registration Schemas =====
+
+class RegisterBase(BaseModel):
+    почта: EmailStr
+    хэш_пароля: str
+    дата_рождения: Optional[date] = None
+    имя: str
+    фамилия: str
+    отчество: Optional[str] = None
+
+class ClientRegister(RegisterBase):
+    уровень_подготовки_id: Optional[int] = None
+    training_goals: Optional[List[int]] = None  # List of training goal IDs
+    training_types: Optional[List[int]] = None  # List of training type IDs
+
+class TrainerRegister(RegisterBase):
+    specialties: Optional[List[int]] = None  # List of specialty IDs
+
+# ===== Base User Schemas =====
 class UserBase(BaseModel):
     дата_рождения: Optional[date] = None
     имя: str
@@ -10,12 +45,13 @@ class UserBase(BaseModel):
     отчество: Optional[str] = None
 
 class ClientBase(BaseModel):
-    уровень_подготовки_id: int
-
-class TrainerBase(BaseModel):
-    id: int
+    уровень_подготовки_id: Optional[int] = None
     пользователь_id: int
 
+class TrainerBase(BaseModel):
+    пользователь_id: int
+
+# ===== Base Content Schemas =====
 class ExerciseBase(BaseModel):
     название: str
     описание: Optional[str] = None
@@ -46,7 +82,7 @@ class WaterBase(BaseModel):
     целевой_объем: float
     дата: date
 
-# Response schemas for simple models
+# ===== Reference Data Schemas =====
 class PreparationLevel(BaseModel):
     id: int
     название: str
@@ -62,6 +98,13 @@ class TrainerSpecialty(BaseModel):
         from_attributes = True
 
 class TrainingGoal(BaseModel):
+    id: int
+    название: str
+
+    class Config:
+        from_attributes = True
+
+class TrainingType(BaseModel):
     id: int
     название: str
 
@@ -110,7 +153,14 @@ class FeelingReason(BaseModel):
     class Config:
         from_attributes = True
 
-# Response schemas for complex models
+class ExerciseStage(BaseModel):
+    id: int
+    название: str
+
+    class Config:
+        from_attributes = True
+
+# ===== User Response Schemas =====
 class User(UserBase):
     id: int
 
@@ -119,23 +169,23 @@ class User(UserBase):
 
 class Client(ClientBase):
     id: int
-    пользователь_id: int
-    user: Optional[User] = None
+    user: Optional[UserRef] = None
     preparation_level: Optional[PreparationLevel] = None
-    trainers: List["Trainer"] = []
     training_goals: List[TrainingGoal] = []
+    training_types: List[TrainingType] = []
 
     class Config:
         from_attributes = True
 
 class Trainer(TrainerBase):
-    user: Optional[User] = None
-    clients: List["Client"] = []
+    id: int
+    user: Optional[UserRef] = None
     specialties: List[TrainerSpecialty] = []
 
     class Config:
         from_attributes = True
 
+# ===== Content Response Schemas =====
 class File(BaseModel):
     id: int
     имя_файла: str
@@ -149,15 +199,32 @@ class Exercise(ExerciseBase):
     exercise_type: Optional[ExerciseType] = None
     difficulty_level: Optional[ExerciseDifficulty] = None
     equipment: List[Equipment] = []
-    users: List[User] = []
+    exercise_stage: Optional[ExerciseStage] = None
+
+    class Config:
+        from_attributes = True
+
+class WorkoutExerciseCreate(BaseModel):
+    упражнение_id: int
+    этап_упражнения_id: int
+    номер_в_очереди: int
+    колво_подходов: int
+    колво_подходов_выполнено: int
+    колво_повторений: int
+    колво_повторений_выполнено: int
+
+    class Config:
+        from_attributes = True
+
+class WorkoutExercise(WorkoutExerciseCreate):
+    exercise: Optional[Exercise] = None
 
     class Config:
         from_attributes = True
 
 class Workout(WorkoutBase):
     id: int
-    exercises: List[Exercise] = []
-    users: List[User] = []
+    workout_exercises: List[WorkoutExercise]
 
     class Config:
         from_attributes = True
@@ -165,7 +232,6 @@ class Workout(WorkoutBase):
 class TrainingPlan(TrainingPlanBase):
     id: int
     workouts: List[Workout] = []
-    users: List[User] = []
 
     class Config:
         from_attributes = True
@@ -176,43 +242,91 @@ class Diary(DiaryBase):
     feelings: List[Feeling] = []
     feeling_reasons: List[FeelingReason] = []
     file: Optional[File] = None
-    user: Optional[User] = None
 
     class Config:
         from_attributes = True
 
 class Steps(StepsBase):
     id: int
-    пользователь_id: int
-    user: Optional[User] = None
 
     class Config:
         from_attributes = True
 
 class Water(WaterBase):
     id: int
-    пользователь_id: int
-    user: Optional[User] = None
 
     class Config:
         from_attributes = True
 
-# Create schemas
-class UserCreate(UserBase):
-    pass
+# ===== Request Schemas =====
+class ClientTrainersRequest(BaseModel):
+    клиент_id: int
 
-class ClientCreate(ClientBase):
+class TrainerClientsRequest(BaseModel):
+    тренер_id: int
+
+class TrainingPlanRequest(BaseModel):
+    клиент_id: Optional[int] = None
+    тренер_id: Optional[int] = None
+
+class WorkoutsRequest(BaseModel):
+    клиент_id: Optional[int] = None
+    тренер_id: Optional[int] = None
+
+class ExercisesRequest(BaseModel):
+    клиент_id: Optional[int] = None
+    тренер_id: Optional[int] = None
+
+class DiaryRequest(BaseModel):
     пользователь_id: int
+    дата: Optional[date] = None
+    дата_начала: Optional[date] = None
+    дата_конца: Optional[date] = None
+
+class StepsRequest(BaseModel):
+    пользователь_id: int
+    дата: Optional[date] = None
+    дата_начала: Optional[date] = None
+    дата_конца: Optional[date] = None
+
+class WaterRequest(BaseModel):
+    пользователь_id: int
+    дата: Optional[date] = None
+    дата_начала: Optional[date] = None
+    дата_конца: Optional[date] = None
+
+# ===== Response Schemas =====
+class ClientTrainersResponse(BaseModel):
+    data: List[Trainer]
 
     class Config:
         from_attributes = True
 
-class TrainerCreate(TrainerBase):
-    пользователь_id: int
+class TrainerClientsResponse(BaseModel):
+    data: List[Client]
 
     class Config:
         from_attributes = True
 
+class TrainingPlanResponse(BaseModel):
+    data: List[TrainingPlan]
+
+class WorkoutsResponse(BaseModel):
+    data: List[Workout]
+
+class ExercisesResponse(BaseModel):
+    data: List[Exercise]
+
+class DiaryResponse(BaseModel):
+    data: List[Diary]
+
+class StepsResponse(BaseModel):
+    data: List[Steps]
+
+class WaterResponse(BaseModel):
+    data: List[Water]
+
+# ===== Create Schemas =====
 class ExerciseCreate(ExerciseBase):
     pass
 
@@ -220,19 +334,18 @@ class ExerciseCreate(ExerciseBase):
         from_attributes = True
 
 class WorkoutCreate(WorkoutBase):
-    pass
+    exercises: List[WorkoutExerciseCreate]
 
     class Config:
         from_attributes = True
 
 class TrainingPlanCreate(TrainingPlanBase):
-    pass
+    workouts: List[int] = []  # List of workout IDs to include in the plan
 
     class Config:
         from_attributes = True
 
 class DiaryCreate(DiaryBase):
-    пользователь_id: int
     feelings: Optional[List[int]] = None  # List of feeling IDs
     feeling_reasons: Optional[List[int]] = None  # List of feeling reason IDs
 
@@ -240,65 +353,21 @@ class DiaryCreate(DiaryBase):
         from_attributes = True
 
 class StepsCreate(StepsBase):
-    пользователь_id: int
-
     class Config:
         from_attributes = True
 
 class WaterCreate(WaterBase):
-    пользователь_id: int
-
     class Config:
         from_attributes = True
 
-class TablesResponse(BaseModel):
-    data: List[str]
-
-class TableInfoResponse(BaseModel):
-    table: str
-    data: List[dict]
-
-class QueryResponse(BaseModel):
-    data: List[dict]
-
-class TrainerResponse(TrainerBase):
-    user: Optional[User] = None
-
-    class Config:
-        from_attributes = True
-
-class ClientResponse(ClientBase):
-    user: Optional[User] = None
-    preparation_level: Optional[PreparationLevel] = None
-    class Config:
-        from_attributes = True
-
-class TrainersResponse(BaseModel):
-    data: List[TrainerResponse]
-
-class ClientsResponse(BaseModel):
-    data: List[ClientResponse]
-
-class TrainingPlansResponse(BaseModel):
-    data: List["TrainingPlan"]
-
-class WorkoutsResponse(BaseModel):
-    data: List["Workout"]
-
-class ExercisesResponse(BaseModel):
-    data: List["Exercise"]
-
-class StepsResponse(BaseModel):
-    data: List["Steps"]
-
-class WaterResponse(BaseModel):
-    data: List["Water"]
-
-class DiariesResponse(BaseModel):
-    data: List["Diary"]
-
+# ===== Utility Schemas =====
 class MessageResponse(BaseModel):
     message: str
 
 class QueryRequest(BaseModel):
-    query: str 
+    query: str
+
+# Update forward references
+User.model_rebuild()
+Client.model_rebuild()
+Trainer.model_rebuild() 

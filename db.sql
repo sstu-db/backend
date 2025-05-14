@@ -5,7 +5,7 @@
 -- Dumped from database version 17.0
 -- Dumped by pg_dump version 17.2
 
--- Started on 2025-04-16 21:54:22
+-- Started on 2025-05-15 02:30:32
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -1215,7 +1215,7 @@ CREATE TABLE public."тренировка" (
     "название" character varying(255) NOT NULL,
     "является_онлайн" boolean,
     "время_начала" timestamp with time zone,
-    "чат_id" integer NOT NULL
+    "чат_id" integer
 );
 
 
@@ -1940,6 +1940,10 @@ COPY public."вода" (id, "объем", "целевой_объем", "дата
 8	1200	1600	2023-01-08	8
 10	1400	1700	2023-01-10	10
 9	1300	1700	2023-01-09	1
+11	0	0	2025-05-14	1
+14	2	2	2025-05-15	1
+15	4563	3456	2025-05-15	11
+16	3564	234	2025-05-15	1
 \.
 
 
@@ -1953,7 +1957,6 @@ COPY public."дневник" (id, "дата", "запись", "пользова�
 1	2023-02-01	Запись 1	1	1
 2	2023-02-02	Запись 2	2	2
 3	2023-02-03	Запись 3	3	3
-4	2023-02-04	Запись 4	4	4
 5	2023-02-05	Запись 5	5	5
 6	2023-02-06	Запись 6	6	6
 7	2023-02-07	Запись 7	7	7
@@ -1969,6 +1972,9 @@ COPY public."дневник" (id, "дата", "запись", "пользова�
 19	2025-04-16	ывап	1	\N
 20	2025-04-16	аааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааа	1	\N
 21	2025-04-16	ббббббббббббаааааааааааааааааааааааааа	1	\N
+4	2023-02-04	Запись 4	4	\N
+22	2025-05-15	ййййййййййй	1	\N
+23	2025-05-15	кукуе	11	\N
 \.
 
 
@@ -2001,6 +2007,11 @@ COPY public."дневник_и_причина_чувства" ("дневник_i
 20	3
 21	10
 21	7
+22	3
+22	5
+22	7
+23	4
+23	6
 \.
 
 
@@ -2033,6 +2044,14 @@ COPY public."дневник_и_чувство" ("дневник_id", "чувст
 20	3
 21	10
 21	4
+4	5
+22	2
+22	4
+22	6
+22	8
+23	2
+23	4
+23	6
 \.
 
 
@@ -2213,6 +2232,8 @@ COPY public."план_тренировки" (id, "название", "описа
 8	План 8	Описание плана 8
 9	План 9	Описание плана 9
 10	План 10	Описание плана 10
+11	gfhd	gfhd
+12	план123	123
 \.
 
 
@@ -2234,6 +2255,8 @@ COPY public."план_тренировки_и_пользователь" ("пол
 9	9
 10	10
 1	2
+1	11
+1	12
 \.
 
 
@@ -2286,6 +2309,7 @@ COPY public."пользователь" (id, "дата_рождения", "хэш
 8	1997-08-08	hash8	user8@example.com	Отчество	Васильев	Василий	2
 9	1998-09-09	hash9	user9@example.com	Отчество	Соколов	Андрей	1
 10	1999-10-10	hash10	user10@example.com	Отчество	Лебедев	Михаил	2
+11	2025-05-14	aaaaaaaa	baba@baba.ru	фыавыфав	фыва	ЫВАфыва	\N
 \.
 
 
@@ -2531,11 +2555,12 @@ COPY public."тренер_и_клиент" ("тренер_id", "клиент_id"
 7	8
 8	9
 9	10
-10	1
 1	3
 1	4
-8	1
-9	1
+7	1
+3	1
+1	1
+5	1
 \.
 
 
@@ -2576,6 +2601,25 @@ COPY public."тренировка" (id, "название", "является_о
 8	Тренировка 8	f	2023-04-08 14:00:00+04	8
 9	Тренировка 9	t	2023-04-09 14:00:00+04	9
 10	Тренировка 10	f	2023-04-10 14:00:00+04	10
+22	треня1	t	2025-05-15 00:36:13.388+04	\N
+23	треня1	t	2025-05-15 00:44:11.564+04	\N
+24	треня1	t	2025-05-15 00:44:11.564+04	\N
+25	треня1	t	2025-05-15 00:44:11.564+04	\N
+26	треня1	t	2025-05-15 00:44:11.564+04	\N
+27	треня1	t	2025-05-15 00:44:11.564+04	\N
+28	пппппп	t	2025-05-15 00:49:25.279+04	\N
+29	f	f	2025-05-15 00:49:59.534+04	\N
+30	f	f	2025-05-15 00:49:59.534+04	\N
+31	1	f	2025-05-15 00:52:30.479+04	\N
+32	1	f	2025-05-15 00:52:30.479+04	\N
+33	ааааааааааааааааа	t	2025-05-15 00:56:57.486+04	\N
+34	аывыафв	t	2025-05-15 00:57:10.743+04	\N
+35	треня34	f	2025-05-15 00:57:27.671+04	\N
+36	ывафаывфыафв	f	2025-05-15 00:58:15.543+04	\N
+37	string	t	2025-05-15 01:21:23.987+04	\N
+38	в	t	2025-05-15 01:22:51.035+04	\N
+39	выпаыпвапыва	f	2025-05-15 01:23:55.3+04	\N
+40	123	f	2025-05-15 02:27:42.228+04	\N
 \.
 
 
@@ -2586,7 +2630,6 @@ COPY public."тренировка" (id, "название", "является_о
 --
 
 COPY public."тренировка_и_план_тренировки" ("тренировка_id", "план_тренировки_id") FROM stdin;
-1	1
 2	2
 3	3
 4	4
@@ -2596,7 +2639,13 @@ COPY public."тренировка_и_план_тренировки" ("трени
 8	8
 9	9
 10	10
-2	1
+1	11
+32	11
+34	11
+2	12
+33	12
+35	12
+38	12
 \.
 
 
@@ -2618,6 +2667,14 @@ COPY public."тренировка_и_пользователь" ("пользов�
 9	9
 10	10
 1	2
+1	32
+1	33
+1	34
+1	35
+1	36
+1	38
+1	39
+1	40
 \.
 
 
@@ -2638,6 +2695,18 @@ COPY public."тренировка_и_упражнение" (id, "трениро�
 8	8	8	8	3	3	10	10	2
 9	9	9	9	3	3	10	10	3
 10	10	10	10	3	3	10	10	1
+11	32	1	1	3	1	10	1	1
+12	33	1	1	3	0	10	0	1
+13	34	14	1	3	0	10	0	1
+14	34	14	2	3	0	10	0	3
+15	35	1	1	3	0	10	0	1
+16	35	1	2	3	0	10	0	1
+17	35	1	3	3	0	10	0	1
+18	36	1	1	3	0	10	0	1
+19	38	14	1	3	0	10	0	1
+20	38	1	2	3	0	10	0	1
+21	39	1	1	3	0	10	0	1
+22	40	1	1	3	0	10	0	1
 \.
 
 
@@ -2658,6 +2727,9 @@ COPY public."упражнение" (id, "название", "описание", 
 8	Упражнение 8	Описание 8	2	2
 9	Упражнение 9	Описание 9	3	3
 10	Упражнение 10	Описание 10	1	1
+11	name	description	1	2
+14	ааааааааа	аааааааааа	1	1
+15	паро	паро	1	1
 \.
 
 
@@ -2699,6 +2771,8 @@ COPY public."упражнение_и_пользователь" ("упражне�
 9	9
 10	10
 2	1
+14	1
+15	1
 \.
 
 
@@ -2906,6 +2980,8 @@ COPY public."шаги" (id, "колво", "целевое_колво", "дата
 8	80	85	2023-05-08	8
 10	100	105	2023-05-10	10
 9	90	95	2023-05-09	1
+11	1	1	2025-05-15	1
+13	543	534	2025-05-15	1
 \.
 
 
@@ -2946,7 +3022,7 @@ SELECT pg_catalog.setval('public.chat_id_seq', 1, false);
 -- Name: client_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.client_id_seq', 1, false);
+SELECT pg_catalog.setval('public.client_id_seq', 4, true);
 
 
 --
@@ -2982,7 +3058,7 @@ SELECT pg_catalog.setval('public.coach_speciality_id_seq', 1, false);
 -- Name: diary_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.diary_id_seq', 21, true);
+SELECT pg_catalog.setval('public.diary_id_seq', 24, true);
 
 
 --
@@ -3018,7 +3094,7 @@ SELECT pg_catalog.setval('public.exercise_difficulty_2_id_seq', 1, false);
 -- Name: exercise_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.exercise_id_seq', 1, false);
+SELECT pg_catalog.setval('public.exercise_id_seq', 15, true);
 
 
 --
@@ -3126,7 +3202,7 @@ SELECT pg_catalog.setval('public.reason_of_feeling_id_seq', 1, false);
 -- Name: steps_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.steps_id_seq', 1, false);
+SELECT pg_catalog.setval('public.steps_id_seq', 13, true);
 
 
 --
@@ -3162,7 +3238,7 @@ SELECT pg_catalog.setval('public.training_level_id_seq', 1, false);
 -- Name: user_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.user_id_seq', 1, false);
+SELECT pg_catalog.setval('public.user_id_seq', 11, true);
 
 
 --
@@ -3171,7 +3247,7 @@ SELECT pg_catalog.setval('public.user_id_seq', 1, false);
 -- Name: water_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.water_id_seq', 1, false);
+SELECT pg_catalog.setval('public.water_id_seq', 16, true);
 
 
 --
@@ -3189,7 +3265,7 @@ SELECT pg_catalog.setval('public.weight_id_seq', 1, false);
 -- Name: workout_and_exercise_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.workout_and_exercise_id_seq', 1, false);
+SELECT pg_catalog.setval('public.workout_and_exercise_id_seq', 22, true);
 
 
 --
@@ -3198,7 +3274,7 @@ SELECT pg_catalog.setval('public.workout_and_exercise_id_seq', 1, false);
 -- Name: workout_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.workout_id_seq', 1, false);
+SELECT pg_catalog.setval('public.workout_id_seq', 40, true);
 
 
 --
@@ -3207,7 +3283,7 @@ SELECT pg_catalog.setval('public.workout_id_seq', 1, false);
 -- Name: workout_plan_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.workout_plan_id_seq', 1, false);
+SELECT pg_catalog.setval('public.workout_plan_id_seq', 12, true);
 
 
 --
@@ -3598,15 +3674,6 @@ ALTER TABLE public."тренер"
 
 
 --
--- TOC entry 5009 (class 2606 OID 19131)
--- Name: тренировка chk_ids; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
---
-
-ALTER TABLE public."тренировка"
-    ADD CONSTRAINT chk_ids CHECK (("чат_id" >= 1)) NOT VALID;
-
-
---
 -- TOC entry 4978 (class 2606 OID 19132)
 -- Name: упражнение chk_ids; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
@@ -3616,12 +3683,12 @@ ALTER TABLE public."упражнение"
 
 
 --
--- TOC entry 5008 (class 2606 OID 19133)
--- Name: тренировка_и_упражнение chk_more_or_equal_one; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
+-- TOC entry 5008 (class 2606 OID 19570)
+-- Name: тренировка_и_упражнение chk_more_or_equal; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
 --
 
 ALTER TABLE public."тренировка_и_упражнение"
-    ADD CONSTRAINT chk_more_or_equal_one CHECK ((("номер_в_очереди" >= 0) AND ("колво_подходов" >= 1) AND (("колво_подходов_выполнено" >= 1) AND ("колво_подходов_выполнено" <= "колво_подходов")) AND ("колво_повторений" >= 1) AND (("колво_повторений_выполнено" >= 1) AND ("колво_повторений_выполнено" <= "колво_повторений")))) NOT VALID;
+    ADD CONSTRAINT chk_more_or_equal CHECK ((("номер_в_очереди" >= 0) AND ("колво_подходов" >= 1) AND (("колво_подходов_выполнено" >= 0) AND ("колво_подходов_выполнено" <= "колво_подходов")) AND ("колво_повторений" >= 1) AND ("колво_повторений_выполнено" >= 0))) NOT VALID;
 
 
 --
@@ -3631,6 +3698,15 @@ ALTER TABLE public."тренировка_и_упражнение"
 
 ALTER TABLE public."шаги"
     ADD CONSTRAINT chk_more_or_equal_one CHECK ((("колво" >= 0) AND ("целевое_колво" >= 0))) NOT VALID;
+
+
+--
+-- TOC entry 5009 (class 2606 OID 19571)
+-- Name: тренировка_и_упражнение chk_more_or_equal_workout; Type: CHECK CONSTRAINT; Schema: public; Owner: postgres
+--
+
+ALTER TABLE public."тренировка_и_упражнение"
+    ADD CONSTRAINT chk_more_or_equal_workout CHECK (("колво_повторений_выполнено" <= "колво_повторений")) NOT VALID;
 
 
 --
@@ -4911,7 +4987,7 @@ ALTER TABLE ONLY public."клиент_и_тип_тренировки"
     ADD CONSTRAINT workout_type_id FOREIGN KEY ("тип_тренировки_id") REFERENCES public."тип_тренировки"(id);
 
 
--- Completed on 2025-04-16 21:54:22
+-- Completed on 2025-05-15 02:30:33
 
 --
 -- PostgreSQL database dump complete

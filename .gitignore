@@ -19,7 +19,6 @@ venv.bak/
 migrations/
 
 # Секреты и конфигурации
-*.env
 *.json
 
 # Конфигурации IDE
